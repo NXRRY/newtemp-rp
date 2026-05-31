@@ -20,7 +20,6 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -31,6 +30,53 @@
       line-height: 1.7;
       overflow-x: hidden;
     }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    @keyframes slideLeft {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+
+    @keyframes borderGlow {
+      0%, 100% { border-color: rgba(55,138,221,0.2); }
+      50% { border-color: rgba(55,138,221,0.6); }
+    }
+
+    .animate-fade-up {
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
 
     /* NAV */
     nav {
@@ -45,6 +91,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      transition: background 0.3s;
     }
 
     .nav-logo {
@@ -54,15 +101,9 @@
       color: var(--blue);
       letter-spacing: 2px;
     }
-
     .nav-logo span { color: var(--gold); }
 
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
+    .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a {
       text-decoration: none;
       color: var(--gray);
@@ -71,9 +112,18 @@
       font-weight: 600;
       letter-spacing: 1px;
       transition: color 0.2s;
+      position: relative;
     }
-
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 1px;
+      background: var(--blue);
+      transition: width 0.2s;
+    }
     .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
 
     .nav-btn {
       background: var(--blue);
@@ -87,10 +137,9 @@
       letter-spacing: 1px;
       cursor: pointer;
       text-decoration: none;
-      transition: background 0.2s;
+      transition: all 0.2s;
     }
-
-    .nav-btn:hover { background: var(--blue-dark); }
+    .nav-btn:hover { background: var(--blue-dark); transform: translateY(-1px); }
 
     /* HERO */
     .hero {
@@ -104,17 +153,51 @@
       overflow: hidden;
     }
 
-    .hero-bg {
+    .hero-slider {
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 60% 50% at 50% 60%, rgba(55,138,221,0.08) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+
+    .hero-slide.active { opacity: 1; }
+
+    .hero-slide::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+        rgba(15,15,15,0.5) 0%,
+        rgba(15,15,15,0.65) 50%,
+        rgba(15,15,15,0.95) 100%);
+    }
+
+    .hero-bg-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 40% at 50% 60%, rgba(55,138,221,0.06) 0%, transparent 70%);
+      z-index: 1;
     }
 
     .hero-line-top {
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 3px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      background: linear-gradient(90deg, transparent, var(--gold), var(--blue), transparent);
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
     }
 
     .hero-badge {
@@ -134,34 +217,35 @@
     }
 
     .hero-badge-dot {
-      width: 6px;
-      height: 6px;
+      width: 6px; height: 6px;
       border-radius: 50%;
       background: var(--blue);
       animation: pulse 2s infinite;
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-
     .hero-title {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(52px, 8vw, 96px);
+      font-size: clamp(52px, 8vw, 100px);
       font-weight: 800;
       line-height: 0.95;
       color: var(--white);
       margin-bottom: 8px;
-      position: relative;
     }
 
     .hero-title .blue { color: var(--blue); }
     .hero-title .gold { color: var(--gold); }
 
+    .hero-title-shimmer {
+      background: linear-gradient(90deg, var(--blue), var(--blue-light), var(--blue));
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 3s linear infinite;
+    }
+
     .hero-sub {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(18px, 3vw, 28px);
+      font-size: clamp(16px, 2.5vw, 24px);
       font-weight: 400;
       color: var(--gray);
       letter-spacing: 6px;
@@ -195,13 +279,21 @@
       text-decoration: none;
       transition: all 0.2s;
       border: 2px solid var(--blue);
+      position: relative;
+      overflow: hidden;
     }
 
-    .btn-primary:hover {
-      background: var(--blue-dark);
-      border-color: var(--blue-dark);
-      transform: translateY(-1px);
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.4s;
     }
+
+    .btn-primary:hover::before { left: 100%; }
+    .btn-primary:hover { background: var(--blue-dark); border-color: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(55,138,221,0.3); }
 
     .btn-outline {
       background: transparent;
@@ -216,12 +308,7 @@
       border: 2px solid rgba(239,159,39,0.4);
       transition: all 0.2s;
     }
-
-    .btn-outline:hover {
-      border-color: var(--gold);
-      background: rgba(239,159,39,0.05);
-      transform: translateY(-1px);
-    }
+    .btn-outline:hover { border-color: var(--gold); background: rgba(239,159,39,0.05); transform: translateY(-2px); }
 
     .hero-stats {
       display: flex;
@@ -234,15 +321,16 @@
     .stat {
       text-align: center;
       position: relative;
+      animation: float 4s ease-in-out infinite;
     }
+    .stat:nth-child(2) { animation-delay: 0.5s; }
+    .stat:nth-child(3) { animation-delay: 1s; }
 
     .stat + .stat::before {
       content: '';
       position: absolute;
-      left: -20px;
-      top: 20%;
-      height: 60%;
-      width: 0.5px;
+      left: -20px; top: 20%;
+      height: 60%; width: 0.5px;
       background: var(--border);
     }
 
@@ -258,6 +346,65 @@
       color: var(--gray);
       font-family: 'Rajdhani', sans-serif;
       letter-spacing: 2px;
+    }
+
+    /* SLIDER DOTS */
+    .hero-dots {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 3;
+    }
+
+    .hero-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gray);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .hero-dot.active {
+      background: var(--blue);
+      width: 20px;
+      border-radius: 3px;
+    }
+
+    /* TICKER / SCROLL BANNER */
+    .ticker-wrap {
+      background: var(--black2);
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+      overflow: hidden;
+      padding: 12px 0;
+    }
+
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: slideLeft 20s linear infinite;
+    }
+
+    .ticker-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 40px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--gray);
+      white-space: nowrap;
+    }
+
+    .ticker-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--blue);
     }
 
     /* SECTION */
@@ -292,6 +439,67 @@
       line-height: 1.8;
     }
 
+    /* SCROLL REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* GALLERY STRIP */
+    .gallery-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin: 48px 0;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      aspect-ratio: 16/9;
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      filter: brightness(0.8);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+      filter: brightness(1);
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(15,15,15,0.7) 100%);
+    }
+
+    .gallery-item-label {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      z-index: 1;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 1px;
+    }
+
     /* FEATURES */
     .features-grid {
       display: grid;
@@ -305,7 +513,7 @@
       border: 0.5px solid rgba(255,255,255,0.06);
       border-radius: 12px;
       padding: 28px;
-      transition: border-color 0.2s, transform 0.2s;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
       position: relative;
       overflow: hidden;
     }
@@ -317,19 +525,19 @@
       height: 2px;
       background: var(--blue);
       opacity: 0;
-      transition: opacity 0.2s;
+      transition: opacity 0.3s;
     }
 
     .feature-card:hover {
-      border-color: rgba(55,138,221,0.2);
-      transform: translateY(-2px);
+      border-color: rgba(55,138,221,0.25);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.3);
     }
 
     .feature-card:hover::before { opacity: 1; }
 
     .feature-icon {
-      width: 44px;
-      height: 44px;
+      width: 44px; height: 44px;
       border-radius: 10px;
       background: rgba(55,138,221,0.1);
       border: 0.5px solid rgba(55,138,221,0.2);
@@ -338,7 +546,10 @@
       justify-content: center;
       font-size: 20px;
       margin-bottom: 16px;
+      transition: transform 0.3s;
     }
+
+    .feature-card:hover .feature-icon { transform: scale(1.1) rotate(5deg); }
 
     .feature-title {
       font-family: 'Barlow Condensed', sans-serif;
@@ -366,22 +577,15 @@
     .steps::before {
       content: '';
       position: absolute;
-      top: 28px;
-      left: 14%;
-      right: 14%;
+      top: 28px; left: 14%; right: 14%;
       height: 0.5px;
       background: var(--border);
     }
 
-    .step {
-      text-align: center;
-      padding: 0 20px;
-      position: relative;
-    }
+    .step { text-align: center; padding: 0 20px; }
 
     .step-num {
-      width: 56px;
-      height: 56px;
+      width: 56px; height: 56px;
       border-radius: 50%;
       background: var(--black2);
       border: 2px solid var(--blue);
@@ -395,6 +599,18 @@
       margin: 0 auto 20px;
       position: relative;
       z-index: 1;
+      transition: all 0.3s;
+      animation: borderGlow 3s ease-in-out infinite;
+    }
+
+    .step:nth-child(2) .step-num { animation-delay: 0.75s; }
+    .step:nth-child(3) .step-num { animation-delay: 1.5s; }
+    .step:nth-child(4) .step-num { animation-delay: 2.25s; }
+
+    .step-num:hover {
+      background: var(--blue);
+      color: var(--white);
+      transform: scale(1.1);
     }
 
     .step-title {
@@ -405,13 +621,9 @@
       margin-bottom: 8px;
     }
 
-    .step-desc {
-      font-size: 13px;
-      color: var(--gray);
-      line-height: 1.7;
-    }
+    .step-desc { font-size: 13px; color: var(--gray); line-height: 1.7; }
 
-    /* RULES HIGHLIGHT */
+    /* RULES */
     .rules-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -427,11 +639,16 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .rule-pill:hover {
+      border-color: rgba(55,138,221,0.2);
+      transform: translateX(4px);
     }
 
     .rule-dot {
-      width: 8px;
-      height: 8px;
+      width: 8px; height: 8px;
       border-radius: 50%;
       flex-shrink: 0;
     }
@@ -454,7 +671,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 48px;
-      align-items: center;
+      align-items: start;
     }
 
     .donate-highlight {
@@ -466,12 +683,7 @@
       margin-bottom: 12px;
     }
 
-    .donate-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+    .donate-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 
     .donate-list li {
       display: flex;
@@ -496,8 +708,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: gap;
-      max-width: 100%;
+      flex-wrap: wrap;
+      gap: 16px;
     }
 
     .footer-logo {
@@ -507,7 +719,6 @@
       color: var(--blue);
       letter-spacing: 2px;
     }
-
     .footer-logo span { color: var(--gold); }
 
     .footer-text {
@@ -520,14 +731,15 @@
     .gold-line {
       width: 100%;
       height: 3px;
-      background: linear-gradient(90deg, transparent, var(--gold) 30%, var(--blue) 70%, transparent);
+      background: linear-gradient(90deg, transparent, var(--gold), var(--blue), transparent);
     }
 
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .donate-box { grid-template-columns: 1fr; }
       .steps::before { display: none; }
-      footer { flex-direction: column; gap: 12px; text-align: center; }
+      footer { flex-direction: column; text-align: center; }
+      .gallery-strip { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -539,6 +751,7 @@
   <div class="nav-logo">NEW<span>TEMP</span> RP</div>
   <ul class="nav-links">
     <li><a href="#features">FEATURES</a></li>
+    <li><a href="#gallery">GALLERY</a></li>
     <li><a href="#join">HOW TO JOIN</a></li>
     <li><a href="#rules">RULES</a></li>
     <li><a href="#donate">DONATE</a></li>
@@ -546,28 +759,34 @@
   <a href="#join" class="nav-btn">เข้าร่วม Discord</a>
 </nav>
 
-<!-- HERO -->
+<!-- HERO with Image Slider -->
 <div class="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-slider">
+    <div class="hero-slide active" style="background-image:url('assets/wallpaper/01.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('assets/wallpaper/02.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('assets/wallpaper/03.jpg');"></div>
+  </div>
+  <div class="hero-bg-glow"></div>
   <div class="hero-line-top"></div>
-  <div style="position:relative;z-index:1;">
-    <div class="hero-badge">
+
+  <div class="hero-content">
+    <div class="animate-fade-up hero-badge">
       <div class="hero-badge-dot"></div>
       FIVEM THAILAND · ONLINE
     </div>
-    <h1 class="hero-title">
-      <span class="blue">NEW</span>TEMP<br>
-      <span class="gold">ROLE</span>PLAY
+    <h1 class="hero-title animate-fade-up delay-1">
+      <span class="hero-title-shimmer">NEW</span><span style="color:var(--white);">TEMP</span><br>
+      <span class="gold">ROLE</span><span style="color:var(--white);">PLAY</span>
     </h1>
-    <p class="hero-sub">YOUR STORY · YOUR WORLD</p>
-    <p class="hero-desc">
+    <p class="hero-sub animate-fade-up delay-2">YOUR STORY · YOUR WORLD</p>
+    <p class="hero-desc animate-fade-up delay-3">
       เซิร์ฟเวอร์ FiveM ที่เปิดโอกาสให้คุณเป็นใครก็ได้ในเมือง Los Santos เล่น RP อย่างอิสระในระบบที่ยุติธรรม ไม่มี Pay-to-Win
     </p>
-    <div class="hero-actions">
+    <div class="hero-actions animate-fade-up delay-4">
       <a href="#join" class="btn-primary">เริ่มเล่นเลย</a>
       <a href="#features" class="btn-outline">ดูรายละเอียด</a>
     </div>
-    <div class="hero-stats">
+    <div class="hero-stats animate-fade-up delay-5">
       <div class="stat">
         <div class="stat-num">128</div>
         <div class="stat-label">MAX SLOTS</div>
@@ -582,40 +801,68 @@
       </div>
     </div>
   </div>
+
+  <div class="hero-dots">
+    <div class="hero-dot active" onclick="goSlide(0)"></div>
+    <div class="hero-dot" onclick="goSlide(1)"></div>
+    <div class="hero-dot" onclick="goSlide(2)"></div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <div class="ticker-item"><div class="ticker-dot"></div>CUSTOM SCRIPT</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>ACTIVE STAFF</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>REAL ECONOMY</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>BUSINESS SYSTEM</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>PARKING SYSTEM</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>PROPERTY SYSTEM</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>FAIR DONATE</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>FREEDOM RP</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>CUSTOM SCRIPT</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>ACTIVE STAFF</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>REAL ECONOMY</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>BUSINESS SYSTEM</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>PARKING SYSTEM</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>PROPERTY SYSTEM</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>FAIR DONATE</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>FREEDOM RP</div>
+  </div>
 </div>
 
 <!-- FEATURES -->
 <section id="features">
-  <div class="section-tag">WHAT WE OFFER</div>
-  <h2 class="section-title">ระบบที่ไม่มีใครทำ<br>ในไทยมาก่อน</h2>
-  <p class="section-desc">ออกแบบมาเพื่อประสบการณ์ RP ที่สมจริงและยุติธรรมสำหรับทุกคน</p>
+  <div class="section-tag reveal">WHAT WE OFFER</div>
+  <h2 class="section-title reveal">ระบบที่ไม่มีใครทำ<br>ในไทยมาก่อน</h2>
+  <p class="section-desc reveal">ออกแบบมาเพื่อประสบการณ์ RP ที่สมจริงและยุติธรรมสำหรับทุกคน</p>
   <div class="features-grid">
-    <div class="feature-card">
+    <div class="feature-card reveal">
       <div class="feature-icon">🚗</div>
       <div class="feature-title">Parking System</div>
       <div class="feature-desc">จอดรถได้ทุกที่บนแผนที่ ระบบบันทึกสภาพรถและพิกัดจริง ไม่มี Garage แบบเดิม</div>
     </div>
-    <div class="feature-card">
+    <div class="feature-card reveal">
       <div class="feature-icon">🏪</div>
       <div class="feature-title">Business System</div>
       <div class="feature-desc">เปิดร้านได้จริง มีระบบ Stock / Craft / Bill / จ้างพนักงาน / เงินเดือน ครบวงจร</div>
     </div>
-    <div class="feature-card">
+    <div class="feature-card reveal">
       <div class="feature-icon">🏠</div>
       <div class="feature-title">Property System</div>
       <div class="feature-desc">ซื้อ ขายต่อ หรือถูกยึดได้จริงผ่านกระบวนการศาลใน RP มีระบบประมูลสาธารณะ</div>
     </div>
-    <div class="feature-card">
+    <div class="feature-card reveal">
       <div class="feature-icon">⚖️</div>
       <div class="feature-title">Legal System</div>
       <div class="feature-desc">โครงสร้างรัฐบาล ศาล และกฎหมายในเกมที่สร้างเรื่องราวได้เองตามธรรมชาติ</div>
     </div>
-    <div class="feature-card">
+    <div class="feature-card reveal">
       <div class="feature-icon">💰</div>
       <div class="feature-title">Fair Economy</div>
       <div class="feature-desc">ระบบภาษี / เงินเดือน / หนี้สิน สมจริง ทุกคนเข้าถึงทุกอย่างได้จากการเล่น RP</div>
     </div>
-    <div class="feature-card">
+    <div class="feature-card reveal">
       <div class="feature-icon">🎭</div>
       <div class="feature-title">Freedom RP</div>
       <div class="feature-desc">เล่นเป็นใครก็ได้ คนงานก่อสร้าง ชายชรา คนขี้เมา หรือคนจรจัด ทุก RP มีคุณค่า</div>
@@ -623,28 +870,48 @@
   </div>
 </section>
 
+<!-- GALLERY -->
+<section id="gallery" style="padding-top:0;">
+  <div class="section-tag reveal">SCREENSHOTS</div>
+  <h2 class="section-title reveal">ชีวิตในเมือง<br>Los Santos</h2>
+  <div class="gallery-strip reveal">
+    <div class="gallery-item">
+      <img src="assets/wallpaper/01.jpg" alt="Police Scene" />
+      <div class="gallery-item-label">POLICE · CRIME</div>
+    </div>
+    <div class="gallery-item">
+      <img src="assets/wallpaper/02.jpg" alt="Garage Scene" />
+      <div class="gallery-item-label">MECHANIC · BUSINESS</div>
+    </div>
+    <div class="gallery-item">
+      <img src="assets/wallpaper/03.jpg" alt="Street Scene" />
+      <div class="gallery-item-label">STREET LIFE · RP</div>
+    </div>
+  </div>
+</section>
+
 <!-- HOW TO JOIN -->
-<section id="join" style="background:rgba(55,138,221,0.03);border-radius:24px;border:0.5px solid var(--border);">
-  <div class="section-tag">GETTING STARTED</div>
-  <h2 class="section-title">วิธีเข้าร่วมเซิร์ฟ</h2>
-  <p class="section-desc">ต้องผ่าน Whitelist ก่อนเข้าเล่น เพื่อคุณภาพ RP ที่ดีของทุกคน</p>
+<section id="join" style="background:rgba(55,138,221,0.03);border-radius:24px;border:0.5px solid var(--border);max-width:1200px;margin:0 auto;">
+  <div class="section-tag reveal">GETTING STARTED</div>
+  <h2 class="section-title reveal">วิธีเข้าร่วมเซิร์ฟ</h2>
+  <p class="section-desc reveal">ต้องผ่าน Whitelist ก่อนเข้าเล่น เพื่อคุณภาพ RP ที่ดีของทุกคน</p>
   <div class="steps">
-    <div class="step">
+    <div class="step reveal">
       <div class="step-num">1</div>
       <div class="step-title">เข้า Discord</div>
       <div class="step-desc">กดลิงก์ด้านล่างเพื่อเข้าร่วม Discord Server ของเรา</div>
     </div>
-    <div class="step">
+    <div class="step reveal">
       <div class="step-num">2</div>
       <div class="step-title">สมัคร Whitelist</div>
       <div class="step-desc">กรอกข้อมูลตัวละครและตอบคำถามใน Form ที่กำหนด</div>
     </div>
-    <div class="step">
+    <div class="step reveal">
       <div class="step-num">3</div>
       <div class="step-title">รอผลตรวจ</div>
       <div class="step-desc">ทีมงานตรวจทุกวัน 18:00–20:00 น. ผ่านแล้วได้ยศทันที</div>
     </div>
-    <div class="step">
+    <div class="step reveal">
       <div class="step-num">4</div>
       <div class="step-title">เข้าเล่นได้เลย</div>
       <div class="step-desc">เชื่อมต่อผ่าน FiveM และเริ่มชีวิตใน Los Santos</div>
@@ -657,26 +924,26 @@
 
 <!-- RULES -->
 <section id="rules">
-  <div class="section-tag">RP STANDARD</div>
-  <h2 class="section-title">กฎที่น้อย<br>แต่ทุกข้อมีความหมาย</h2>
-  <p class="section-desc">อ่านจบใน 5 นาที เข้าใจได้ทันที ไม่ต้องกลัวผิด RP</p>
+  <div class="section-tag reveal">RP STANDARD</div>
+  <h2 class="section-title reveal">กฎที่น้อย<br>แต่ทุกข้อมีความหมาย</h2>
+  <p class="section-desc reveal">อ่านจบใน 5 นาที เข้าใจได้ทันที ไม่ต้องกลัวผิด RP</p>
   <div class="rules-grid">
-    <div class="rule-pill"><div class="rule-dot" style="background:#378ADD;"></div><div class="rule-text">IC / OC — แยกตัวเองจากตัวละคร</div></div>
-    <div class="rule-pill"><div class="rule-dot" style="background:#EF9F27;"></div><div class="rule-text">No Metagaming</div></div>
-    <div class="rule-pill"><div class="rule-dot" style="background:#e24b4a;"></div><div class="rule-text">No Powergaming</div></div>
-    <div class="rule-pill"><div class="rule-dot" style="background:#378ADD;"></div><div class="rule-text">No Deathmatch</div></div>
-    <div class="rule-pill"><div class="rule-dot" style="background:#1d9e75;"></div><div class="rule-text">FairRP — ให้โอกาสอีกฝ่าย</div></div>
-    <div class="rule-pill"><div class="rule-dot" style="background:#EF9F27;"></div><div class="rule-text">No Combat Log</div></div>
-    <div class="rule-pill"><div class="rule-dot" style="background:#378ADD;"></div><div class="rule-text">ไม่มี Safe Zone — ใช้กฎหมาย RP</div></div>
-    <div class="rule-pill"><div class="rule-dot" style="background:#1d9e75;"></div><div class="rule-text">ME / DO Text RP Standard</div></div>
+    <div class="rule-pill reveal"><div class="rule-dot" style="background:#378ADD;"></div><div class="rule-text">IC / OC — แยกตัวเองจากตัวละคร</div></div>
+    <div class="rule-pill reveal"><div class="rule-dot" style="background:#EF9F27;"></div><div class="rule-text">No Metagaming</div></div>
+    <div class="rule-pill reveal"><div class="rule-dot" style="background:#e24b4a;"></div><div class="rule-text">No Powergaming</div></div>
+    <div class="rule-pill reveal"><div class="rule-dot" style="background:#378ADD;"></div><div class="rule-text">No Deathmatch</div></div>
+    <div class="rule-pill reveal"><div class="rule-dot" style="background:#1d9e75;"></div><div class="rule-text">FairRP — ให้โอกาสอีกฝ่าย</div></div>
+    <div class="rule-pill reveal"><div class="rule-dot" style="background:#EF9F27;"></div><div class="rule-text">No Combat Log</div></div>
+    <div class="rule-pill reveal"><div class="rule-dot" style="background:#378ADD;"></div><div class="rule-text">ไม่มี Safe Zone — ใช้กฎหมาย RP</div></div>
+    <div class="rule-pill reveal"><div class="rule-dot" style="background:#1d9e75;"></div><div class="rule-text">ME / DO Text RP Standard</div></div>
   </div>
 </section>
 
 <!-- DONATE -->
 <section id="donate">
-  <div class="section-tag">SUPPORT THE SERVER</div>
-  <h2 class="section-title">Donate ที่ยุติธรรม<br>ไม่มี Pay-to-Win</h2>
-  <div class="donate-box">
+  <div class="section-tag reveal">SUPPORT THE SERVER</div>
+  <h2 class="section-title reveal">Donate ที่ยุติธรรม<br>ไม่มี Pay-to-Win</h2>
+  <div class="donate-box reveal">
     <div>
       <div class="donate-highlight">รถนำเข้ารายเดือน (Monthly Import)</div>
       <ul class="donate-list">
@@ -699,13 +966,42 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">NEW<span>TEMP</span> RP</div>
   <div class="footer-text">© 2025 NEWTEMP ROLEPLAY · FIVEM THAILAND · ALL RIGHTS RESERVED</div>
   <a href="#" class="nav-btn">Discord</a>
 </footer>
 <div class="gold-line"></div>
+
+<script>
+  // Hero Slider
+  let current = 0;
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dot');
+
+  function goSlide(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = n;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  setInterval(() => {
+    goSlide((current + 1) % slides.length);
+  }, 5000);
+
+  // Scroll Reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
