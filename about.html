@@ -4,38 +4,91 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NewTemp RP — เกี่ยวกับเซิร์ฟ</title>
+  <meta name="description" content="เกี่ยวกับ NewTemp RP FiveM Server ไทย แนวคิด DNA ของเซิร์ฟ วัฒนธรรม และโครงสร้างทีมงาน" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23378ADD'/><text x='16' y='23' font-size='18' font-family='Arial Black' font-weight='900' fill='white' text-anchor='middle'>N</text></svg>" />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=Inter:wght@300;400;500&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
+    /* SPLIT */
     .split { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
     .split-img { position:relative; border-radius:8px; overflow:hidden; aspect-ratio:4/3; }
-    .split-img img { width:100%; height:100%; object-fit:cover; filter:brightness(0.75) saturate(1.2); }
-    .split-img-overlay { position:absolute; inset:0; background:linear-gradient(135deg,var(--black) 0%,transparent 50%); }
+    .split-img img { width:100%; height:100%; object-fit:cover; filter:brightness(0.7) saturate(1.2); transition:filter 0.5s; }
+    .split-img:hover img { filter:brightness(0.9) saturate(1.3); }
     .split-img-frame { position:absolute; inset:-1px; border:0.5px solid rgba(55,138,221,0.2); border-radius:8px; pointer-events:none; }
-    .big-quote { font-family:'Barlow Condensed',sans-serif; font-size:clamp(32px,4vw,52px); font-weight:800; color:var(--white); line-height:1.1; margin-bottom:20px; }
-    .big-quote .accent { color:var(--blue); }
-    .tag-row { display:flex; gap:8px; flex-wrap:wrap; margin-top:24px; }
-    .tag { background:rgba(55,138,221,0.08); border:0.5px solid rgba(55,138,221,0.15); color:var(--blue-light); padding:6px 14px; border-radius:3px; font-family:'Rajdhani',sans-serif; font-size:11px; font-weight:700; letter-spacing:1px; }
-    .stat-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:64px; }
-    .stat-card { background:var(--black3); border:0.5px solid var(--border-w); border-radius:8px; padding:24px; text-align:center; }
-    .stat-card-n { font-family:'Barlow Condensed',sans-serif; font-size:36px; font-weight:900; color:var(--blue); }
-    .stat-card-l { font-family:'Rajdhani',sans-serif; font-size:10px; font-weight:700; letter-spacing:3px; color:var(--gray); margin-top:4px; }
-    .vision-box { background:rgba(55,138,221,0.05); border:0.5px solid var(--border); border-radius:8px; padding:40px; margin-top:64px; position:relative; overflow:hidden; }
-    .vision-box::before { content:'"'; position:absolute; top:-20px; left:20px; font-family:'Barlow Condensed',sans-serif; font-size:180px; font-weight:900; color:rgba(55,138,221,0.04); line-height:1; pointer-events:none; }
-    .vision-text { font-family:'Barlow Condensed',sans-serif; font-size:clamp(22px,3vw,36px); font-weight:700; color:var(--white); line-height:1.3; position:relative; z-index:1; }
-    .vision-credit { margin-top:16px; font-size:13px; color:var(--gray); font-family:'Rajdhani',sans-serif; letter-spacing:2px; }
-    .team-note { margin-top:64px; padding:32px 40px; background:var(--black3); border:0.5px solid var(--border-w); border-radius:8px; display:grid; grid-template-columns:auto 1fr; gap:24px; align-items:center; }
-    .team-note-icon { font-size:40px; }
-    .team-note-title { font-family:'Barlow Condensed',sans-serif; font-size:22px; font-weight:700; color:var(--white); margin-bottom:6px; }
-    .team-note-desc { font-size:14px; color:var(--gray); line-height:1.7; }
-    .big-highlight { font-family:'Barlow Condensed',sans-serif; font-size:clamp(28px,3vw,42px); font-weight:900; color:var(--gold); display:block; }
-    @media(max-width:768px){ .split{grid-template-columns:1fr;} .stat-cards{grid-template-columns:repeat(2,1fr);} .team-note{grid-template-columns:1fr;} }
+    .split-img-overlay { position:absolute; inset:0; background:linear-gradient(135deg, var(--black) 0%, transparent 50%); }
+
+    /* DNA TABLE */
+    .dna-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:48px; }
+    .dna-card { background:var(--black3); border:0.5px solid var(--border-w); border-radius:8px; padding:24px; transition:all 0.3s; }
+    .dna-card:hover { border-color:rgba(55,138,221,0.2); transform:translateY(-3px); }
+    .dna-label { font-family:'Rajdhani',sans-serif; font-size:10px; font-weight:700; letter-spacing:3px; color:var(--gray); margin-bottom:8px; }
+    .dna-value { font-family:'Barlow Condensed',sans-serif; font-size:18px; font-weight:700; color:var(--white); line-height:1.3; }
+
+    /* DIFF SECTION */
+    .diff-list { display:flex; flex-direction:column; gap:16px; margin-top:40px; }
+    .diff-item { background:var(--black3); border:0.5px solid var(--border-w); border-radius:8px; padding:24px 28px; display:grid; grid-template-columns:40px 1fr; gap:16px; align-items:start; transition:all 0.3s; }
+    .diff-item:hover { border-color:rgba(55,138,221,0.2); }
+    .diff-num { font-family:'Barlow Condensed',sans-serif; font-size:28px; font-weight:900; color:rgba(55,138,221,0.25); line-height:1; }
+    .diff-title { font-family:'Barlow Condensed',sans-serif; font-size:20px; font-weight:700; color:var(--white); margin-bottom:6px; }
+    .diff-desc { font-size:13px; color:var(--gray); line-height:1.8; }
+
+    /* TARGET */
+    .target-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:40px; }
+    .target-card { background:var(--black3); border:0.5px solid var(--border-w); border-radius:8px; padding:22px; transition:all 0.3s; }
+    .target-card:hover { border-color:rgba(55,138,221,0.15); }
+    .target-card.primary { border-color:rgba(55,138,221,0.12); }
+    .target-badge { display:inline-block; font-family:'Rajdhani',sans-serif; font-size:9px; font-weight:700; letter-spacing:2px; padding:3px 8px; border-radius:3px; margin-bottom:10px; }
+    .badge-main { background:rgba(55,138,221,0.12); color:var(--blue-light); }
+    .badge-sub { background:rgba(255,255,255,0.04); color:var(--gray); }
+    .target-title { font-family:'Barlow Condensed',sans-serif; font-size:18px; font-weight:700; color:var(--white); margin-bottom:6px; }
+    .target-desc { font-size:13px; color:var(--gray); line-height:1.7; }
+
+    /* CULTURE */
+    .culture-row { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:40px; }
+    .culture-card { background:rgba(55,138,221,0.04); border:0.5px solid rgba(55,138,221,0.1); border-radius:8px; padding:24px; text-align:center; }
+    .culture-quote { font-family:'Barlow Condensed',sans-serif; font-size:18px; font-weight:700; color:var(--white); margin-bottom:8px; line-height:1.3; }
+    .culture-desc { font-size:12px; color:var(--gray); line-height:1.7; }
+
+    /* TEAM */
+    .team-structure { background:var(--black3); border:0.5px solid var(--border-w); border-radius:8px; padding:32px; font-family:'Inter',monospace; font-size:13px; color:var(--gray); line-height:1.8; overflow-x:auto; }
+    .team-structure .hl { color:var(--blue-light); }
+    .team-structure .gold { color:var(--gold); }
+    .roles-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:24px; }
+    .role-card { background:var(--black3); border:0.5px solid var(--border-w); border-radius:6px; padding:18px; }
+    .role-name { font-family:'Barlow Condensed',sans-serif; font-size:16px; font-weight:700; color:var(--white); margin-bottom:4px; }
+    .role-count { font-family:'Rajdhani',sans-serif; font-size:10px; font-weight:700; letter-spacing:2px; color:var(--gold); margin-bottom:10px; display:block; }
+    .role-duties { list-style:none; display:flex; flex-direction:column; gap:4px; }
+    .role-duties li { font-size:12px; color:var(--gray); display:flex; gap:8px; }
+    .role-duties li::before { content:'·'; color:var(--blue); flex-shrink:0; }
+
+    /* CO-FOUNDER BOX */
+    .cofounder-box { background:rgba(239,159,39,0.04); border:0.5px solid rgba(239,159,39,0.15); border-radius:8px; padding:36px 40px; margin-top:40px; text-align:center; }
+    .cofounder-big { font-family:'Barlow Condensed',sans-serif; font-size:clamp(20px,3vw,32px); font-weight:900; color:var(--white); line-height:1.2; margin-bottom:16px; }
+    .cofounder-big .no { color:var(--gold); }
+    .cofounder-tags { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:20px; }
+    .cf-tag { background:rgba(55,138,221,0.08); border:0.5px solid rgba(55,138,221,0.15); color:var(--blue-light); padding:6px 14px; border-radius:3px; font-family:'Rajdhani',sans-serif; font-size:12px; font-weight:600; letter-spacing:1px; }
+
+    /* VISION QUOTE */
+    .vision-box { background:rgba(55,138,221,0.04); border:0.5px solid var(--border); border-radius:8px; padding:40px; position:relative; overflow:hidden; }
+    .vision-box::before { content:'"'; position:absolute; top:-20px; left:16px; font-family:'Barlow Condensed',sans-serif; font-size:180px; font-weight:900; color:rgba(55,138,221,0.04); line-height:1; pointer-events:none; }
+    .vision-text { font-family:'Barlow Condensed',sans-serif; font-size:clamp(20px,2.5vw,30px); font-weight:700; color:var(--white); line-height:1.4; position:relative; z-index:1; }
+    .vision-credit { margin-top:16px; font-size:12px; color:var(--gray); font-family:'Rajdhani',sans-serif; letter-spacing:2px; }
+
+    @media(max-width:900px){
+      .split{grid-template-columns:1fr;}
+      .split-img{display:none;}
+      .dna-grid{grid-template-columns:repeat(2,1fr);}
+      .target-grid{grid-template-columns:1fr;}
+      .culture-row{grid-template-columns:1fr;}
+      .roles-grid{grid-template-columns:1fr;}
+    }
   </style>
 </head>
 <body>
 <div class="gold-line"></div>
+
 <nav id="nav">
-  <div class="nav-logo"><a href="index.html"><img src="assets/logo_v1.png" alt="NewTemp RP" /></a></div>
+  <div class="nav-logo"><a href="index.html">NEW<span>TEMP</span> RP</a></div>
   <ul class="nav-links">
     <li><a href="index.html">HOME</a></li>
     <li><a href="about.html">ABOUT</a></li>
@@ -45,46 +98,42 @@
     <li><a href="donate.html">DONATE</a></li>
   </ul>
   <a href="https://discord.gg/SePnEtPCar" target="_blank" class="nav-discord">Discord →</a>
+  <button id="hamburger" class="hamburger" aria-label="เมนู">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<div class="page-hero" style="background-image:url('assets/wallpaper/03.jpg');">
+<div id="mobile-menu" class="mobile-menu">
+  <a href="index.html">HOME</a>
+  <a href="about.html">ABOUT</a>
+  <a href="features.html">FEATURES</a>
+  <a href="rules.html">RULES</a>
+  <a href="join.html">JOIN</a>
+  <a href="donate.html">DONATE</a>
+  <a href="https://discord.gg/SePnEtPCar" target="_blank" class="mobile-discord">Discord →</a>
+</div>
+
+<div class="page-hero">
   <div class="page-hero-bg" style="background-image:url('assets/wallpaper/03.jpg');"></div>
   <div class="page-hero-overlay"></div>
   <div class="page-hero-content">
     <div class="label-tag">ABOUT THE SERVER</div>
-    <h1><span class="accent">เกี่ยวกับ</span><br>NewTemp RP</h1>
+    <h1>เกี่ยวกับ<br><span class="accent">NewTemp RP</span></h1>
   </div>
 </div>
 
-<div class="ticker-wrap">
-  <div class="ticker-track">
-    <div class="ticker-item"><div class="td"></div>LIFE ROLEPLAY</div>
-    <div class="ticker-item"><div class="td"></div>FREEDOM RP</div>
-    <div class="ticker-item"><div class="td"></div>NON PAY TO WIN</div>
-    <div class="ticker-item"><div class="td"></div>STRONG COMMUNITY</div>
-    <div class="ticker-item"><div class="td"></div>FAIR ECONOMY</div>
-    <div class="ticker-item"><div class="td"></div>LIFE ROLEPLAY</div>
-    <div class="ticker-item"><div class="td"></div>FREEDOM RP</div>
-    <div class="ticker-item"><div class="td"></div>NON PAY TO WIN</div>
-    <div class="ticker-item"><div class="td"></div>STRONG COMMUNITY</div>
-    <div class="ticker-item"><div class="td"></div>FAIR ECONOMY</div>
-  </div>
-</div>
-
+<!-- INTRO SPLIT -->
 <div class="section">
   <div class="split">
     <div>
-      <div class="label-tag reveal">OUR STORY</div>
-      <div class="big-quote reveal">เมืองใหม่<br><span class="accent">กฎน้อย</span><br>อิสระเต็ม</div>
-      <p class="section-desc reveal">NewTemp RP คือ FiveM Server ที่สร้างมาเพื่อให้ทุกคนมีอิสระในการใช้ชีวิตใน Los Santos อย่างแท้จริง ไม่ว่าจะเป็นคนงานก่อสร้าง ชายชรา ตำรวจ หรือคนจรจัด ทุก Roleplay มีคุณค่าเท่ากัน</p>
-      <div class="tag-row reveal">
-        <div class="tag">LIFE RP</div>
-        <div class="tag">POLICE</div>
-        <div class="tag">CRIMINAL</div>
-        <div class="tag">DOCTOR</div>
-        <div class="tag">BUSINESS</div>
-        <div class="tag">ME / DO TEXT RP</div>
-        <div class="tag">QBOX FRAMEWORK</div>
+      <div class="label-tag reveal">SERVER คืออะไร?</div>
+      <h2 class="section-title reveal">เมืองใหม่<br>กฎน้อย<br><span style="color:var(--blue);">อิสระเต็ม</span></h2>
+      <p class="section-desc reveal" style="max-width:100%;">NewTemp RP คือ FiveM Roleplay Server ที่ออกแบบมาเพื่อให้ผู้เล่นมีอิสระในการใช้ชีวิตในเมืองเสมือนจริงอย่างแท้จริง ไม่ว่าจะเป็นคนงานก่อสร้าง ชายชรา คนขี้เมา เจ้าหน้าที่รัฐ หรือแม้แต่คนจรจัด ทุก Roleplay มีคุณค่าเท่ากันใน Server นี้</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:24px;" class="reveal">
+        <span style="background:rgba(55,138,221,0.08);border:0.5px solid rgba(55,138,221,0.15);color:var(--blue-light);padding:6px 14px;border-radius:3px;font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;">LIFE RP</span>
+        <span style="background:rgba(55,138,221,0.08);border:0.5px solid rgba(55,138,221,0.15);color:var(--blue-light);padding:6px 14px;border-radius:3px;font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;">QBOX FRAMEWORK</span>
+        <span style="background:rgba(55,138,221,0.08);border:0.5px solid rgba(55,138,221,0.15);color:var(--blue-light);padding:6px 14px;border-radius:3px;font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;">ME / DO TEXT RP</span>
+        <span style="background:rgba(55,138,221,0.08);border:0.5px solid rgba(55,138,221,0.15);color:var(--blue-light);padding:6px 14px;border-radius:3px;font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;">NON PAY-TO-WIN</span>
       </div>
     </div>
     <div class="split-img reveal-left">
@@ -94,25 +143,69 @@
     </div>
   </div>
 
-  <div class="stat-cards">
-    <div class="stat-card reveal d1"><div class="stat-card-n">128</div><div class="stat-card-l">MAX SLOTS</div></div>
-    <div class="stat-card reveal d2"><div class="stat-card-n">QBX</div><div class="stat-card-l">FRAMEWORK</div></div>
-    <div class="stat-card reveal d3"><div class="stat-card-n">0</div><div class="stat-card-l">PAY TO WIN</div></div>
-    <div class="stat-card reveal d4"><div class="stat-card-n">FREE</div><div class="stat-card-l">TO PLAY</div></div>
-  </div>
-
-  <div class="vision-box reveal">
+  <!-- VISION QUOTE -->
+  <div class="vision-box reveal" style="margin-top:64px;">
     <div class="vision-text">"เราไม่ได้สร้าง Server เพื่อหาเงิน<br>เราสร้าง Community ที่ดีและแข็งแกร่ง<br>ที่ทุกคนเข้าถึงทุกอย่างได้ผ่านการเล่น RP"</div>
     <div class="vision-credit">— Owner, NewTemp Roleplay</div>
   </div>
+</div>
 
-  <div class="team-note reveal">
-    <div class="team-note-icon">🤝</div>
-    <div>
-      <div class="team-note-title">เราไม่ได้หา "ทีมงาน" — เราหา Co-Founder</div>
-      <div class="team-note-desc">
-        <span class="big-highlight">ไม่มีเงินเดือน ไม่มีผลตอบแทน</span>
-        ทุกคนในทีมมาเพราะอยากสร้างสิ่งนี้ร่วมกัน ถ้าคุณต้องการรายได้จาก Server — ที่นี่ไม่ใช่ที่ของคุณ แต่ถ้าคุณรัก RP และอยากสร้าง Community ที่ดี เรายินดีต้อนรับ
+<div class="divider"></div>
+
+<!-- DNA -->
+<div class="section">
+  <div class="label-tag reveal">DNA ของ SERVER</div>
+  <h2 class="section-title reveal">สิ่งที่เรายึดถือ</h2>
+  <div class="dna-grid">
+    <div class="dna-card reveal d1"><div class="dna-label">กฎ RP</div><div class="dna-value">พื้นฐาน ไม่ซับซ้อน เข้าถึงง่าย</div></div>
+    <div class="dna-card reveal d2"><div class="dna-label">เศรษฐกิจ</div><div class="dna-value">ยุติธรรม ไม่ซื้อความได้เปรียบ</div></div>
+    <div class="dna-card reveal d3"><div class="dna-label">Business</div><div class="dna-value">เต็มรูปแบบ บริหารได้จริง</div></div>
+    <div class="dna-card reveal d4"><div class="dna-label">อสังหาริมทรัพย์</div><div class="dna-value">ซื้อ / ขาย / ยึด / ประมูล ตาม RP</div></div>
+    <div class="dna-card reveal d5"><div class="dna-label">Donate</div><div class="dna-value">โปร่งใส ประกาศก่อนขายทุกครั้ง</div></div>
+    <div class="dna-card reveal d6"><div class="dna-label">อิสระ</div><div class="dna-value">เล่นเป็นอะไรก็ได้ ทุก RP มีคุณค่า</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- WHAT'S DIFFERENT -->
+<div class="section">
+  <div class="label-tag reveal">จุดที่ต่างจาก Server อื่น</div>
+  <h2 class="section-title reveal">ทำไมต้อง<br>NewTemp RP?</h2>
+  <div class="diff-list">
+    <div class="diff-item reveal d1">
+      <div class="diff-num">01</div>
+      <div>
+        <div class="diff-title">กฎที่เรียบง่าย ไม่ซับซ้อน</div>
+        <div class="diff-desc">Server ส่วนใหญ่ในไทยมี Rule หนาหลายสิบข้อจนคนใหม่กลัวที่จะเล่น NewTemp RP ใช้เฉพาะกฎ RP รากฐานเท่านั้น ได้แก่ IC/OC, PG, MG, DM, VDM, FairRP ไม่มีข้อบังคับที่ซับซ้อนเกินจริง</div>
+      </div>
+    </div>
+    <div class="diff-item reveal d2">
+      <div class="diff-num">02</div>
+      <div>
+        <div class="diff-title">ระบบ Business เต็มรูปแบบ</div>
+        <div class="diff-desc">เปิดร้านได้จริงใน World มีระบบ Craft / Stock / Bill / Menu / Payroll / จ้างงาน ครบวงจร เชื่อมกับ qbx-manage และระบบธนาคาร Feature ที่ยังไม่มีใครทำในไทยในระดับนี้</div>
+      </div>
+    </div>
+    <div class="diff-item reveal d3">
+      <div class="diff-num">03</div>
+      <div>
+        <div class="diff-title">Parking System แทน Garage แบบเดิม</div>
+        <div class="diff-desc">จอดรถได้ทุกที่บนแผนที่ ระบบบันทึก State รถ (พิกัด / น้ำมัน / สภาพตัวถัง) Loop 15 นาทีลบรถออกจาก Map เพื่อลด Load เรียกกลับสภาพเดิม 90–100%</div>
+      </div>
+    </div>
+    <div class="diff-item reveal d4">
+      <div class="diff-num">04</div>
+      <div>
+        <div class="diff-title">Donate ที่ยุติธรรม — ไม่มีซื้อความได้เปรียบ</div>
+        <div class="diff-desc">ไม่มีการขายสิทธิ์ที่ได้เปรียบในเกม รถนำเข้ารายเดือนจำกัดจำนวน ขายแล้วขายเลย ซื้อได้ทั้งเงินในเกมและเงินจริง รายรับรายจ่ายโปร่งใส ทุกคนตรวจสอบได้</div>
+      </div>
+    </div>
+    <div class="diff-item reveal d5">
+      <div class="diff-num">05</div>
+      <div>
+        <div class="diff-title">ระบบอสังหาริมทรัพย์เต็มรูปแบบ</div>
+        <div class="diff-desc">บ้านซื้อ ขายต่อ และถูกยึดได้จริงผ่านกระบวนการศาลใน RP มีระบบประมูลสาธารณะ บ้านที่ทิ้งร้างถูกรัฐยึดและนำมาประมูลตาม Lore ของเมือง</div>
       </div>
     </div>
   </div>
@@ -120,20 +213,155 @@
 
 <div class="divider"></div>
 
-<div style="text-align:center;padding:64px 6%;">
-  <div class="label-tag" style="text-align:center;">JOIN US</div>
-  <h2 class="section-title reveal">พร้อมร่วมเดินทางนี้<br>ด้วยกันไหม?</h2>
-  <div style="display:flex;gap:12px;justify-content:center;margin-top:28px;">
-    <a href="join.html" class="btn btn-blue reveal">สมัคร Whitelist</a>
-    <a href="https://discord.gg/SePnEtPCar" target="_blank" class="btn btn-outline-blue reveal">Discord</a>
+<!-- TARGET PLAYERS -->
+<div class="section">
+  <div class="label-tag reveal">กลุ่มเป้าหมาย</div>
+  <h2 class="section-title reveal">Server นี้<br>เหมาะกับใคร?</h2>
+  <div class="target-grid">
+    <div class="target-card primary reveal d1">
+      <span class="target-badge badge-main">กลุ่มหลัก</span>
+      <div class="target-title">คนอยากลอง RP แต่ยังไม่เคยเล่น</div>
+      <div class="target-desc">กลุ่มใหญ่ที่สุดในตลาดไทย กฎน้อย ไม่กลัวผิด RP เข้ามาเล่นได้เลย</div>
+    </div>
+    <div class="target-card primary reveal d2">
+      <span class="target-badge badge-main">กลุ่มหลัก</span>
+      <div class="target-title">Streamer / Content Creator</div>
+      <div class="target-desc">ความหลากหลายของบทบาท (คนจรจัด / ชายชรา / คนขี้เมา) คือ Content ที่สร้างไวรัลได้ง่าย</div>
+    </div>
+    <div class="target-card primary reveal d3">
+      <span class="target-badge badge-main">กลุ่มหลัก</span>
+      <div class="target-title">คนเบื่อ Server แบบ Donate แล้วได้เปรียบ</div>
+      <div class="target-desc">Pain Point อันดับต้นๆของชุมชน RP ไทย ระบบ Donate ของเรายุติธรรมกว่าทุก Server</div>
+    </div>
+    <div class="target-card primary reveal d4">
+      <span class="target-badge badge-main">กลุ่มหลัก</span>
+      <div class="target-title">คนชอบ RP เชิงเศรษฐกิจ / ธุรกิจ</div>
+      <div class="target-desc">Blue Ocean ในตลาด RP ไทย แทบไม่มีคู่แข่งในมิตินี้ อยากสร้างธุรกิจและอาณาจักร</div>
+    </div>
+    <div class="target-card reveal d5">
+      <span class="target-badge badge-sub">กลุ่มรอง</span>
+      <div class="target-title">คนชอบ RP ลึก / เรื่องราว</div>
+      <div class="target-desc">โครงสร้างรัฐ ศาล บ้าน หนี้สิน สร้าง Story ได้เองตามธรรมชาติ</div>
+    </div>
+    <div class="target-card reveal d6">
+      <span class="target-badge badge-sub">กลุ่มรอง</span>
+      <div class="target-title">กลุ่มเพื่อนที่อยากเล่นด้วยกัน</div>
+      <div class="target-desc">ระบบ Business จ้างงานกันได้ เล่นกับเพื่อนมีเป้าหมาย เป็น Organic Growth ที่ดีที่สุด</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CULTURE -->
+<div class="section">
+  <div class="label-tag reveal">วัฒนธรรม Server</div>
+  <h2 class="section-title reveal">Culture ที่เราสร้าง</h2>
+  <div class="culture-row">
+    <div class="culture-card reveal d1">
+      <div class="culture-quote">"ทุก RP<br>มีคุณค่า"</div>
+      <div class="culture-desc">คนจรจัดสำคัญเท่าตำรวจ ไม่มีบทบาทไหนด้อยกว่ากัน</div>
+    </div>
+    <div class="culture-card reveal d2">
+      <div class="culture-quote">"แพ้ก็<br>ยอมรับได้"</div>
+      <div class="culture-desc">โดนจับ โดนปล้น โดนฟ้อง คือ RP ไม่ใช่แพ้เกม</div>
+    </div>
+    <div class="culture-card reveal d3">
+      <div class="culture-quote">"สร้างเรื่องราว<br>ร่วมกัน"</div>
+      <div class="culture-desc">เน้น Collaborative RP ไม่ใช่แข่งกัน</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- TEAM STRUCTURE -->
+<div class="section">
+  <div class="label-tag reveal">โครงสร้างทีมงาน</div>
+  <h2 class="section-title reveal">ทีมที่สร้าง<br>NewTemp RP</h2>
+  <p class="section-desc reveal">เริ่มจากคนน้อยแต่มีคุณภาพ ทุกตำแหน่งมีหน้าที่ชัดเจน Scale ขึ้นได้เมื่อ Player เพิ่ม</p>
+
+  <div class="team-structure reveal" style="margin-top:32px;">
+    <span class="gold">Owner</span> (จู — Dev + Owner)<br>
+    └── Co-Owner (เปิดเมื่อพร้อม)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="hl">Head Admin</span> (1 คน)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp; ├── Admin (2-3 คน)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp; └── Staff / Moderator (3-5 คน)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="hl">Head Developer</span> (Owner / หรือแยก 1 คน)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp; └── Developer (1-2 คน)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="hl">Head Designer</span> (1 คน)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp; └── Designer (1 คน)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;└── <span class="hl">Head Whitelist</span> (1 คน)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Whitelist Officer (1-2 คน)
+  </div>
+
+  <div class="roles-grid" style="margin-top:24px;">
+    <div class="role-card reveal d1">
+      <div class="role-name">Head Admin</div>
+      <span class="role-count">1 คน</span>
+      <ul class="role-duties">
+        <li>ดูภาพรวมทีม Staff/Admin ทั้งหมด</li>
+        <li>วางตารางเวร / ตรวจสอบการทำงาน</li>
+        <li>รับเรื่องที่ Staff ส่งขึ้นมา Report ตรงถึง Owner</li>
+      </ul>
+    </div>
+    <div class="role-card reveal d2">
+      <div class="role-name">Admin</div>
+      <span class="role-count">2-3 คน</span>
+      <ul class="role-duties">
+        <li>จัดการ Report Case / Adminjail / Ban</li>
+        <li>ตั้งค่า Business / บ้าน / รถในเกม</li>
+        <li>บันทึกทุกการกระทำใน TxAdmin + Discord</li>
+      </ul>
+    </div>
+    <div class="role-card reveal d3">
+      <div class="role-name">Staff / Moderator</div>
+      <span class="role-count">3-5 คน</span>
+      <ul class="role-duties">
+        <li>Online คุม Server ตามเวร</li>
+        <li>Noclip / TP / TPM แก้ปัญหาเบื้องต้น</li>
+        <li>รับ Report เบื้องต้น ส่งต่อ Admin</li>
+      </ul>
+    </div>
+    <div class="role-card reveal d4">
+      <div class="role-name">Head Whitelist</div>
+      <span class="role-count">1 คน</span>
+      <ul class="role-duties">
+        <li>ตรวจ Whitelist รายวัน 18:00–20:00</li>
+        <li>จัดตารางอบรมสำหรับคนไม่ผ่าน</li>
+        <li>Report สถิติ Whitelist รายสัปดาห์</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CO-FOUNDER BOX -->
+  <div class="cofounder-box reveal" style="margin-top:40px;">
+    <div class="cofounder-big">
+      <span class="no">ไม่มีเงินเดือน</span> ไม่มีผลตอบแทน<br>
+      ทุกคนมาเพราะอยากสร้างสิ่งนี้ร่วมกัน
+    </div>
+    <p style="font-size:14px;color:var(--gray);line-height:1.8;max-width:600px;margin:0 auto;">ถ้าคุณต้องการรายได้จาก Server — ที่นี่ไม่ใช่ที่ของคุณ แต่ถ้าคุณรัก RP มีงานประจำของตัวเอง และอยากสร้าง Community ที่ดี เรายินดีต้อนรับ</p>
+    <div class="cofounder-tags">
+      <span class="cf-tag">มีงานประจำ</span>
+      <span class="cf-tag">รัก RP จริงๆ</span>
+      <span class="cf-tag">Non Pay-to-Win</span>
+      <span class="cf-tag">Play for Fun</span>
+    </div>
+    <div style="margin-top:28px;">
+      <a href="https://discord.gg/SePnEtPCar" target="_blank" class="btn btn-blue">สนใจร่วมทีม → Discord</a>
+    </div>
   </div>
 </div>
 
 <footer>
-  <div class="footer-logo"><img src="assets/logo_v1.png" alt="NewTemp RP" /></div>
+  <div class="footer-logo">NEW<span>TEMP</span> RP</div>
   <nav class="footer-nav">
-    <a href="index.html">HOME</a><a href="about.html">ABOUT</a><a href="features.html">FEATURES</a>
-    <a href="rules.html">RULES</a><a href="join.html">JOIN</a><a href="donate.html">DONATE</a>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="features.html">Features</a>
+    <a href="rules.html">Rules</a>
+    <a href="join.html">Join</a>
+    <a href="donate.html">Donate</a>
   </nav>
   <div class="footer-copy">© 2025 NEWTEMP ROLEPLAY</div>
 </footer>
