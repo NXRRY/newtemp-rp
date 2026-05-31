@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NewTemp Roleplay — หน้าหลัก</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=Inter:wght@300;400;500&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* HERO FULL */
+    .hero {
+      height: 100vh; position: relative;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+    .hero-slide {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      opacity: 0; transition: opacity 1.5s ease;
+    }
+    .hero-slide.active { opacity: 1; }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(110deg, rgba(8,8,8,0.85) 40%, rgba(8,8,8,0.3) 100%);
+    }
+    .hero-overlay-bottom {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 35%;
+      background: linear-gradient(0deg, var(--black) 0%, transparent 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 6%; width: 100%;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'Rajdhani', sans-serif; font-size: 11px;
+      font-weight: 700; letter-spacing: 4px;
+      color: rgba(181,212,244,0.6); margin-bottom: 20px;
+    }
+    .hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); animation: pulse 2s infinite; }
+    .hero-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(64px, 10vw, 130px);
+      font-weight: 900; line-height: 0.88;
+      margin-bottom: 24px;
+    }
+    .hero-title .shimmer {
+      background: linear-gradient(90deg, var(--blue), var(--blue-light), var(--blue));
+      background-size: 200% auto;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      animation: shimmer 4s linear infinite;
+    }
+    .hero-title .gold { color: var(--gold); }
+    .hero-desc {
+      max-width: 460px; font-size: 15px;
+      color: rgba(240,240,240,0.45); line-height: 1.9;
+      margin-bottom: 36px;
+    }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-stats {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      z-index: 2; padding: 28px 6%;
+      display: flex; gap: 0;
+      border-top: 0.5px solid rgba(255,255,255,0.04);
+      background: linear-gradient(0deg, rgba(8,8,8,0.9) 0%, transparent 100%);
+    }
+    .h-stat { flex: 1; padding-right: 32px; border-right: 0.5px solid rgba(255,255,255,0.05); margin-right: 32px; }
+    .h-stat:last-child { border: none; margin: 0; }
+    .h-stat-n { font-family: 'Barlow Condensed', sans-serif; font-size: 30px; font-weight: 900; color: var(--blue); }
+    .h-stat-l { font-family: 'Rajdhani', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 3px; color: var(--gray); }
+    .hero-dots { position: absolute; bottom: 100px; right: 6%; z-index: 3; display: flex; gap: 8px; }
+    .h-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.2); cursor: pointer; transition: all 0.3s; }
+    .h-dot.active { background: var(--blue); width: 20px; border-radius: 3px; }
+
+    /* FEATURES PREVIEW */
+    .feat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 48px; }
+    .feat-card { background: var(--black3); border: 0.5px solid var(--border-w); border-radius: 8px; padding: 28px; transition: all 0.3s; position: relative; overflow: hidden; }
+    .feat-card::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--blue),transparent); opacity:0; transition:opacity 0.3s; }
+    .feat-card:hover { border-color: rgba(55,138,221,0.2); transform: translateY(-3px); }
+    .feat-card:hover::before { opacity:1; }
+    .feat-icon { font-size: 26px; margin-bottom: 14px; }
+    .feat-title { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .feat-desc { font-size: 13px; color: var(--gray); line-height: 1.7; }
+
+    /* GALLERY STRIP */
+    .gallery-strip { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4px; margin-top: 48px; border-radius: 8px; overflow: hidden; }
+    .g-item { position: relative; overflow: hidden; aspect-ratio: 16/9; }
+    .g-item:first-child { aspect-ratio: auto; }
+    .g-item img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.65); transition: all 0.5s; }
+    .g-item:hover img { transform: scale(1.05); filter: brightness(0.85); }
+    .g-item-ov { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(8,8,8,0.7) 100%); }
+    .g-label { position: absolute; bottom: 12px; left: 12px; font-family: 'Rajdhani', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; color: rgba(240,240,240,0.6); }
+
+    /* CTA BAND */
+    .cta-band { background: rgba(55,138,221,0.06); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); padding: 64px 6%; text-align: center; }
+    .cta-band h2 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(32px,5vw,60px); font-weight: 900; margin-bottom: 20px; }
+    .cta-band p { color: var(--gray); margin-bottom: 32px; }
+
+    @media(max-width:768px){
+      .feat-grid{grid-template-columns:1fr;}
+      .gallery-strip{grid-template-columns:1fr;}
+      .hero-stats{flex-wrap:wrap; gap:16px;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="gold-line"></div>
+
+<nav id="nav">
+  <div class="nav-logo"><a href="index.html"><img src="assets/logo_v1.png" alt="NewTemp RP" /></a></div>
+  <ul class="nav-links">
+    <li><a href="index.html">HOME</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+    <li><a href="features.html">FEATURES</a></li>
+    <li><a href="rules.html">RULES</a></li>
+    <li><a href="join.html">JOIN</a></li>
+    <li><a href="donate.html">DONATE</a></li>
+  </ul>
+  <a href="https://discord.gg/SePnEtPCar" target="_blank" class="nav-discord">Discord →</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-slide active" style="background-image:url('assets/wallpaper/01.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('assets/wallpaper/02.jpg');"></div>
+  <div class="hero-slide" style="background-image:url('assets/wallpaper/03.jpg');"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-bottom"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><div class="dot"></div>FIVEM THAILAND &nbsp;·&nbsp; LIFE ROLEPLAY</div>
+    <h1 class="hero-title">
+      <div><span class="shimmer">NEW</span>TEMP</div>
+      <div><span class="gold">ROLE</span>PLAY</div>
+    </h1>
+    <p class="hero-desc">เซิร์ฟเวอร์ FiveM ที่เปิดโอกาสให้คุณเป็นใครก็ได้ในเมือง Los Santos ระบบยุติธรรม ไม่มี Pay-to-Win</p>
+    <div class="hero-cta">
+      <a href="join.html" class="btn btn-blue">เริ่มเล่นเลย</a>
+      <a href="features.html" class="btn btn-outline-blue">ดูระบบทั้งหมด</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="h-stat"><div class="h-stat-n">128</div><div class="h-stat-l">MAX SLOTS</div></div>
+    <div class="h-stat"><div class="h-stat-n">QBX</div><div class="h-stat-l">FRAMEWORK</div></div>
+    <div class="h-stat"><div class="h-stat-n">0</div><div class="h-stat-l">PAY TO WIN</div></div>
+    <div class="h-stat"><div class="h-stat-n">FREE</div><div class="h-stat-l">TO PLAY</div></div>
+  </div>
+  <div class="hero-dots">
+    <div class="h-dot active" onclick="goSlide(0)"></div>
+    <div class="h-dot" onclick="goSlide(1)"></div>
+    <div class="h-dot" onclick="goSlide(2)"></div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <div class="ticker-item"><div class="td"></div>CUSTOM SCRIPT</div>
+    <div class="ticker-item"><div class="td"></div>PARKING SYSTEM</div>
+    <div class="ticker-item"><div class="td"></div>BUSINESS SYSTEM</div>
+    <div class="ticker-item"><div class="td"></div>PROPERTY SYSTEM</div>
+    <div class="ticker-item"><div class="td"></div>LEGAL SYSTEM</div>
+    <div class="ticker-item"><div class="td"></div>FAIR ECONOMY</div>
+    <div class="ticker-item"><div class="td"></div>FREEDOM RP</div>
+    <div class="ticker-item"><div class="td"></div>NON PAY TO WIN</div>
+    <div class="ticker-item"><div class="td"></div>CUSTOM SCRIPT</div>
+    <div class="ticker-item"><div class="td"></div>PARKING SYSTEM</div>
+    <div class="ticker-item"><div class="td"></div>BUSINESS SYSTEM</div>
+    <div class="ticker-item"><div class="td"></div>PROPERTY SYSTEM</div>
+    <div class="ticker-item"><div class="td"></div>LEGAL SYSTEM</div>
+    <div class="ticker-item"><div class="td"></div>FAIR ECONOMY</div>
+    <div class="ticker-item"><div class="td"></div>FREEDOM RP</div>
+    <div class="ticker-item"><div class="td"></div>NON PAY TO WIN</div>
+  </div>
+</div>
+
+<!-- FEATURES PREVIEW -->
+<div class="section">
+  <div class="label-tag reveal">HIGHLIGHT SYSTEMS</div>
+  <h2 class="section-title reveal">ระบบที่ไม่มีใคร<br>ทำในไทยมาก่อน</h2>
+  <div class="feat-grid">
+    <div class="feat-card reveal d1"><div class="feat-icon">🏪</div><div class="feat-title">Business System</div><div class="feat-desc">เปิดร้านได้จริง Stock / Craft / Bill / เงินเดือน ครบวงจร</div></div>
+    <div class="feat-card reveal d2"><div class="feat-icon">🚗</div><div class="feat-title">Parking System</div><div class="feat-desc">จอดรถได้ทุกที่ บันทึกสภาพรถจริง ไม่มี Garage แบบเดิม</div></div>
+    <div class="feat-card reveal d3"><div class="feat-icon">🏠</div><div class="feat-title">Property System</div><div class="feat-desc">ซื้อ ขายต่อ ยึด ประมูลบ้านผ่าน RP จริง</div></div>
+    <div class="feat-card reveal d4"><div class="feat-icon">⚖️</div><div class="feat-title">Legal System</div><div class="feat-desc">โครงสร้างรัฐบาล ศาล ภาษี กฎหมายในเกม</div></div>
+    <div class="feat-card reveal d5"><div class="feat-icon">💰</div><div class="feat-title">Fair Economy</div><div class="feat-desc">ภาษี / เงินเดือน / หนี้สิน สมจริง ไม่มี Pay-to-Win</div></div>
+    <div class="feat-card reveal d6"><div class="feat-icon">🎭</div><div class="feat-title">Freedom RP</div><div class="feat-desc">เล่นเป็นใครก็ได้ ทุก RP มีคุณค่าเท่ากัน</div></div>
+  </div>
+  <div style="text-align:center;margin-top:32px;">
+    <a href="features.html" class="btn btn-outline-blue reveal">ดูระบบทั้งหมด →</a>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- GALLERY -->
+<div class="section">
+  <div class="label-tag reveal">SCREENSHOTS</div>
+  <h2 class="section-title reveal">ชีวิตในเมือง Los Santos</h2>
+  <div class="gallery-strip reveal">
+    <div class="g-item"><img src="assets/wallpaper/01.jpg" alt="Police" /><div class="g-item-ov"></div><div class="g-label">POLICE · CRIME</div></div>
+    <div class="g-item"><img src="assets/wallpaper/02.jpg" alt="Garage" /><div class="g-item-ov"></div><div class="g-label">MECHANIC</div></div>
+    <div class="g-item"><img src="assets/wallpaper/03.jpg" alt="Street" /><div class="g-item-ov"></div><div class="g-label">STREET LIFE</div></div>
+  </div>
+</div>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2 class="reveal">พร้อมเริ่มชีวิตใน<br><span class="t-blue">Los Santos</span> แล้วหรือยัง?</h2>
+  <p class="reveal">เข้าร่วม Discord เพื่อสมัคร Whitelist และเริ่มเล่นได้เลย</p>
+  <a href="https://discord.gg/SePnEtPCar" target="_blank" class="btn btn-blue reveal">เข้าร่วม Discord →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><img src="assets/logo_v1.png" alt="NewTemp RP" /></div>
+  <nav class="footer-nav">
+    <a href="index.html">HOME</a>
+    <a href="about.html">ABOUT</a>
+    <a href="features.html">FEATURES</a>
+    <a href="rules.html">RULES</a>
+    <a href="join.html">JOIN</a>
+    <a href="donate.html">DONATE</a>
+  </nav>
+  <div class="footer-copy">© 2025 NEWTEMP ROLEPLAY · FIVEM TH</div>
+</footer>
+<div class="gold-line"></div>
+
+<script src="shared.js"></script>
+<script>
+  let cur = 0;
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.h-dot');
+  function goSlide(n) {
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur = n;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+  }
+  setInterval(() => goSlide((cur + 1) % slides.length), 5000);
+</script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NewTemp RP — กฎ RP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=Inter:wght@300;400;500&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .rules-intro { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; margin-bottom:64px; }
+    .rule-table { width:100%; border-collapse:collapse; margin-top:32px; }
+    .rule-table th { text-align:left; font-family:'Rajdhani',sans-serif; font-size:10px; font-weight:700; letter-spacing:3px; color:var(--gray); padding:12px 16px; border-bottom:0.5px solid var(--border-w); }
+    .rule-table td { padding:16px; border-bottom:0.5px solid rgba(255,255,255,0.03); font-size:14px; vertical-align:top; }
+    .rule-table tr:hover td { background:rgba(255,255,255,0.01); }
+    .rule-name { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:14px; color:var(--white); letter-spacing:1px; }
+    .rule-badge { display:inline-block; padding:2px 8px; border-radius:3px; font-family:'Rajdhani',sans-serif; font-size:10px; font-weight:700; letter-spacing:1px; }
+    .rb-red { background:rgba(226,75,74,0.15); color:#e24b4a; }
+    .rb-blue { background:rgba(55,138,221,0.12); color:var(--blue-light); }
+    .rb-gold { background:rgba(239,159,39,0.12); color:var(--gold); }
+    .rule-desc { font-size:13px; color:var(--gray); line-height:1.7; }
+
+    .ck-section { background:var(--black3); border:0.5px solid var(--border-w); border-radius:8px; padding:40px; margin-top:64px; }
+    .ck-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:24px; }
+    .ck-card { background:rgba(255,255,255,0.02); border:0.5px solid var(--border-w); border-radius:6px; padding:20px; }
+    .ck-type { font-family:'Rajdhani',sans-serif; font-size:13px; font-weight:700; color:var(--blue-light); letter-spacing:1px; margin-bottom:8px; }
+    .ck-cond { font-size:13px; color:var(--gray); line-height:1.7; }
+
+    .blacklist-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:32px; }
+    .bl-card { background:var(--black3); border:0.5px solid var(--border-w); border-radius:6px; padding:20px; display:flex; gap:14px; align-items:flex-start; }
+    .bl-icon { font-size:20px; flex-shrink:0; margin-top:2px; }
+    .bl-title { font-family:'Rajdhani',sans-serif; font-size:14px; font-weight:700; color:var(--white); margin-bottom:4px; }
+    .bl-desc { font-size:13px; color:var(--gray); line-height:1.6; }
+
+    .staff-table { margin-top:32px; }
+    .staff-row { display:grid; grid-template-columns:140px 1fr; gap:24px; padding:20px 0; border-bottom:0.5px solid var(--border-w); align-items:start; }
+    .staff-role { font-family:'Barlow Condensed',sans-serif; font-size:18px; font-weight:700; color:var(--white); }
+    .staff-perms { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+    .perm { background:rgba(55,138,221,0.08); border:0.5px solid rgba(55,138,221,0.15); color:var(--blue-light); padding:4px 10px; border-radius:3px; font-family:'Rajdhani',sans-serif; font-size:11px; font-weight:600; letter-spacing:1px; }
+    .perm-gold { background:rgba(239,159,39,0.08); border:0.5px solid rgba(239,159,39,0.15); color:var(--gold); }
+
+    @media(max-width:768px){ .rules-intro{grid-template-columns:1fr;} .ck-grid{grid-template-columns:1fr;} .blacklist-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+<div class="gold-line"></div>
+<nav id="nav">
+  <div class="nav-logo"><a href="index.html"><img src="assets/logo_v1.png" alt="NewTemp RP" /></a></div>
+  <ul class="nav-links">
+    <li><a href="index.html">HOME</a></li><li><a href="about.html">ABOUT</a></li>
+    <li><a href="features.html">FEATURES</a></li><li><a href="rules.html">RULES</a></li>
+    <li><a href="join.html">JOIN</a></li><li><a href="donate.html">DONATE</a></li>
+  </ul>
+  <a href="https://discord.gg/SePnEtPCar" target="_blank" class="nav-discord">Discord →</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('assets/wallpaper/01.jpg');"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="label-tag">RP STANDARD</div>
+    <h1>กฎ <span class="accent">RP</span></h1>
+  </div>
+</div>
+
+<div class="section">
+  <div class="rules-intro">
+    <div>
+      <div class="label-tag reveal">PHILOSOPHY</div>
+      <h2 class="section-title reveal">กฎน้อย<br>แต่ทุกข้อ<br>มีความหมาย</h2>
+      <p class="section-desc reveal">อ่านจบใน 5 นาที เข้าใจได้ทันที ไม่ต้องกลัวผิด RP เราใช้กฎรากฐานของ Roleplay ที่ทุกคน<br>ควรรู้ ไม่มีกฎซับซ้อนเกินจำเป็น</p>
+    </div>
+    <div style="background:rgba(55,138,221,0.05);border:0.5px solid var(--border);border-radius:8px;padding:32px;" class="reveal-left">
+      <div class="label-tag">ME / DO TEXT RP</div>
+      <p style="font-size:14px;color:var(--gray);line-height:1.9;margin-bottom:16px;">Server นี้ใช้ระบบ ME / DO เป็นมาตรฐาน</p>
+      <div style="background:var(--black3);border-radius:6px;padding:14px 16px;margin-bottom:10px;">
+        <div style="font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:var(--blue-light);letter-spacing:1px;margin-bottom:4px;">ME</div>
+        <div style="font-size:13px;color:var(--gray);">บอกสิ่งที่ตัวละครกำลังทำ<br><em style="color:rgba(240,240,240,0.4);">*หยิบบุหรี่ขึ้นมาจุด มือสั่นเล็กน้อย*</em></div>
+      </div>
+      <div style="background:var(--black3);border-radius:6px;padding:14px 16px;">
+        <div style="font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:var(--gold);letter-spacing:1px;margin-bottom:4px;">DO</div>
+        <div style="font-size:13px;color:var(--gray);">บอกสภาพแวดล้อมที่คนอื่นเห็นได้<br><em style="color:rgba(240,240,240,0.4);">*มีกลิ่นแอลกอฮอล์โชยออกมา*</em></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RULES TABLE -->
+  <div class="label-tag reveal">กฎหลัก</div>
+  <table class="rule-table reveal">
+    <thead><tr><th>กฎ</th><th>ระดับ</th><th>ความหมาย</th></tr></thead>
+    <tbody>
+      <tr><td><div class="rule-name">IC / OC</div></td><td><span class="rule-badge rb-blue">BASIC</span></td><td><div class="rule-desc">แยกตัวเองออกจากตัวละครให้ชัด อย่าเอาเรื่องนอกเกมมาในเกม</div></td></tr>
+      <tr><td><div class="rule-name">Metagaming (MG)</div></td><td><span class="rule-badge rb-red">STRICT</span></td><td><div class="rule-desc">ห้ามใช้ข้อมูลที่ตัวละครไม่ควรรู้ เช่น รู้ตำแหน่งจาก Discord</div></td></tr>
+      <tr><td><div class="rule-name">Powergaming (PG)</div></td><td><span class="rule-badge rb-red">STRICT</span></td><td><div class="rule-desc">ห้ามบังคับให้คนอื่น RP ตามที่ตัวเองต้องการฝ่ายเดียว</div></td></tr>
+      <tr><td><div class="rule-name">Deathmatch (DM/VDM)</div></td><td><span class="rule-badge rb-red">STRICT</span></td><td><div class="rule-desc">ห้ามโจมตีหรือใช้รถชนโดยไม่มี RP นำมาก่อน</div></td></tr>
+      <tr><td><div class="rule-name">FairRP</div></td><td><span class="rule-badge rb-blue">BASIC</span></td><td><div class="rule-desc">ต้องให้โอกาสอีกฝ่ายตอบสนองก่อนเสมอ</div></td></tr>
+      <tr><td><div class="rule-name">Combat Log</div></td><td><span class="rule-badge rb-red">STRICT</span></td><td><div class="rule-desc">ห้าม Disconnect หนีสถานการณ์ต่อสู้หรือระหว่าง RP</div></td></tr>
+      <tr><td><div class="rule-name">Bug Abuse</div></td><td><span class="rule-badge rb-red">STRICT</span></td><td><div class="rule-desc">ห้าม Exploit หรือใช้ประโยชน์จาก Bug ในเกม</div></td></tr>
+      <tr><td><div class="rule-name">Hate Speech</div></td><td><span class="rule-badge rb-red">STRICT</span></td><td><div class="rule-desc">ห้ามคุกคาม / Hate Speech ทั้ง IC และ OC</div></td></tr>
+      <tr><td><div class="rule-name">Minor RP</div></td><td><span class="rule-badge rb-red">STRICT</span></td><td><div class="rule-desc">ห้าม RP เนื้อหาที่เกี่ยวกับผู้เยาว์ทุกกรณี</div></td></tr>
+    </tbody>
+  </table>
+
+  <!-- CK RULES -->
+  <div class="ck-section reveal">
+    <div class="label-tag">CHARACTER KILL (CK)</div>
+    <h2 class="section-title" style="font-size:clamp(28px,3vw,42px);">การสิ้นสุดชีวิตตัวละครถาวร</h2>
+    <p class="section-desc">CK ต้องครบทุกเงื่อนไข — Player ยินยอม / ปลอดหนี้ / มีแรงจูงใจพอ / Admin อนุมัติ</p>
+    <div class="ck-grid">
+      <div class="ck-card"><div class="ck-type">🔫 CK จากการถูกฆ่า</div><div class="ck-cond">เจ้าของตัวละครยินยอมเอง ไม่บังคับ ตายในเกมปกติไม่นับเป็น CK</div></div>
+      <div class="ck-card"><div class="ck-type">💊 CK จากการรักษาพยาบาล</div><div class="ck-cond">เล่น ME/DO คู่กับหมอ อาการสมเหตุสมผล หมอยืนยัน Player ยินยอม</div></div>
+      <div class="ck-card"><div class="ck-type">🌉 CK จากการฆ่าตัวตาย</div><div class="ck-cond">ต้องมี RP เรื่องราวหนักแน่น Admin ประเมินแรงจูงใจ — ถ้าไม่พอ ไม่อนุมัติ</div></div>
+      <div class="ck-card"><div class="ck-type">⚖️ CK จากคำพิพากษาศาล</div><div class="ck-cond">ผ่านกระบวนการศาลใน RP ครบถ้วน Player ยินยอมก่อนเสมอ</div></div>
+    </div>
+    <div style="margin-top:20px;padding:16px;background:rgba(55,138,221,0.06);border-radius:6px;font-size:13px;color:var(--gray);line-height:1.7;">
+      หลัง CK — สร้างตัวละครใหม่ได้ทันที แต่ <strong style="color:var(--white);">IC Reset สมบูรณ์</strong> ตัวละครใหม่ไม่รู้จักใครเลย ทรัพย์สินจัดการตามระบบมรดกหรือประมูลตาม RP
+    </div>
+  </div>
+
+  <!-- BLACKLIST -->
+  <div style="margin-top:64px;">
+    <div class="label-tag reveal">BLACKLIST RP</div>
+    <h2 class="section-title reveal" style="font-size:clamp(24px,3vw,38px);">บทบาทที่ต้อง Blacklist ก่อนเล่น</h2>
+    <p class="section-desc reveal">บทบาทต่อไปนี้เล่นได้ แต่ทุกฝ่ายต้องยินยอมก่อนเสมอ</p>
+    <div class="blacklist-grid">
+      <div class="bl-card reveal d1"><div class="bl-icon">🔞</div><div><div class="bl-title">ERP</div><div class="bl-desc">ไม่ในพื้นที่สาธารณะ ทั้งสองฝ่ายยินยอม Blacklist กันเองได้ระหว่างผู้เล่น</div></div></div>
+      <div class="bl-card reveal d2"><div class="bl-icon">⚡</div><div><div class="bl-title">การทรมาน</div><div class="bl-desc">ทั้งสองฝ่ายยินยอมก่อนเล่นทุกครั้ง ห้ามบังคับ</div></div></div>
+      <div class="bl-card reveal d3"><div class="bl-icon">💀</div><div><div class="bl-title">การเล่นกับศพหลัง CK</div><div class="bl-desc">ผู้ถูก CK ต้องยินยอมก่อนเสมอ</div></div></div>
+      <div class="bl-card reveal d4"><div class="bl-icon">🔪</div><div><div class="bl-title">RP ความรุนแรงสุดโต่ง</div><div class="bl-desc">Blacklist กันเองได้ตามความสะดวกใจของทุกฝ่าย</div></div></div>
+    </div>
+  </div>
+
+  <!-- PUNISHMENT -->
+  <div style="margin-top:64px;">
+    <div class="label-tag reveal">PUNISHMENT SYSTEM</div>
+    <h2 class="section-title reveal" style="font-size:clamp(24px,3vw,38px);">ระบบลงโทษ</h2>
+    <div class="staff-table reveal">
+      <div class="staff-row">
+        <div><div class="staff-role">Staff</div></div>
+        <div>
+          <div class="staff-perms"><span class="perm">Noclip</span><span class="perm">Teleport</span><span class="perm">TPM</span><span class="perm">ตักเตือน</span></div>
+          <p style="font-size:13px;color:var(--gray);margin-top:10px;line-height:1.7;">นอกจากนี้ต้องส่งเรื่อง Admin ทุกการตักเตือนต้องรายงานทีมงานทันที บันทึกใน TxAdmin + Discord</p>
+        </div>
+      </div>
+      <div class="staff-row">
+        <div><div class="staff-role">Admin</div></div>
+        <div>
+          <div class="staff-perms"><span class="perm perm-gold">สิทธิ์ทั้งหมด</span><span class="perm">Adminjail</span><span class="perm">Kick</span><span class="perm">Ban</span><span class="perm">จัดการระบบ</span></div>
+          <p style="font-size:13px;color:var(--gray);margin-top:10px;line-height:1.7;"><strong style="color:var(--white);">Adminjail</strong> — ส่ง Player ไปยังพื้นที่พิเศษที่ทำอะไรไม่ได้เลย ไม่หิว / เลือดไม่ลด / ต่อยไม่ได้ รอเวลาปลดเท่านั้น</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo"><img src="assets/logo_v1.png" alt="NewTemp RP" /></div>
+  <nav class="footer-nav">
+    <a href="index.html">HOME</a><a href="about.html">ABOUT</a><a href="features.html">FEATURES</a>
+    <a href="rules.html">RULES</a><a href="join.html">JOIN</a><a href="donate.html">DONATE</a>
+  </nav>
+  <div class="footer-copy">© 2025 NEWTEMP ROLEPLAY</div>
+</footer>
+<div class="gold-line"></div>
+<script src="shared.js"></script>
+</body>
+</html>

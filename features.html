@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NewTemp RP — ระบบทั้งหมด</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=Inter:wght@300;400;500&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .f-hero-grid { display:grid; grid-template-columns:1fr 1fr; gap:4px; margin-top:48px; border-radius:8px; overflow:hidden; }
+    .f-hero-main { grid-row:span 2; position:relative; overflow:hidden; }
+    .f-hero-main img, .f-hero-sub img { width:100%; height:100%; object-fit:cover; filter:brightness(0.6); transition:all 0.5s; }
+    .f-hero-main:hover img, .f-hero-sub:hover img { filter:brightness(0.8); transform:scale(1.03); }
+    .f-hero-sub { position:relative; overflow:hidden; aspect-ratio:16/9; }
+    .f-ov { position:absolute; inset:0; background:linear-gradient(180deg,transparent 40%,rgba(8,8,8,0.8) 100%); }
+    .f-lbl { position:absolute; bottom:12px; left:12px; font-family:'Rajdhani',sans-serif; font-size:11px; font-weight:700; letter-spacing:2px; color:rgba(240,240,240,0.7); }
+
+    .sys-section { margin-top:80px; }
+    .sys-header { display:grid; grid-template-columns:1fr 2fr; gap:48px; align-items:start; margin-bottom:32px; }
+    .sys-num { font-family:'Barlow Condensed',sans-serif; font-size:100px; font-weight:900; color:rgba(55,138,221,0.07); line-height:1; }
+    .sys-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+    .sys-card { background:var(--black3); border:0.5px solid var(--border-w); border-radius:8px; padding:24px; transition:all 0.3s; }
+    .sys-card:hover { border-color:rgba(55,138,221,0.2); transform:translateY(-3px); }
+    .sys-icon { font-size:24px; margin-bottom:12px; }
+    .sys-title { font-family:'Barlow Condensed',sans-serif; font-size:18px; font-weight:700; color:var(--white); margin-bottom:6px; }
+    .sys-desc { font-size:13px; color:var(--gray); line-height:1.7; }
+    .sys-badge { display:inline-block; margin-top:10px; background:rgba(239,159,39,0.1); border:0.5px solid rgba(239,159,39,0.2); color:var(--gold); padding:3px 10px; border-radius:3px; font-family:'Rajdhani',sans-serif; font-size:10px; font-weight:700; letter-spacing:2px; }
+    .featured-sys { grid-column:span 2; background:rgba(55,138,221,0.04); border-color:rgba(55,138,221,0.1); }
+    @media(max-width:768px){ .sys-header{grid-template-columns:1fr;} .sys-grid{grid-template-columns:1fr;} .featured-sys{grid-column:auto;} .f-hero-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+<div class="gold-line"></div>
+<nav id="nav">
+  <div class="nav-logo"><a href="index.html"><img src="assets/logo_v1.png" alt="NewTemp RP" /></a></div>
+  <ul class="nav-links">
+    <li><a href="index.html">HOME</a></li><li><a href="about.html">ABOUT</a></li>
+    <li><a href="features.html">FEATURES</a></li><li><a href="rules.html">RULES</a></li>
+    <li><a href="join.html">JOIN</a></li><li><a href="donate.html">DONATE</a></li>
+  </ul>
+  <a href="https://discord.gg/SePnEtPCar" target="_blank" class="nav-discord">Discord →</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('assets/wallpaper/02.jpg');"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="label-tag">CORE SYSTEMS</div>
+    <h1>ระบบ<br><span class="accent">ทั้งหมด</span></h1>
+  </div>
+</div>
+
+<div class="section">
+  <!-- ECONOMY -->
+  <div class="sys-section">
+    <div class="sys-header">
+      <div class="sys-num reveal">01</div>
+      <div>
+        <div class="label-tag reveal">ECONOMY SYSTEM</div>
+        <h2 class="section-title reveal">ระบบเศรษฐกิจ</h2>
+        <p class="section-desc reveal">ระบบการเงินที่สมจริง ทุกคนเริ่มต้นเท่ากัน และเติบโตได้จากการเล่น RP</p>
+      </div>
+    </div>
+    <div class="sys-grid">
+      <div class="sys-card reveal d1"><div class="sys-icon">💵</div><div class="sys-title">Paycheck System</div><div class="sys-desc">รับเงินเดือนตาม Job อัตโนมัติ ยิ่งทำงานยิ่งได้มาก</div></div>
+      <div class="sys-card reveal d2"><div class="sys-icon">🌾</div><div class="sys-title">Farming Jobs</div><div class="sys-desc">งาน Farming หลากหลายที่ Server ตั้งไว้ให้หาเงินได้ตลอด</div></div>
+      <div class="sys-card reveal d3"><div class="sys-icon">🎭</div><div class="sys-title">RP Income</div><div class="sys-desc">ขอทาน ขัดรองเท้า ปล่อยกู้ หรือธุรกิจสีเทา อิสระเต็มที่</div></div>
+      <div class="sys-card reveal d4"><div class="sys-icon">🏦</div><div class="sys-title">Banking System</div><div class="sys-desc">Cash / Bank แยกกัน ATM ทั่วเมือง ระบบโอนเงินจริง</div></div>
+      <div class="sys-card reveal d5"><div class="sys-icon">📊</div><div class="sys-title">Tax System</div><div class="sys-desc">ภาษีรายได้ / รถ / ธุรกิจ / เมือง เก็บอัตโนมัติจาก Paycheck</div><div class="sys-badge">COMING SOON</div></div>
+      <div class="sys-card reveal d6"><div class="sys-icon">💳</div><div class="sys-title">Debt System</div><div class="sys-desc">มีหนี้สินกับ Player หรือรัฐ ศาลสามารถยึดทรัพย์ได้จริง</div><div class="sys-badge">COMING SOON</div></div>
+    </div>
+  </div>
+
+  <div class="divider" style="margin-top:80px;"></div>
+
+  <!-- BUSINESS -->
+  <div class="sys-section">
+    <div class="sys-header">
+      <div class="sys-num reveal">02</div>
+      <div>
+        <div class="label-tag reveal">BUSINESS SYSTEM</div>
+        <h2 class="section-title reveal">ระบบธุรกิจ</h2>
+        <p class="section-desc reveal">Flagship Feature ของ Server ที่ยังไม่มีใครทำในไทยในระดับนี้</p>
+      </div>
+    </div>
+    <div class="sys-grid">
+      <div class="sys-card featured-sys reveal"><div class="sys-icon">🏪</div><div class="sys-title">Full Business Management</div><div class="sys-desc">เปิดร้านได้จริงใน World Admin ตั้งค่าจุดต่างๆ Player บริหารเองทั้งหมด เชื่อมกับ qbx-manage และระบบธนาคาร</div><div class="sys-badge">FLAGSHIP</div></div>
+      <div class="sys-card reveal d1"><div class="sys-icon">📦</div><div class="sys-title">Stock System</div><div class="sys-desc">สั่งสินค้าผ่านระบบหรือไปรับเองที่ Supplier ไม่มีค่าส่งถ้าไปเอง</div></div>
+      <div class="sys-card reveal d2"><div class="sys-icon">🍳</div><div class="sys-title">Craft System</div><div class="sys-desc">Craft ไอเทมได้ในร้าน ตั้งค่าความอิ่มอาหาร/เครื่องดื่มได้</div></div>
+      <div class="sys-card reveal d3"><div class="sys-icon">🧾</div><div class="sys-title">Bill & Menu</div><div class="sys-desc">ออกบิลลูกค้าได้ มี Menu รายการสินค้าในเกม</div></div>
+      <div class="sys-card reveal d4"><div class="sys-icon">👥</div><div class="sys-title">Employee System</div><div class="sys-desc">จ้าง Player เป็นพนักงาน กำหนดตำแหน่ง เงินเดือน และสิทธิ์</div></div>
+    </div>
+  </div>
+
+  <div class="divider" style="margin-top:80px;"></div>
+
+  <!-- PROPERTY & VEHICLE -->
+  <div class="sys-section">
+    <div class="sys-header">
+      <div class="sys-num reveal">03</div>
+      <div>
+        <div class="label-tag reveal">PROPERTY & VEHICLE</div>
+        <h2 class="section-title reveal">บ้านและยานพาหนะ</h2>
+        <p class="section-desc reveal">ระบบอสังหาริมทรัพย์และยานพาหนะที่สมจริงที่สุด</p>
+      </div>
+    </div>
+    <div class="sys-grid">
+      <div class="sys-card reveal d1"><div class="sys-icon">🏠</div><div class="sys-title">Property System</div><div class="sys-desc">ซื้อ ขายต่อ หรือถูกยึดได้จริงผ่านกระบวนการศาลใน RP</div></div>
+      <div class="sys-card reveal d2"><div class="sys-icon">🏛️</div><div class="sys-title">Property Auction</div><div class="sys-desc">บ้านที่ถูกทิ้งร้างหรือค้างภาษีถูกนำมาประมูลสาธารณะใน RP</div></div>
+      <div class="sys-card reveal d3"><div class="sys-icon">🚗</div><div class="sys-title">Parking System</div><div class="sys-desc">จอดรถได้ทุกที่ บันทึกพิกัด / น้ำมัน / สภาพตัวถัง ครบทุกอย่าง</div></div>
+      <div class="sys-card reveal d4"><div class="sys-icon">🔧</div><div class="sys-title">Vehicle State</div><div class="sys-desc">Loop 15 นาทีลบรถออกจาก Map เรียกกลับมาสภาพเดิม 90-100%</div></div>
+      <div class="sys-card reveal d5"><div class="sys-icon">🚀</div><div class="sys-title">Monthly Import</div><div class="sys-desc">รถนำเข้า 3-5 คันต่อเดือน จำกัดจำนวน ขายแล้วขายเลย</div></div>
+      <div class="sys-card reveal d6"><div class="sys-icon">📍</div><div class="sys-title">Zone Parking</div><div class="sys-desc">ใช้ ox_lib Zone ป้องกัน Player จอดทับที่กัน</div></div>
+    </div>
+  </div>
+
+  <div class="divider" style="margin-top:80px;"></div>
+
+  <!-- GOVERNMENT -->
+  <div class="sys-section">
+    <div class="sys-header">
+      <div class="sys-num reveal">04</div>
+      <div>
+        <div class="label-tag reveal">GOVERNMENT SYSTEM</div>
+        <h2 class="section-title reveal">ระบบรัฐบาล</h2>
+        <p class="section-desc reveal">โครงสร้างหน่วยงานภาครัฐ เตรียมพร้อมไว้รอ Player และทีมงาน</p>
+      </div>
+    </div>
+    <div class="sys-grid">
+      <div class="sys-card reveal d1"><div class="sys-icon">👮</div><div class="sys-title">Police Department</div><div class="sys-desc">จับกุม / ออกใบสั่ง / ดูแลความสงบ / ออกหมายจับ</div></div>
+      <div class="sys-card reveal d2"><div class="sys-icon">⚖️</div><div class="sys-title">Justice Department</div><div class="sys-desc">ตัดสินคดี / อนุมัติยึดทรัพย์ / จัดการหนี้สิน</div><div class="sys-badge">DRAFT</div></div>
+      <div class="sys-card reveal d3"><div class="sys-icon">🏛️</div><div class="sys-title">City Hall / Treasury</div><div class="sys-desc">ออก Business License / เก็บภาษี / งบประมาณเมือง</div><div class="sys-badge">DRAFT</div></div>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding:64px 0 0;">
+    <a href="join.html" class="btn btn-blue reveal">เริ่มเล่นเลย →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo"><img src="assets/logo_v1.png" alt="NewTemp RP" /></div>
+  <nav class="footer-nav">
+    <a href="index.html">HOME</a><a href="about.html">ABOUT</a><a href="features.html">FEATURES</a>
+    <a href="rules.html">RULES</a><a href="join.html">JOIN</a><a href="donate.html">DONATE</a>
+  </nav>
+  <div class="footer-copy">© 2025 NEWTEMP ROLEPLAY</div>
+</footer>
+<div class="gold-line"></div>
+<script src="shared.js"></script>
+</body>
+</html>

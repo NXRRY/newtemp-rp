@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NewTemp RP — วิธีสมัคร</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=Inter:wght@300;400;500&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .steps-timeline { position:relative; padding-left:48px; }
+    .steps-timeline::before { content:''; position:absolute; left:20px; top:0; bottom:0; width:0.5px; background:linear-gradient(180deg,var(--blue),rgba(55,138,221,0.1)); }
+    .timeline-step { position:relative; padding:0 0 48px 32px; }
+    .timeline-step:last-child { padding-bottom:0; }
+    .t-dot { position:absolute; left:-39px; top:4px; width:40px; height:40px; border-radius:50%; background:var(--black); border:1.5px solid rgba(55,138,221,0.3); display:flex; align-items:center; justify-content:center; font-family:'Barlow Condensed',sans-serif; font-size:16px; font-weight:900; color:var(--blue); transition:all 0.3s; }
+    .timeline-step:hover .t-dot { background:var(--blue); color:var(--white); border-color:var(--blue); box-shadow:0 0 20px rgba(55,138,221,0.4); }
+    .t-title { font-family:'Barlow Condensed',sans-serif; font-size:24px; font-weight:700; color:var(--white); margin-bottom:8px; }
+    .t-desc { font-size:14px; color:var(--gray); line-height:1.8; max-width:480px; }
+    .t-note { margin-top:12px; padding:10px 14px; background:rgba(55,138,221,0.06); border:0.5px solid var(--border); border-radius:6px; font-size:12px; color:var(--blue-light); font-family:'Rajdhani',sans-serif; letter-spacing:0.5px; display:inline-block; }
+    .t-warn { background:rgba(239,159,39,0.06); border-color:rgba(239,159,39,0.15); color:var(--gold); }
+
+    .schedule-box { background:var(--black3); border:0.5px solid var(--border-w); border-radius:8px; padding:32px; margin-top:0; }
+    .schedule-row { display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:0.5px solid rgba(255,255,255,0.03); }
+    .schedule-row:last-child { border:none; }
+    .s-label { font-family:'Rajdhani',sans-serif; font-size:13px; font-weight:700; color:var(--gray); letter-spacing:1px; }
+    .s-value { font-family:'Barlow Condensed',sans-serif; font-size:18px; font-weight:700; color:var(--white); }
+    .s-value.highlight { color:var(--blue); }
+
+    .starter-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-top:32px; }
+    .starter-item { background:var(--black3); border:0.5px solid var(--border-w); border-radius:6px; padding:16px; text-align:center; }
+    .starter-icon { font-size:24px; margin-bottom:8px; }
+    .starter-val { font-family:'Barlow Condensed',sans-serif; font-size:16px; font-weight:700; color:var(--blue); }
+    .starter-lbl { font-family:'Rajdhani',sans-serif; font-size:10px; letter-spacing:2px; color:var(--gray); margin-top:2px; }
+
+    .split-join { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+    @media(max-width:768px){ .split-join{grid-template-columns:1fr;} .starter-grid{grid-template-columns:repeat(3,1fr);} }
+  </style>
+</head>
+<body>
+<div class="gold-line"></div>
+<nav id="nav">
+  <div class="nav-logo"><a href="index.html"><img src="assets/logo_v1.png" alt="NewTemp RP" /></a></div>
+  <ul class="nav-links">
+    <li><a href="index.html">HOME</a></li><li><a href="about.html">ABOUT</a></li>
+    <li><a href="features.html">FEATURES</a></li><li><a href="rules.html">RULES</a></li>
+    <li><a href="join.html">JOIN</a></li><li><a href="donate.html">DONATE</a></li>
+  </ul>
+  <a href="https://discord.gg/SePnEtPCar" target="_blank" class="nav-discord">Discord →</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('assets/wallpaper/03.jpg');"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="label-tag">GETTING STARTED</div>
+    <h1>วิธี<span class="accent">สมัคร</span><br>Whitelist</h1>
+  </div>
+</div>
+
+<div class="section">
+  <div class="split-join">
+    <div>
+      <div class="label-tag reveal">WHITELIST PROCESS</div>
+      <h2 class="section-title reveal">ขั้นตอน<br>การเข้าร่วม</h2>
+
+      <div class="steps-timeline" style="margin-top:40px;">
+        <div class="timeline-step reveal d1">
+          <div class="t-dot">01</div>
+          <div class="t-title">เข้าร่วม Discord</div>
+          <div class="t-desc">กดปุ่มด้านล่างเพื่อเข้าร่วม Discord Server ของเรา อ่าน Rules และช่องข้อมูลต่างๆ ก่อน</div>
+          <a href="https://discord.gg/SePnEtPCar" target="_blank" class="t-note">discord.gg/SePnEtPCar →</a>
+        </div>
+        <div class="timeline-step reveal d2">
+          <div class="t-dot">02</div>
+          <div class="t-title">กรอก Form Whitelist</div>
+          <div class="t-desc">กรอกข้อมูลตัวละคร ประวัติ และตอบคำถามเกี่ยวกับกฎ RP ใน Form ที่กำหนด</div>
+          <div class="t-note">ตอบคำถามให้ครบและละเอียด เพิ่มโอกาสผ่านได้มาก</div>
+        </div>
+        <div class="timeline-step reveal d3">
+          <div class="t-dot">03</div>
+          <div class="t-title">รอผลการตรวจ</div>
+          <div class="t-desc">ทีมงานตรวจ Whitelist ทุกวัน เวลา 18:00 – 20:00 น. ถ้าส่งหลัง 20:00 รอวันถัดไป</div>
+          <div class="t-note highlight" style="background:rgba(239,159,39,0.06);border-color:rgba(239,159,39,0.15);color:var(--gold);">⏰ ตรวจทุกวัน 18:00 – 20:00 น.</div>
+        </div>
+        <div class="timeline-step reveal d4">
+          <div class="t-dot">04</div>
+          <div class="t-title">ผ่าน → ได้ยศทันที</div>
+          <div class="t-desc">ได้รับยศใน Discord แล้วเชื่อมต่อ FiveM เข้าเซิร์ฟได้เลย</div>
+        </div>
+        <div class="timeline-step reveal d5">
+          <div class="t-dot">✗</div>
+          <div class="t-title">ไม่ผ่าน → แก้ไขได้ 1-3 ครั้ง</div>
+          <div class="t-desc">ทีมงานจะสรุปสิ่งที่ขาดหรือเข้าใจผิด เปิดโอกาสแก้ไขก่อนตัดสินใจขั้นสุดท้าย</div>
+          <div class="t-note t-warn">ไม่ผ่านรอบที่ 3 → เข้าอบรมกลุ่ม</div>
+        </div>
+        <div class="timeline-step reveal d6">
+          <div class="t-dot">📚</div>
+          <div class="t-title">อบรม (ถ้าจำเป็น)</div>
+          <div class="t-desc">การอบรมแบบกลุ่ม Admin พูดคุยและอธิบายให้เข้าใจ ประกาศรายชื่อผ่าน Discord ขาด 2 ครั้ง → สอบใหม่ตั้งแต่ต้น</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="schedule-box reveal">
+        <div class="label-tag">SCHEDULE</div>
+        <div class="schedule-row"><div class="s-label">เวลาตรวจ</div><div class="s-value highlight">18:00 – 20:00</div></div>
+        <div class="schedule-row"><div class="s-label">ความถี่</div><div class="s-value">ทุกวัน</div></div>
+        <div class="schedule-row"><div class="s-label">ส่งหลัง 20:00</div><div class="s-value">รอวันถัดไป</div></div>
+        <div class="schedule-row"><div class="s-label">แก้ไขได้สูงสุด</div><div class="s-value">3 ครั้ง</div></div>
+        <div class="schedule-row"><div class="s-label">ขาดอบรม</div><div class="s-value">2 ครั้ง = สอบใหม่</div></div>
+      </div>
+
+      <div style="margin-top:32px;" class="reveal">
+        <div class="label-tag">STARTER PACK</div>
+        <p style="font-size:14px;color:var(--gray);margin-bottom:4px;">ของที่จะได้เมื่อเข้าเล่นครั้งแรก</p>
+        <div class="starter-grid">
+          <div class="starter-item"><div class="starter-icon">💵</div><div class="starter-val">$500</div><div class="starter-lbl">CASH</div></div>
+          <div class="starter-item"><div class="starter-icon">🏦</div><div class="starter-val">$2,000</div><div class="starter-lbl">BANK</div></div>
+          <div class="starter-item"><div class="starter-icon">📱</div><div class="starter-val">1</div><div class="starter-lbl">PHONE</div></div>
+          <div class="starter-item"><div class="starter-icon">👕</div><div class="starter-val">1</div><div class="starter-lbl">OUTFIT</div></div>
+          <div class="starter-item"><div class="starter-icon">🍱</div><div class="starter-val">✓</div><div class="starter-lbl">FOOD</div></div>
+        </div>
+      </div>
+
+      <div style="margin-top:32px;text-align:center;" class="reveal">
+        <a href="https://discord.gg/SePnEtPCar" target="_blank" class="btn btn-blue" style="width:100%;justify-content:center;">เข้าร่วม Discord และสมัคร →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo"><img src="assets/logo_v1.png" alt="NewTemp RP" /></div>
+  <nav class="footer-nav">
+    <a href="index.html">HOME</a><a href="about.html">ABOUT</a><a href="features.html">FEATURES</a>
+    <a href="rules.html">RULES</a><a href="join.html">JOIN</a><a href="donate.html">DONATE</a>
+  </nav>
+  <div class="footer-copy">© 2025 NEWTEMP ROLEPLAY</div>
+</footer>
+<div class="gold-line"></div>
+<script src="shared.js"></script>
+</body>
+</html>

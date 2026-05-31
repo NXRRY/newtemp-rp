@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NewTemp RP — Donate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=Inter:wght@300;400;500&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .donate-hero-msg { background:rgba(239,159,39,0.05); border:0.5px solid rgba(239,159,39,0.15); border-radius:8px; padding:24px 28px; margin-bottom:64px; display:flex; gap:16px; align-items:flex-start; }
+    .donate-hero-icon { font-size:32px; flex-shrink:0; }
+    .donate-hero-title { font-family:'Barlow Condensed',sans-serif; font-size:20px; font-weight:700; color:var(--gold); margin-bottom:6px; }
+    .donate-hero-desc { font-size:14px; color:var(--gray); line-height:1.8; }
+
+    .donate-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .d-card { background:var(--black3); border:0.5px solid var(--border-w); border-radius:8px; padding:36px; position:relative; overflow:hidden; transition:all 0.3s; }
+    .d-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--blue),var(--gold)); opacity:0; transition:opacity 0.3s; }
+    .d-card:hover { border-color:rgba(55,138,221,0.15); transform:translateY(-3px); }
+    .d-card:hover::after { opacity:1; }
+    .d-card-tag { font-family:'Rajdhani',sans-serif; font-size:10px; font-weight:700; letter-spacing:3px; color:var(--gold); margin-bottom:12px; display:block; }
+    .d-card-title { font-family:'Barlow Condensed',sans-serif; font-size:28px; font-weight:800; color:var(--white); margin-bottom:4px; }
+    .d-price { font-family:'Barlow Condensed',sans-serif; font-size:16px; font-weight:700; color:var(--blue-light); margin-bottom:20px; }
+    .d-list { list-style:none; display:flex; flex-direction:column; gap:12px; }
+    .d-list li { display:flex; gap:10px; font-size:14px; color:var(--gray); line-height:1.6; }
+    .d-list li::before { content:'→'; color:var(--blue); flex-shrink:0; }
+
+    .finance-section { margin-top:64px; }
+    .finance-flow { display:grid; grid-template-columns:1fr auto 1fr auto 1fr auto 1fr; gap:0; align-items:center; margin-top:40px; }
+    .flow-box { background:var(--black3); border:0.5px solid var(--border-w); border-radius:8px; padding:20px 16px; text-align:center; }
+    .flow-box-title { font-family:'Barlow Condensed',sans-serif; font-size:14px; font-weight:700; color:var(--white); margin-bottom:4px; }
+    .flow-box-val { font-family:'Rajdhani',sans-serif; font-size:11px; color:var(--gray); letter-spacing:1px; }
+    .flow-arrow { text-align:center; color:rgba(55,138,221,0.4); font-size:18px; padding:0 8px; }
+
+    .city-fund { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:32px; }
+    .cf-item { background:var(--black3); border:0.5px solid var(--border-w); border-radius:6px; padding:20px; text-align:center; }
+    .cf-pct { font-family:'Barlow Condensed',sans-serif; font-size:32px; font-weight:900; color:var(--blue); }
+    .cf-label { font-family:'Rajdhani',sans-serif; font-size:11px; font-weight:700; letter-spacing:2px; color:var(--gray); margin-top:4px; }
+    .cf-bar { height:3px; background:var(--border-w); border-radius:2px; margin-top:12px; overflow:hidden; }
+    .cf-fill { height:3px; border-radius:2px; background:var(--blue); }
+
+    .transparent-note { background:rgba(55,138,221,0.05); border:0.5px solid var(--border); border-radius:8px; padding:28px 32px; margin-top:32px; }
+    .t-note-title { font-family:'Barlow Condensed',sans-serif; font-size:20px; font-weight:700; color:var(--white); margin-bottom:12px; }
+    .visible-table { width:100%; border-collapse:collapse; margin-top:16px; }
+    .visible-table td { padding:12px 0; border-bottom:0.5px solid rgba(255,255,255,0.03); font-size:13px; }
+    .visible-table td:first-child { color:var(--gray); width:200px; }
+    .visible-table td:last-child { color:var(--white); }
+    .visible-table tr:last-child td { border:none; }
+
+    @media(max-width:768px){ .donate-grid{grid-template-columns:1fr;} .finance-flow{grid-template-columns:1fr; grid-auto-rows:auto;} .flow-arrow{transform:rotate(90deg);} .city-fund{grid-template-columns:repeat(2,1fr);} }
+  </style>
+</head>
+<body>
+<div class="gold-line"></div>
+<nav id="nav">
+  <div class="nav-logo"><a href="index.html"><img src="assets/logo_v1.png" alt="NewTemp RP" /></a></div>
+  <ul class="nav-links">
+    <li><a href="index.html">HOME</a></li><li><a href="about.html">ABOUT</a></li>
+    <li><a href="features.html">FEATURES</a></li><li><a href="rules.html">RULES</a></li>
+    <li><a href="join.html">JOIN</a></li><li><a href="donate.html">DONATE</a></li>
+  </ul>
+  <a href="https://discord.gg/SePnEtPCar" target="_blank" class="nav-discord">Discord →</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('assets/wallpaper/02.jpg');"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="label-tag">SUPPORT THE SERVER</div>
+    <h1>Donate<br><span class="accent">ยุติธรรม</span></h1>
+  </div>
+</div>
+
+<div class="section">
+  <div class="donate-hero-msg reveal">
+    <div class="donate-hero-icon">🚫</div>
+    <div>
+      <div class="donate-hero-title">ไม่มี Pay-to-Win ทุกรูปแบบ</div>
+      <div class="donate-hero-desc">NewTemp RP ไม่ขายสิทธิ์ความได้เปรียบในเกม ไม่มีการซื้อ Paycheck เพิ่ม ไม่มีการจ่ายเงินแล้วได้รถไปขับเลย ทุก Donate มีกระบวนการ RP และต้องสะสมเงินในเกมก่อนเสมอ</div>
+    </div>
+  </div>
+
+  <div class="label-tag reveal">WHAT YOU CAN SUPPORT</div>
+  <h2 class="section-title reveal">รูปแบบการ Donate</h2>
+  <div class="donate-grid">
+    <div class="d-card reveal d1">
+      <span class="d-card-tag">MONTHLY IMPORT</span>
+      <div class="d-card-title">รถนำเข้ารายเดือน</div>
+      <div class="d-price">ราคาตามประกาศรายเดือน</div>
+      <ul class="d-list">
+        <li>3–5 คันต่อเดือน แบ่งเป็น Sport 1 / Classic 1 / Sedan 1-3</li>
+        <li>รถผ่านเงื่อนไข Rockstar ก่อนนำเข้าทุกคัน</li>
+        <li>ซื้อด้วยเงินในเกม หรือเงินจริงก็ได้</li>
+        <li>จำกัดจำนวน ขายแล้วขายเลย ไม่มี Rerun</li>
+        <li>ประกาศใน Discord ก่อนเปิดขายทุกเดือน</li>
+        <li>รถ Donate ไม่ได้เปรียบกว่าคนที่สะสมเงินในเกม</li>
+      </ul>
+    </div>
+    <div class="d-card reveal d2">
+      <span class="d-card-tag">PROPERTY</span>
+      <div class="d-card-title">บ้านและที่อยู่อาศัย</div>
+      <div class="d-price">1,500 – 4,500 บาท / 30,000 – 100,000$</div>
+      <ul class="d-list">
+        <li>Player หาบ้านที่ต้องการ Admin ตีราคาทั้งเงินจริงและในเกม</li>
+        <li>ราคาเงินจริงขึ้นกับความสวยของ MLO</li>
+        <li>ราคาในเกมอิงค่าครองชีพของ Server</li>
+        <li>มีค่าดูแลรายเดือน 200 บาท/เดือน</li>
+        <li>ขายต่อ Player ท่านอื่นได้จริง ต้องแจ้ง Admin</li>
+        <li>บ้านถูกยึดได้หากค้างค่าดูแลนานเกิน 2 เดือน</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-top:24px;padding:20px 24px;background:rgba(239,159,39,0.05);border:0.5px solid rgba(239,159,39,0.12);border-radius:6px;" class="reveal">
+    <div style="font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:var(--gold);margin-bottom:6px;">SUPPORT DONATION — บริจาคโดยไม่หวังสิ่งตอบแทน</div>
+    <div style="font-size:13px;color:var(--gray);line-height:1.8;">ยินดีรับ Donate ที่ไม่ต้องการสิ่งตอบแทนใดๆ เงินจะเข้าระบบ Financial Transparency เหมือนกันหมด ไม่มีการให้สิทธิ์พิเศษหรือยศพิเศษใดๆ ชื่อผู้บริจาคจะไม่เปิดเผยเว้นแต่ยินยอมเอง</div>
+  </div>
+
+  <!-- FINANCE FLOW -->
+  <div class="finance-section">
+    <div class="label-tag reveal">FINANCIAL TRANSPARENCY</div>
+    <h2 class="section-title reveal">เงิน Donate ไปไหน?</h2>
+    <p class="section-desc reveal">โปร่งใส ทุกคนตรวจสอบได้ แจกแจงทุกเดือน</p>
+
+    <div class="finance-flow reveal">
+      <div class="flow-box"><div class="flow-box-title">ยอด Donate</div><div class="flow-box-val">รายเดือน</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box" style="border-color:rgba(55,138,221,0.2);"><div class="flow-box-title">ค่าใช้จ่ายคงที่</div><div class="flow-box-val">Server / Key / Sub</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box"><div class="flow-box-title">ค่าพัฒนา</div><div class="flow-box-val">MLO / Script</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box" style="border-color:rgba(239,159,39,0.2);"><div class="flow-box-title">กองทุนสำรอง 2 เดือน</div><div class="flow-box-val">ความมั่นคง Server</div></div>
+    </div>
+
+    <div style="margin-top:16px;padding:14px 20px;background:rgba(55,138,221,0.05);border-radius:6px;font-size:13px;color:var(--gray);text-align:center;" class="reveal">
+      ถ้ายังเหลือหลังจากนั้น → แบ่งเป็น <strong style="color:var(--white);">ค่าน้ำใจทีมงานทุกคนอย่างเท่าเทียม</strong>
+    </div>
+
+    <div style="margin-top:40px;">
+      <div class="label-tag reveal">CITY FUND</div>
+      <p style="font-size:14px;color:var(--gray);margin-bottom:4px;" class="reveal">ภาษีในเกมจะเข้า City Fund และแบ่งใช้ดังนี้</p>
+      <div class="city-fund">
+        <div class="cf-item reveal d1"><div class="cf-pct">40%</div><div class="cf-label">ตำรวจ / EMS</div><div class="cf-bar"><div class="cf-fill" style="width:40%;"></div></div></div>
+        <div class="cf-item reveal d2"><div class="cf-pct">30%</div><div class="cf-label">งาน Event</div><div class="cf-bar"><div class="cf-fill" style="width:30%;"></div></div></div>
+        <div class="cf-item reveal d3"><div class="cf-pct">20%</div><div class="cf-label">City Hall</div><div class="cf-bar"><div class="cf-fill" style="width:20%;"></div></div></div>
+        <div class="cf-item reveal d4"><div class="cf-pct">10%</div><div class="cf-label">กองทุนสำรอง</div><div class="cf-bar"><div class="cf-fill" style="width:10%;"></div></div></div>
+      </div>
+    </div>
+
+    <div class="transparent-note reveal">
+      <div class="t-note-title">สิ่งที่ Player เห็นได้ทุกเดือน</div>
+      <table class="visible-table">
+        <tr><td>รายรับ Donate</td><td>ยอดรวมทั้งเดือน</td></tr>
+        <tr><td>ค่าใช้จ่ายคงที่</td><td>ประเภท + จำนวนเงิน (ไม่ระบุชื่อ Provider)</td></tr>
+        <tr><td>ค่าพัฒนาซื้อขาด</td><td>ประเภท (ระบบ / MLO / เสื้อผ้า) + ยอด</td></tr>
+        <tr><td>กองทุนสำรอง</td><td>ยอดคงเหลือปัจจุบัน</td></tr>
+        <tr><td>ค่าน้ำใจทีมงาน</td><td>ยอดรวม (ถ้ามี)</td></tr>
+      </table>
+      <div style="margin-top:14px;font-size:12px;color:rgba(102,102,102,0.7);font-family:'Rajdhani',sans-serif;letter-spacing:1px;">รายละเอียดชื่อระบบ / MLO จะเปิดเผยเฉพาะทีมงานเท่านั้น</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo"><img src="assets/logo_v1.png" alt="NewTemp RP" /></div>
+  <nav class="footer-nav">
+    <a href="index.html">HOME</a><a href="about.html">ABOUT</a><a href="features.html">FEATURES</a>
+    <a href="rules.html">RULES</a><a href="join.html">JOIN</a><a href="donate.html">DONATE</a>
+  </nav>
+  <div class="footer-copy">© 2025 NEWTEMP ROLEPLAY</div>
+</footer>
+<div class="gold-line"></div>
+<script src="shared.js"></script>
+</body>
+</html>
