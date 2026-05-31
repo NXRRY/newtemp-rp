@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NewTemp Roleplay — FiveM Thailand</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Rajdhani:wght@500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0f0f0f;
+      --black2: #1a1a1a;
+      --blue: #378ADD;
+      --blue-light: #B5D4F4;
+      --blue-dark: #185fa5;
+      --gold: #EF9F27;
+      --gold-light: #FAC775;
+      --white: #f5f5f5;
+      --gray: #888;
+      --border: rgba(55,138,221,0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(15,15,15,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+      padding: 0 5%;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--blue);
+      letter-spacing: 2px;
+    }
+
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--gray);
+      font-size: 14px;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-btn {
+      background: var(--blue);
+      color: var(--white);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .nav-btn:hover { background: var(--blue-dark); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 5% 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 60%, rgba(55,138,221,0.08) 0%, transparent 70%);
+    }
+
+    .hero-line-top {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(55,138,221,0.1);
+      border: 0.5px solid rgba(55,138,221,0.3);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--blue-light);
+      margin-bottom: 24px;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--blue);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .hero-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(52px, 8vw, 96px);
+      font-weight: 800;
+      line-height: 0.95;
+      color: var(--white);
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .hero-title .blue { color: var(--blue); }
+    .hero-title .gold { color: var(--gold); }
+
+    .hero-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(18px, 3vw, 28px);
+      font-weight: 400;
+      color: var(--gray);
+      letter-spacing: 6px;
+      margin-bottom: 24px;
+    }
+
+    .hero-desc {
+      max-width: 520px;
+      margin: 0 auto 40px;
+      color: var(--gray);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 1px;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: 2px solid var(--blue);
+    }
+
+    .btn-primary:hover {
+      background: var(--blue-dark);
+      border-color: var(--blue-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 1px;
+      text-decoration: none;
+      border: 2px solid rgba(239,159,39,0.4);
+      transition: all 0.2s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      background: rgba(239,159,39,0.05);
+      transform: translateY(-1px);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      margin-top: 60px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: center;
+      position: relative;
+    }
+
+    .stat + .stat::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 20%;
+      height: 60%;
+      width: 0.5px;
+      background: var(--border);
+    }
+
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--blue);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--gray);
+      font-family: 'Rajdhani', sans-serif;
+      letter-spacing: 2px;
+    }
+
+    /* SECTION */
+    section {
+      padding: 100px 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      color: var(--gray);
+      font-size: 15px;
+      max-width: 500px;
+      line-height: 1.8;
+    }
+
+    /* FEATURES */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .feature-card {
+      background: var(--black2);
+      border: 0.5px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 28px;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--blue);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .feature-card:hover {
+      border-color: rgba(55,138,221,0.2);
+      transform: translateY(-2px);
+    }
+
+    .feature-card:hover::before { opacity: 1; }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(55,138,221,0.1);
+      border: 0.5px solid rgba(55,138,221,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    .feature-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* HOW TO JOIN */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0;
+      margin-top: 48px;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 14%;
+      right: 14%;
+      height: 0.5px;
+      background: var(--border);
+    }
+
+    .step {
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    .step-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--black2);
+      border: 2px solid var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--blue);
+      margin: 0 auto 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .step-desc {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* RULES HIGHLIGHT */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 40px;
+    }
+
+    .rule-pill {
+      background: var(--black2);
+      border: 0.5px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .rule-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .rule-text {
+      font-size: 13px;
+      color: var(--blue-light);
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* DONATE */
+    .donate-box {
+      background: var(--black2);
+      border: 0.5px solid rgba(55,138,221,0.2);
+      border-radius: 16px;
+      padding: 48px;
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .donate-highlight {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .donate-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .donate-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    .donate-list li::before {
+      content: '—';
+      color: var(--blue);
+      flex-shrink: 0;
+      font-weight: 600;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 0.5px solid rgba(255,255,255,0.06);
+      padding: 40px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: gap;
+      max-width: 100%;
+    }
+
+    .footer-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--blue);
+      letter-spacing: 2px;
+    }
+
+    .footer-logo span { color: var(--gold); }
+
+    .footer-text {
+      font-size: 12px;
+      color: var(--gray);
+      font-family: 'Rajdhani', sans-serif;
+      letter-spacing: 1px;
+    }
+
+    .gold-line {
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold) 30%, var(--blue) 70%, transparent);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .donate-box { grid-template-columns: 1fr; }
+      .steps::before { display: none; }
+      footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="gold-line"></div>
+
+<nav>
+  <div class="nav-logo">NEW<span>TEMP</span> RP</div>
+  <ul class="nav-links">
+    <li><a href="#features">FEATURES</a></li>
+    <li><a href="#join">HOW TO JOIN</a></li>
+    <li><a href="#rules">RULES</a></li>
+    <li><a href="#donate">DONATE</a></li>
+  </ul>
+  <a href="#join" class="nav-btn">เข้าร่วม Discord</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line-top"></div>
+  <div style="position:relative;z-index:1;">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      FIVEM THAILAND · ONLINE
+    </div>
+    <h1 class="hero-title">
+      <span class="blue">NEW</span>TEMP<br>
+      <span class="gold">ROLE</span>PLAY
+    </h1>
+    <p class="hero-sub">YOUR STORY · YOUR WORLD</p>
+    <p class="hero-desc">
+      เซิร์ฟเวอร์ FiveM ที่เปิดโอกาสให้คุณเป็นใครก็ได้ในเมือง Los Santos เล่น RP อย่างอิสระในระบบที่ยุติธรรม ไม่มี Pay-to-Win
+    </p>
+    <div class="hero-actions">
+      <a href="#join" class="btn-primary">เริ่มเล่นเลย</a>
+      <a href="#features" class="btn-outline">ดูรายละเอียด</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">128</div>
+        <div class="stat-label">MAX SLOTS</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">QBX</div>
+        <div class="stat-label">FRAMEWORK</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">0</div>
+        <div class="stat-label">PAY TO WIN</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-tag">WHAT WE OFFER</div>
+  <h2 class="section-title">ระบบที่ไม่มีใครทำ<br>ในไทยมาก่อน</h2>
+  <p class="section-desc">ออกแบบมาเพื่อประสบการณ์ RP ที่สมจริงและยุติธรรมสำหรับทุกคน</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🚗</div>
+      <div class="feature-title">Parking System</div>
+      <div class="feature-desc">จอดรถได้ทุกที่บนแผนที่ ระบบบันทึกสภาพรถและพิกัดจริง ไม่มี Garage แบบเดิม</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏪</div>
+      <div class="feature-title">Business System</div>
+      <div class="feature-desc">เปิดร้านได้จริง มีระบบ Stock / Craft / Bill / จ้างพนักงาน / เงินเดือน ครบวงจร</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏠</div>
+      <div class="feature-title">Property System</div>
+      <div class="feature-desc">ซื้อ ขายต่อ หรือถูกยึดได้จริงผ่านกระบวนการศาลใน RP มีระบบประมูลสาธารณะ</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚖️</div>
+      <div class="feature-title">Legal System</div>
+      <div class="feature-desc">โครงสร้างรัฐบาล ศาล และกฎหมายในเกมที่สร้างเรื่องราวได้เองตามธรรมชาติ</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💰</div>
+      <div class="feature-title">Fair Economy</div>
+      <div class="feature-desc">ระบบภาษี / เงินเดือน / หนี้สิน สมจริง ทุกคนเข้าถึงทุกอย่างได้จากการเล่น RP</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎭</div>
+      <div class="feature-title">Freedom RP</div>
+      <div class="feature-desc">เล่นเป็นใครก็ได้ คนงานก่อสร้าง ชายชรา คนขี้เมา หรือคนจรจัด ทุก RP มีคุณค่า</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO JOIN -->
+<section id="join" style="background:rgba(55,138,221,0.03);border-radius:24px;border:0.5px solid var(--border);">
+  <div class="section-tag">GETTING STARTED</div>
+  <h2 class="section-title">วิธีเข้าร่วมเซิร์ฟ</h2>
+  <p class="section-desc">ต้องผ่าน Whitelist ก่อนเข้าเล่น เพื่อคุณภาพ RP ที่ดีของทุกคน</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-title">เข้า Discord</div>
+      <div class="step-desc">กดลิงก์ด้านล่างเพื่อเข้าร่วม Discord Server ของเรา</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-title">สมัคร Whitelist</div>
+      <div class="step-desc">กรอกข้อมูลตัวละครและตอบคำถามใน Form ที่กำหนด</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-title">รอผลตรวจ</div>
+      <div class="step-desc">ทีมงานตรวจทุกวัน 18:00–20:00 น. ผ่านแล้วได้ยศทันที</div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-title">เข้าเล่นได้เลย</div>
+      <div class="step-desc">เชื่อมต่อผ่าน FiveM และเริ่มชีวิตใน Los Santos</div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:48px;">
+    <a href="#" class="btn-primary">เข้าร่วม Discord Server</a>
+  </div>
+</section>
+
+<!-- RULES -->
+<section id="rules">
+  <div class="section-tag">RP STANDARD</div>
+  <h2 class="section-title">กฎที่น้อย<br>แต่ทุกข้อมีความหมาย</h2>
+  <p class="section-desc">อ่านจบใน 5 นาที เข้าใจได้ทันที ไม่ต้องกลัวผิด RP</p>
+  <div class="rules-grid">
+    <div class="rule-pill"><div class="rule-dot" style="background:#378ADD;"></div><div class="rule-text">IC / OC — แยกตัวเองจากตัวละคร</div></div>
+    <div class="rule-pill"><div class="rule-dot" style="background:#EF9F27;"></div><div class="rule-text">No Metagaming</div></div>
+    <div class="rule-pill"><div class="rule-dot" style="background:#e24b4a;"></div><div class="rule-text">No Powergaming</div></div>
+    <div class="rule-pill"><div class="rule-dot" style="background:#378ADD;"></div><div class="rule-text">No Deathmatch</div></div>
+    <div class="rule-pill"><div class="rule-dot" style="background:#1d9e75;"></div><div class="rule-text">FairRP — ให้โอกาสอีกฝ่าย</div></div>
+    <div class="rule-pill"><div class="rule-dot" style="background:#EF9F27;"></div><div class="rule-text">No Combat Log</div></div>
+    <div class="rule-pill"><div class="rule-dot" style="background:#378ADD;"></div><div class="rule-text">ไม่มี Safe Zone — ใช้กฎหมาย RP</div></div>
+    <div class="rule-pill"><div class="rule-dot" style="background:#1d9e75;"></div><div class="rule-text">ME / DO Text RP Standard</div></div>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section id="donate">
+  <div class="section-tag">SUPPORT THE SERVER</div>
+  <h2 class="section-title">Donate ที่ยุติธรรม<br>ไม่มี Pay-to-Win</h2>
+  <div class="donate-box">
+    <div>
+      <div class="donate-highlight">รถนำเข้ารายเดือน (Monthly Import)</div>
+      <ul class="donate-list">
+        <li>ทุกเดือนมีรถนำเข้า 3–5 คัน แบ่งเป็น Sport / Classic / Sedan</li>
+        <li>ซื้อด้วยเงินในเกม หรือเงินจริงก็ได้</li>
+        <li>จำกัดจำนวน ขายแล้วขายเลย ไม่มี Rerun</li>
+        <li>ประกาศราคาโปร่งใสทุกเดือนผ่าน Discord</li>
+      </ul>
+    </div>
+    <div>
+      <div class="donate-highlight">บ้าน (Property)</div>
+      <ul class="donate-list">
+        <li>ราคาเงินจริง 1,500–4,500 บาท ตามความสวยของ MLO</li>
+        <li>ราคาในเกม 30,000–100,000$</li>
+        <li>ขายต่อระหว่าง Player ได้จริง</li>
+        <li>มีค่าดูแลรายเดือน 200 บาท/เดือน</li>
+        <li>รายรับ-รายจ่าย Server โปร่งใส ทุกคนเห็นได้</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">NEW<span>TEMP</span> RP</div>
+  <div class="footer-text">© 2025 NEWTEMP ROLEPLAY · FIVEM THAILAND · ALL RIGHTS RESERVED</div>
+  <a href="#" class="nav-btn">Discord</a>
+</footer>
+<div class="gold-line"></div>
+
+</body>
+</html>
