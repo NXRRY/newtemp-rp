@@ -357,3 +357,219 @@ footer {
 }
 
 /* SHARED SCROLL REVEAL SCRIPT TAG HELPER */
+
+/* ======================================================
+   ADVANCED EFFECTS LAYER v2.0
+   ====================================================== */
+
+/* CSS Houdini: Animatable custom angle property */
+@property --border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* ── SCROLL PROGRESS BAR ─────────────────────────────── */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; z-index: 10000;
+  height: 2px; width: 0%;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--blue) 55%, var(--blue-light) 100%);
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(55,138,221,0.55), 0 0 3px var(--blue-light);
+  transition: width 0.06s linear;
+}
+
+/* ── CUSTOM CURSOR ───────────────────────────────────── */
+.cursor-dot, .cursor-ring { pointer-events: none; }
+.cursor-dot {
+  position: fixed; z-index: 9999;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--blue-light);
+  transform: translate(-50%, -50%);
+  will-change: left, top;
+}
+.cursor-ring {
+  position: fixed; z-index: 9998;
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid rgba(55,138,221,0.45);
+  transform: translate(-50%, -50%);
+  will-change: left, top;
+  transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, opacity 0.2s;
+}
+.cursor-ring.hover {
+  width: 54px; height: 54px;
+  border-color: var(--gold);
+}
+@media (hover: none), (pointer: coarse) {
+  .cursor-dot, .cursor-ring { display: none; }
+}
+
+/* ── MOUSE SPOTLIGHT ─────────────────────────────────── */
+.mouse-spotlight {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(
+    600px circle at var(--mx, -400px) var(--my, -400px),
+    rgba(55,138,221,0.045) 0%, transparent 60%
+  );
+}
+
+/* ── FILM GRAIN / NOISE ──────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 9997;
+  pointer-events: none; opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+/* ── HERO PARTICLE CANVAS ────────────────────────────── */
+#particles-canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  z-index: 1; pointer-events: none;
+}
+
+/* ── HERO AMBIENT GLOW ───────────────────────────────── */
+.hero-bg-glow {
+  position: absolute; pointer-events: none; z-index: 1;
+  top: 5%; left: -8%;
+  width: 70vw; height: 70vh;
+  background: radial-gradient(ellipse at center, rgba(55,138,221,0.07) 0%, transparent 65%);
+  animation: heroBreathe 9s ease-in-out infinite;
+}
+@keyframes heroBreathe {
+  0%, 100% { transform: scale(1) translateY(0);   opacity: 1; }
+  50%       { transform: scale(1.12) translateY(-24px); opacity: 0.7; }
+}
+
+/* ── HERO SCANLINES ──────────────────────────────────── */
+.hero-scanlines {
+  position: absolute; inset: 0; z-index: 4; pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent        0px, transparent      3px,
+    rgba(0,0,0,0.012)  3px, rgba(0,0,0,0.012) 4px
+  );
+}
+
+/* ── HERO Z-INDEX CORRECTIONS ────────────────────────── */
+.hero-overlay        { z-index: 2; }
+.hero-overlay-bottom { z-index: 3; }
+
+/* ── TICKER EDGE FADE ────────────────────────────────── */
+.ticker-wrap { position: relative; }
+.ticker-wrap::before,
+.ticker-wrap::after {
+  content: ''; position: absolute;
+  top: 0; bottom: 0; width: 100px; z-index: 2; pointer-events: none;
+}
+.ticker-wrap::before { left:  0; background: linear-gradient( 90deg, var(--black), transparent); }
+.ticker-wrap::after  { right: 0; background: linear-gradient(-90deg, var(--black), transparent); }
+
+/* ── 3D TILT BASE ────────────────────────────────────── */
+.tilt { transform-style: preserve-3d; will-change: transform; }
+
+/* ── ANIMATED GRADIENT BORDER (JS-driven) ────────────── */
+.glow-border-active {
+  border: 1px solid transparent !important;
+  background:
+    linear-gradient(var(--black3), var(--black3)) padding-box,
+    conic-gradient(
+      from var(--border-angle, 0deg),
+      transparent 55%,
+      rgba(55,138,221,0.85)  70%,
+      rgba(181,212,244,1.0)  77%,
+      rgba(239,159,39,0.55)  84%,
+      transparent 92%
+    ) border-box !important;
+  animation: borderSpin 3.5s linear infinite !important;
+  box-shadow:
+    0 20px 48px rgba(0,0,0,0.45),
+    0 0 28px rgba(55,138,221,0.07) !important;
+}
+@keyframes borderSpin { to { --border-angle: 360deg; } }
+
+/* ── NEON TEXT GLOW ──────────────────────────────────── */
+.neon-blue {
+  text-shadow:
+    0 0 18px rgba(55,138,221,0.9),
+    0 0 40px rgba(55,138,221,0.45),
+    0 0 80px rgba(55,138,221,0.18);
+}
+.neon-gold {
+  text-shadow:
+    0 0 18px rgba(239,159,39,0.9),
+    0 0 40px rgba(239,159,39,0.45);
+}
+
+/* ── BUTTON SHINE SWEEP ──────────────────────────────── */
+.btn { position: relative; overflow: hidden; }
+.btn::after {
+  content: '';
+  position: absolute; top: 0; left: -150%;
+  width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.13), transparent);
+  transform: skewX(-15deg); pointer-events: none;
+  animation: btnShine 5.5s ease-in-out infinite;
+}
+@keyframes btnShine {
+  0%       { left: -150%; }
+  30%, 100% { left: 160%;  }
+}
+
+/* ── REVEAL SCALE VARIANT ────────────────────────────── */
+.reveal-scale {
+  opacity: 0; transform: scale(0.93);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+/* ── HERO DOT — FILL PROGRESS ────────────────────────── */
+.h-dot { position: relative; overflow: hidden; }
+.h-dot.active::after {
+  content: ''; position: absolute; inset: 0;
+  background: var(--blue); transform-origin: left center;
+  animation: dotFill 5s linear forwards;
+}
+@keyframes dotFill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ── DIVIDER ENHANCED ────────────────────────────────── */
+.divider {
+  background: linear-gradient(
+    90deg, transparent 0%, var(--border-w) 15%,
+    var(--border-w) 85%, transparent 100%
+  );
+}
+
+/* ── COUNTER NUMBER FORMATTING ───────────────────────── */
+.h-stat-n { font-variant-numeric: tabular-nums; }
+
+/* ── HERO TITLE GLITCH GHOST ─────────────────────────── */
+.hero-title .shimmer { position: relative; display: inline-block; }
+.hero-title .shimmer::before {
+  content: attr(data-text);
+  position: absolute; top: 0; left: 0;
+  background: linear-gradient(90deg, var(--blue-light), var(--blue));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  pointer-events: none; opacity: 0;
+  animation: glitchGhost 9s infinite 2s;
+}
+@keyframes glitchGhost {
+  0%, 88%, 100%  { opacity: 0; transform: none; clip-path: none; }
+  89%  { opacity: 0.55; transform: translate(-4px, 0); clip-path: polygon(0 20%, 100% 20%, 100% 45%, 0 45%); }
+  90%  { opacity: 0.55; transform: translate( 4px, 0); clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%); }
+  91%  { opacity: 0;    transform: none; clip-path: none; }
+}
+
+/* ── REDUCED MOTION SAFETY ───────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:   0.001ms !important;
+    transition-duration:  0.001ms !important;
+  }
+}

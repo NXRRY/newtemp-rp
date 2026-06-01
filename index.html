@@ -30,7 +30,7 @@
       background: linear-gradient(0deg, var(--black) 0%, transparent 100%);
     }
     .hero-content {
-      position: relative; z-index: 2;
+      position: relative; z-index: 5;
       padding: 0 6%; width: 100%;
     }
     .hero-eyebrow {
@@ -61,7 +61,7 @@
     .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
     .hero-stats {
       position: absolute; bottom: 0; left: 0; right: 0;
-      z-index: 2; padding: 28px 6%;
+      z-index: 5; padding: 28px 6%;
       display: flex; gap: 0;
       border-top: 0.5px solid rgba(255,255,255,0.04);
       background: linear-gradient(0deg, rgba(8,8,8,0.9) 0%, transparent 100%);
@@ -70,7 +70,7 @@
     .h-stat:last-child { border: none; margin: 0; }
     .h-stat-n { font-family: 'Barlow Condensed', sans-serif; font-size: 30px; font-weight: 900; color: var(--blue); }
     .h-stat-l { font-family: 'Rajdhani', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 3px; color: var(--gray); }
-    .hero-dots { position: absolute; bottom: 100px; right: 6%; z-index: 3; display: flex; gap: 8px; }
+    .hero-dots { position: absolute; bottom: 100px; right: 6%; z-index: 6; display: flex; gap: 8px; }
     .h-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.2); cursor: pointer; transition: all 0.3s; }
     .h-dot.active { background: var(--blue); width: 20px; border-radius: 3px; }
 
@@ -140,13 +140,16 @@
   <div class="hero-slide active" style="background-image:url('assets/wallpaper/01.jpg');"></div>
   <div class="hero-slide" style="background-image:url('assets/wallpaper/02.jpg');"></div>
   <div class="hero-slide" style="background-image:url('assets/wallpaper/03.jpg');"></div>
+  <canvas id="particles-canvas"></canvas>
+  <div class="hero-bg-glow"></div>
   <div class="hero-overlay"></div>
   <div class="hero-overlay-bottom"></div>
+  <div class="hero-scanlines"></div>
   <div class="hero-content">
     <div class="hero-eyebrow"><div class="dot"></div>FIVEM THAILAND &nbsp;·&nbsp; LIFE ROLEPLAY</div>
     <h1 class="hero-title">
-      <div><span class="shimmer">NEW</span>TEMP</div>
-      <div><span class="gold">ROLE</span>PLAY</div>
+      <div><span class="shimmer" data-text="NEW">NEW</span>TEMP</div>
+      <div><span class="gold neon-gold">ROLE</span>PLAY</div>
     </h1>
     <p class="hero-desc">เซิร์ฟเวอร์ FiveM ที่เปิดโอกาสให้คุณเป็นใครก็ได้ในเมือง Los Santos ระบบยุติธรรม ไม่มี Pay-to-Win</p>
     <div class="hero-cta">
@@ -155,9 +158,9 @@
     </div>
   </div>
   <div class="hero-stats">
-    <div class="h-stat"><div class="h-stat-n">128</div><div class="h-stat-l">MAX SLOTS</div></div>
+    <div class="h-stat"><div class="h-stat-n" data-count="128">128</div><div class="h-stat-l">MAX SLOTS</div></div>
     <div class="h-stat"><div class="h-stat-n">QBX</div><div class="h-stat-l">FRAMEWORK</div></div>
-    <div class="h-stat"><div class="h-stat-n">0</div><div class="h-stat-l">PAY TO WIN</div></div>
+    <div class="h-stat"><div class="h-stat-n" data-count="0">0</div><div class="h-stat-l">PAY TO WIN</div></div>
     <div class="h-stat"><div class="h-stat-n">FREE</div><div class="h-stat-l">TO PLAY</div></div>
   </div>
   <div class="hero-dots">
@@ -243,16 +246,87 @@
 
 <script src="shared.js"></script>
 <script>
+/* ── Hero Particle System ─────────────────────────── */
+(function () {
+  const canvas = document.getElementById('particles-canvas');
+  if (!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const ctx = canvas.getContext('2d');
+  let W, H, paused = false;
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+  document.addEventListener('visibilitychange', () => { paused = document.hidden; });
+
+  const COLORS = ['#378ADD', '#378ADD', '#378ADD', '#B5D4F4', '#EF9F27'];
+
+  function makeParticle() {
+    return {
+      x:     Math.random() * W,
+      y:     Math.random() * H,
+      r:     Math.random() * 1.3 + 0.3,
+      vx:    (Math.random() - 0.5) * 0.18,
+      vy:    -(Math.random() * 0.35 + 0.08),
+      alpha: Math.random() * 0.4 + 0.08,
+      fade:  Math.random() * 0.0022 + 0.0008,
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+    };
+  }
+
+  const particles = Array.from({ length: 130 }, makeParticle);
+
+  let last = 0;
+  function loop(ts) {
+    requestAnimationFrame(loop);
+    if (paused) return;
+    if (ts - last < 28) return; // ~35fps cap
+    last = ts;
+
+    ctx.clearRect(0, 0, W, H);
+    for (const p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.alpha -= p.fade;
+      if (p.alpha <= 0 || p.y < -4) {
+        Object.assign(p, makeParticle());
+        p.y = H + 2; p.alpha = Math.random() * 0.35 + 0.05;
+      }
+      ctx.save();
+      ctx.globalAlpha = p.alpha;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
+<script>
   let cur = 0;
   const slides = document.querySelectorAll('.hero-slide');
-  const dots = document.querySelectorAll('.h-dot');
+  const dots   = document.querySelectorAll('.h-dot');
+
   function goSlide(n) {
     slides[cur].classList.remove('active');
     dots[cur].classList.remove('active');
     cur = n;
     slides[cur].classList.add('active');
-    dots[cur].classList.add('active');
+    // Restart progress fill animation
+    const d = dots[cur];
+    d.classList.remove('active');
+    void d.offsetWidth; // force reflow
+    d.classList.add('active');
   }
+
+  // Kick off first dot fill
+  void dots[0].offsetWidth;
+
   setInterval(() => goSlide((cur + 1) % slides.length), 5000);
 </script>
 </body>
