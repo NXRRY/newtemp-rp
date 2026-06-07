@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NewTemp RP — Lore of the City</title>
+  <meta name="description" content="Lore of Los Santos — เมืองที่ซ่อนความจริงไว้ในทุกซอกมุม NewTemp Roleplay FiveM Thailand" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23378ADD'/><text x='16' y='23' font-size='18' font-family='Arial Black' font-weight='900' fill='white' text-anchor='middle'>N</text></svg>" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=Inter:wght@300;400;500&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+
+    /* ── PAGE HERO ── */
+    .lore-hero {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .lore-hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background-image: url('assets/wallpaper/04.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.25) saturate(1.4);
+      transform: scale(1.05);
+      transition: transform 12s ease;
+    }
+    .lore-hero:hover .lore-hero-bg { transform: scale(1.0); }
+    .lore-hero-grid {
+      position: absolute; inset: 0; z-index: 1;
+      background-image:
+        linear-gradient(rgba(55,138,221,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(55,138,221,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .lore-hero-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      background: radial-gradient(ellipse 80% 70% at 50% 50%, transparent 30%, var(--black) 100%);
+    }
+    .lore-hero-content {
+      position: relative; z-index: 3;
+      max-width: 860px; padding: 0 24px;
+    }
+    .lore-hero-tag {
+      display: inline-block;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); border: 0.5px solid rgba(239,159,39,0.3);
+      background: rgba(239,159,39,0.06);
+      padding: 5px 16px; border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .lore-hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(72px, 13vw, 150px);
+      font-weight: 900; line-height: 0.85;
+      text-transform: uppercase;
+      letter-spacing: -2px;
+    }
+    .lore-hero h1 .city { color: var(--white); }
+    .lore-hero h1 .name {
+      background: linear-gradient(90deg, var(--blue), var(--blue-light), var(--blue));
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 4s linear infinite;
+    }
+    .lore-hero-sub {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 14px; font-weight: 500;
+      letter-spacing: 5px; text-transform: uppercase;
+      color: var(--gray); margin-top: 16px;
+    }
+    .lore-hero-quote {
+      margin-top: 40px;
+      font-size: 15px; font-style: italic;
+      color: rgba(240,240,240,0.5);
+      border-left: 2px solid var(--gold);
+      padding-left: 16px; text-align: left;
+      max-width: 480px; margin-left: auto; margin-right: auto;
+    }
+    .scroll-arrow {
+      position: absolute; bottom: 36px; left: 50%;
+      transform: translateX(-50%); z-index: 3;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 8px;
+      color: var(--gray);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      animation: bob 2s infinite;
+    }
+    .scroll-arrow::after {
+      content: '';
+      width: 1px; height: 40px;
+      background: linear-gradient(var(--blue), transparent);
+    }
+    @keyframes bob {
+      0%,100% { opacity:0.4; transform: translateX(-50%) translateY(0); }
+      50% { opacity:1; transform: translateX(-50%) translateY(-6px); }
+    }
+    @keyframes shimmer {
+      0% { background-position: 200% center; }
+      100% { background-position: 0% center; }
+    }
+
+    /* ── INTRO ── */
+    .lore-intro {
+      max-width: 680px; margin: 0 auto;
+      text-align: center;
+    }
+    .lore-intro .big-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700; line-height: 1.3;
+      color: var(--white); margin-bottom: 20px;
+    }
+    .lore-intro p {
+      font-size: 15px; color: var(--gray);
+      line-height: 1.9;
+    }
+
+    /* ── DAY / NIGHT ── */
+    .dn-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px; margin-top: 48px;
+    }
+    .dn-card {
+      background: var(--black3);
+      border: 0.5px solid var(--border-w);
+      border-radius: 8px; padding: 32px;
+      border-top: 2px solid transparent;
+      transition: all 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .dn-card::before {
+      content: ''; position: absolute;
+      inset: 0; opacity: 0.03; pointer-events: none;
+    }
+    .dn-card.day { border-top-color: var(--gold); }
+    .dn-card.day::before { background: var(--gold); }
+    .dn-card.night { border-top-color: var(--blue); }
+    .dn-card.night::before { background: var(--blue); }
+    .dn-card:hover { transform: translateY(-4px); border-color: rgba(55,138,221,0.2); }
+    .dn-icon { font-size: 36px; margin-bottom: 16px; }
+    .dn-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 24px; font-weight: 900;
+      text-transform: uppercase; letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .dn-card.day .dn-title { color: var(--gold); }
+    .dn-card.night .dn-title { color: var(--blue-light); }
+    .dn-card p { font-size: 14px; color: var(--gray); line-height: 1.8; }
+
+    /* ── POWER LAYERS ── */
+    .layers { display: flex; flex-direction: column; gap: 12px; margin-top: 48px; }
+    .layer-card {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 24px; align-items: start;
+      background: var(--black3);
+      border: 0.5px solid var(--border-w);
+      border-left: 3px solid transparent;
+      border-radius: 8px; padding: 24px 28px;
+      transition: all 0.3s;
+    }
+    .layer-card:hover { transform: translateX(4px); }
+    .layer-card.elite  { border-left-color: var(--gold); }
+    .layer-card.state  { border-left-color: var(--blue); }
+    .layer-card.under  { border-left-color: #e74c3c; }
+    .layer-card.people { border-left-color: #2ecc71; }
+    .layer-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 52px; font-weight: 900;
+      line-height: 1; color: var(--white); opacity: 0.08;
+      text-align: center;
+    }
+    .layer-tag {
+      display: inline-block;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 2px 8px; border-radius: 2px;
+      margin-bottom: 8px;
+    }
+    .layer-card.elite  .layer-tag { background: rgba(239,159,39,0.12); color: var(--gold); }
+    .layer-card.state  .layer-tag { background: rgba(55,138,221,0.12); color: var(--blue-light); }
+    .layer-card.under  .layer-tag { background: rgba(231,76,60,0.12);  color: #e74c3c; }
+    .layer-card.people .layer-tag { background: rgba(46,204,113,0.12); color: #2ecc71; }
+    .layer-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+      color: var(--white); margin-bottom: 8px;
+    }
+    .layer-body p { font-size: 13px; color: var(--gray); line-height: 1.8; }
+
+    /* ── SITUATION ── */
+    .situation-main {
+      background: var(--black3);
+      border: 0.5px solid var(--border-w);
+      border-top: 2px solid var(--gold);
+      border-radius: 8px; padding: 36px;
+      margin-top: 48px;
+      position: relative; overflow: hidden;
+    }
+    .situation-main::before {
+      content: '2025';
+      position: absolute; right: 24px; top: 16px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 80px; font-weight: 900;
+      color: rgba(239,159,39,0.05); line-height: 1;
+      pointer-events: none;
+    }
+    .situation-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 26px; font-weight: 700;
+      text-transform: uppercase; color: var(--white);
+      margin-bottom: 12px;
+    }
+    .situation-main p { font-size: 14px; color: var(--gray); line-height: 1.9; }
+
+    .situation-mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px; margin-top: 16px;
+    }
+    .sit-mini {
+      background: var(--black2);
+      border: 0.5px solid var(--border-w);
+      border-radius: 6px; padding: 20px;
+      border-top: 1px solid transparent;
+      transition: all 0.3s;
+    }
+    .sit-mini:hover { border-color: rgba(55,138,221,0.2); transform: translateY(-2px); }
+    .sit-mini.blue { border-top-color: var(--blue); }
+    .sit-mini.red  { border-top-color: #e74c3c; }
+    .sit-icon { font-size: 24px; margin-bottom: 10px; }
+    .sit-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 17px; font-weight: 700;
+      text-transform: uppercase; color: var(--white);
+      margin-bottom: 8px;
+    }
+    .sit-mini p { font-size: 13px; color: var(--gray); line-height: 1.7; }
+
+    /* ── CLOSING ── */
+    .lore-closing {
+      text-align: center; padding: 80px 0;
+    }
+    .lore-closing-quote {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(26px, 4vw, 44px);
+      font-weight: 900; text-transform: uppercase;
+      letter-spacing: 1px; line-height: 1.2;
+      color: var(--white); margin-bottom: 20px;
+    }
+    .lore-closing-quote .t-blue { color: var(--blue); }
+    .lore-closing-sub {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gray);
+      margin-bottom: 40px;
+    }
+    .btn-join {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 16px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      text-decoration: none; color: var(--black);
+      background: var(--blue);
+      padding: 14px 36px; border-radius: 4px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-join:hover { background: var(--blue-light); transform: translateY(-2px); }
+
+    @media (max-width: 768px) {
+      .dn-grid { grid-template-columns: 1fr; }
+      .situation-mini-grid { grid-template-columns: 1fr; }
+      .layer-card { grid-template-columns: 1fr; }
+      .layer-num { display: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="gold-line"></div>
+
+<nav id="nav">
+  <div class="nav-logo"><a href="index.html">NEW<span>TEMP</span> RP</a></div>
+  <ul class="nav-links">
+    <li><a href="index.html">HOME</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+    <li><a href="features.html">FEATURES</a></li>
+    <li><a href="lore.html">LORE</a></li>
+    <li><a href="rules.html">RULES</a></li>
+    <li><a href="join.html">JOIN</a></li>
+    <li><a href="donate.html">DONATE</a></li>
+  </ul>
+  <a href="https://discord.gg/SePnEtPCar" target="_blank" class="nav-discord">Discord →</a>
+  <button id="hamburger" class="hamburger" aria-label="เมนู">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div id="mobile-menu" class="mobile-menu">
+  <a href="index.html">HOME</a>
+  <a href="about.html">ABOUT</a>
+  <a href="features.html">FEATURES</a>
+  <a href="lore.html">LORE</a>
+  <a href="rules.html">RULES</a>
+  <a href="join.html">JOIN</a>
+  <a href="donate.html">DONATE</a>
+  <a href="https://discord.gg/SePnEtPCar" target="_blank" class="mobile-discord">Discord →</a>
+</div>
+
+<!-- HERO -->
+<div class="lore-hero">
+  <div class="lore-hero-bg"></div>
+  <div class="lore-hero-grid"></div>
+  <div class="lore-hero-overlay"></div>
+  <div class="lore-hero-content">
+    <div class="lore-hero-tag">City Lore · 2025</div>
+    <h1>
+      <div class="city">LOS</div>
+      <div class="name">SANTOS</div>
+    </h1>
+    <div class="lore-hero-sub">Lore of the City · NewTemp Roleplay</div>
+    <div class="lore-hero-quote">
+      "ทุกคนมาที่นี่ด้วยความฝัน บางคนได้มันกลับไป บางคนทิ้งทุกอย่างไว้ที่นี่"
+    </div>
+  </div>
+  <div class="scroll-arrow">scroll</div>
+</div>
+
+<!-- INTRO -->
+<div class="section">
+  <div class="lore-intro reveal">
+    <div class="label-tag" style="display:block;text-align:center;">OVERVIEW</div>
+    <div class="big-text">เมืองที่ใหญ่ที่สุดใน San Andreas</div>
+    <p>
+      Los Santos ปี 2025 — มองจากภายนอกคือเมืองแห่งโอกาส ตึกสูง ไฟสว่าง ถนนเต็มไปด้วยผู้คน
+      แต่คนที่อยู่ที่นี่นานพอจะรู้ว่าเมืองนี้ไม่เคยหลับ — และความมืดของมันไม่ได้อยู่ในตรอกซอย
+      มันปะปนอยู่กับแสงสว่างในทุกที่
+    </p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- DAY / NIGHT -->
+<div class="section">
+  <div class="label-tag reveal">DAY &amp; NIGHT</div>
+  <h2 class="section-title reveal">สอง<span class="accent">หน้า</span>ของเมือง</h2>
+  <p class="section-desc reveal">ไม่มีเมืองไหนในโลกที่แสดงตัวตนจริงๆ ในเวลากลางวัน Los Santos ก็เช่นกัน</p>
+
+  <div class="dn-grid">
+    <div class="dn-card day reveal">
+      <div class="dn-icon">☀️</div>
+      <div class="dn-title">กลางวัน</div>
+      <p>ชีวิตถูกขับเคลื่อนด้วยความปกติ พ่อค้าเปิดร้าน คนงานออกไปทำงาน ตำรวจออกลาดตระเวน นักธุรกิจนัดประชุม ทุกคนสวมหน้ากากของตัวเองไว้อย่างดี เมืองดูเหมือนทุกอย่างอยู่ในที่ของมัน</p>
+    </div>
+    <div class="dn-card night reveal">
+      <div class="dn-icon">🌙</div>
+      <div class="dn-title">กลางคืน</div>
+      <p>เมื่อตะวันลับขอบฟ้า สิ่งที่ซ่อนอยู่ตลอดกลางวันเริ่มขยับ การนัดพบในที่มืด การแลกเปลี่ยนที่ไม่มีใครบันทึก ทุกค่ำคืนจะเป็นคืนที่ยาวนาน — และทุกการกระทำจะส่งผลเป็นวงกว้างเสมอ</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- POWER LAYERS -->
+<div class="section">
+  <div class="label-tag reveal">POWER STRUCTURE</div>
+  <h2 class="section-title reveal">โครงสร้าง<span class="accent">อำนาจ</span></h2>
+  <p class="section-desc reveal">เมือง Los Santos ไม่ได้ถูกควบคุมด้วยกฎหมายเพียงอย่างเดียว มีสี่ชั้นที่ดำเนินอยู่พร้อมกัน พันกันอยู่ตลอดเวลา — ไม่มีชั้นไหนบริสุทธิ์อย่างแท้จริง</p>
+
+  <div class="layers">
+
+    <div class="layer-card elite reveal">
+      <div class="layer-num">01</div>
+      <div class="layer-body">
+        <div class="layer-tag">ชั้นบน</div>
+        <div class="layer-title">Elite — นักธุรกิจ &amp; การเมือง</div>
+        <p>ปรากฏในงานเลี้ยง ในหน้าหนังสือพิมพ์ ในดีลที่ถูกกฎหมายทุกอย่าง แต่ผลประโยชน์ที่แท้จริงพัวพันอยู่กับทุกชั้นในเมือง ไม่มีใครขึ้นมาชั้นนี้ได้โดยไม่ต้องจ่ายราคาบางอย่าง</p>
+      </div>
+    </div>
+
+    <div class="layer-card state reveal">
+      <div class="layer-num">02</div>
+      <div class="layer-body">
+        <div class="layer-tag">ชั้นกลาง</div>
+        <div class="layer-title">รัฐ — ตำรวจ ศาล City Hall</div>
+        <p>บางคนซื่อสัตย์จริงๆ เชื่อในกฎหมาย บางคนรับเงินจาก Elite บางคนปิดตาให้ใต้ดิน ความยากคือไม่มีใครรู้ว่าใครเป็นใครจริงๆ จนกว่าสถานการณ์จะบังคับให้เห็น</p>
+      </div>
+    </div>
+
+    <div class="layer-card under reveal">
+      <div class="layer-num">03</div>
+      <div class="layer-body">
+        <div class="layer-tag">ชั้นล่าง</div>
+        <div class="layer-title">ใต้ดิน — แก้ง &amp; องค์กรอาชญากรรม</div>
+        <p>หลายคนมีหน้าตาในกลางวัน มีธุรกิจถูกกฎหมาย มีบ้านในย่านดี แต่เมื่อถึงเวลา ความจงรักภักดีของพวกเขาอยู่ที่กลุ่ม ไม่ใช่ที่กฎหมาย</p>
+      </div>
+    </div>
+
+    <div class="layer-card people reveal">
+      <div class="layer-num">04</div>
+      <div class="layer-body">
+        <div class="layer-tag">ชั้นฐาน</div>
+        <div class="layer-title">คนทั่วไป — เลือดของเมือง</div>
+        <p>คนงาน พ่อค้า คนขับรถ ช่างฝีมือ คนจรจัด ทุกชั้นข้างบนต้องการบางอย่างจากพวกเขาเสมอ คนที่อยู่ชั้นนี้นานพอจะเริ่มเห็นว่าเมืองนี้ทำงานยังไงจริงๆ — และนั่นคือจุดที่ทุกเรื่องราวเริ่มต้น</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CURRENT SITUATION -->
+<div class="section">
+  <div class="label-tag reveal">CURRENT STATE · 2025</div>
+  <h2 class="section-title reveal">สถานการณ์<span class="accent">ปัจจุบัน</span></h2>
+  <p class="section-desc reveal">ตอนที่คุณเดินเข้ามาใน Los Santos ครั้งแรก เมืองอยู่ในสถานการณ์นี้</p>
+
+  <div class="situation-main reveal">
+    <div class="label-tag" style="color:var(--gold);">🗳️ การเลือกตั้งที่ไม่มีอะไรสะอาด</div>
+    <div class="situation-title">Mayor Election · 2025</div>
+    <p>
+      Los Santos กำลังจะมีการเลือกตั้ง Mayor คนใหม่ มีป้ายหาเสียงทั่วเมือง มีดีเบตในโทรทัศน์ มีสัญญาสวยหรูจากผู้สมัครทุกคน ภายนอกดูเหมือนประชาธิปไตยที่ปกติทุกอย่าง
+      <br><br>
+      แต่ทุกคนที่อยู่ในเมืองนานพอรู้ดี — Mayor คนนี้จะไม่ได้ถูกเลือกจากคะแนนเสียง แต่จากว่ากลุ่มอำนาจไหนจะชนะเกมเบื้องหลัง ทุกกลุ่มต้องการ Mayor ของตัวเอง ทุกกลุ่มกำลังขยับ
+    </p>
+
+    <div class="situation-mini-grid" style="margin-top:24px;">
+      <div class="sit-mini blue reveal">
+        <div class="sit-icon">⏳</div>
+        <div class="sit-title">ข้อตกลงที่กำลังพัง</div>
+        <p>มีข้อตกลงสงบศึกระหว่างกลุ่มอำนาจ ทำไว้นานจนทุกคนเริ่มชินกับความสงบ แต่กำลังหมดอายุพอดีกับวันเลือกตั้ง ทุกฝ่ายยังถือ รอดูว่าใครจะได้ Mayor ก่อน</p>
+      </div>
+      <div class="sit-mini red reveal">
+        <div class="sit-icon">🌩️</div>
+        <div class="sit-title">เมืองเงียบผิดปกติ</div>
+        <p>คนทั่วไปรู้สึกได้แต่บอกไม่ถูก บางธุรกิจเริ่มปิดก่อนเวลา บางคนที่เคยเห็นหน้ากันทุกวันหายไปเฉยๆ ระเบิดเวลากำลังนับถอยหลัง — ทุกคนรู้แต่ไม่มีใครรู้ว่าจะเกิดอะไรก่อน</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CLOSING -->
+<div class="section">
+  <div class="lore-closing reveal">
+    <div class="label-tag" style="display:block;text-align:center;">YOUR STORY</div>
+    <div class="lore-closing-quote">
+      "Los Santos ไม่ได้สร้างคน<br>มันแค่เผยให้เห็นว่า<br><span class="t-blue">คุณเป็นใครจริงๆ</span>"
+    </div>
+    <div class="lore-closing-sub">คุณคือใครในเมืองนี้ — เป็นเรื่องของคุณที่จะตัดสินใจ</div>
+    <a href="join.html" class="btn-join">เข้าร่วมเมือง →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">NEW<span>TEMP</span> RP</div>
+  <nav class="footer-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="features.html">Features</a>
+    <a href="lore.html">Lore</a>
+    <a href="rules.html">Rules</a>
+    <a href="join.html">Join</a>
+    <a href="donate.html">Donate</a>
+  </nav>
+  <div class="footer-copy">© 2025 NEWTEMP ROLEPLAY</div>
+</footer>
+<div class="gold-line"></div>
+<script src="shared.js"></script>
+</body>
+</html>
