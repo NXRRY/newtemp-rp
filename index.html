@@ -7,42 +7,41 @@
   <meta name="description" content="NewTemp Roleplay เซิร์ฟเวอร์ FiveM Thailand ระบบ Life RP ยุติธรรม ไม่มี Pay-to-Win เปิดโอกาสให้คุณใช้ชีวิตใน Los Santos อย่างแท้จริง" />
   <meta property="og:title" content="NewTemp Roleplay — FiveM Thailand" />
   <meta property="og:description" content="เซิร์ฟเวอร์ FiveM ที่เปิดโอกาสให้คุณเป็นใครก็ได้ใน Los Santos ระบบยุติธรรม ไม่มี Pay-to-Win" />
-  <meta property="og:image" content="assets/wallpaper/01.jpg" />
+  <meta property="og:image" content="assets/wallpaper/bg1.jpeg" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="NewTemp Roleplay — FiveM Thailand" />
   <meta name="twitter:description" content="เซิร์ฟเวอร์ FiveM ที่เปิดโอกาสให้คุณเป็นใครก็ได้ใน Los Santos ระบบยุติธรรม ไม่มี Pay-to-Win" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23378ADD'/><text x='16' y='23' font-size='18' font-family='Arial Black' font-weight='900' fill='white' text-anchor='middle'>N</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preload" href="assets/wallpaper/bg1.jpeg" as="image" />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=Inter:wght@300;400;500&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* ── HERO ── */
+    /* ── HERO (snap-section 1) ── */
     .hero {
-      height: 100vh;
       position: relative;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      background: var(--black);
+      display: flex; align-items: center;
+      overflow: hidden; background: var(--black);
     }
     #hero-canvas {
-      position: absolute;
-      inset: 0;
-      width: 100% !important;
-      height: 100% !important;
-      z-index: 0;
+      position: absolute; inset: 0;
+      width: 100% !important; height: 100% !important; z-index: 0;
     }
     .hero-overlay {
       position: absolute; inset: 0; z-index: 1;
       background: linear-gradient(110deg, rgba(8,8,8,0.90) 35%, rgba(8,8,8,0.15) 100%);
     }
     .hero-overlay-bottom {
-      position: absolute; bottom: 0; left: 0; right: 0; height: 40%; z-index: 1;
+      position: absolute; bottom: 0; left: 0; right: 0; height: 45%; z-index: 1;
       background: linear-gradient(0deg, var(--black) 0%, transparent 100%);
     }
     .hero-content {
       position: relative; z-index: 2;
       padding: 0 6%; width: 100%;
+      margin-top: -60px;
     }
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 10px;
@@ -57,8 +56,7 @@
     .hero-title {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: clamp(64px, 10vw, 130px);
-      font-weight: 900; line-height: 0.88;
-      margin-bottom: 24px;
+      font-weight: 900; line-height: 0.88; margin-bottom: 24px;
     }
     .hero-title .shimmer {
       background: linear-gradient(90deg, var(--blue), var(--blue-light), var(--blue));
@@ -69,19 +67,17 @@
     .hero-title .gold { color: var(--gold); }
     .hero-desc {
       max-width: 460px; font-size: 15px;
-      color: rgba(240,240,240,0.45); line-height: 1.9;
-      margin-bottom: 36px;
+      color: rgba(240,240,240,0.45); line-height: 1.9; margin-bottom: 36px;
     }
     .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
     .hero-stats {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      z-index: 2; padding: 28px 6%;
-      display: flex; gap: 0;
+      position: absolute; bottom: 52px; left: 0; right: 0; z-index: 2;
+      padding: 0 6%; display: flex;
       border-top: 0.5px solid rgba(255,255,255,0.04);
-      background: linear-gradient(0deg, rgba(8,8,8,0.9) 0%, transparent 100%);
+      background: linear-gradient(0deg, rgba(8,8,8,0.8) 0%, transparent 100%);
     }
     .h-stat {
-      flex: 1; padding-right: 32px;
+      flex: 1; padding: 20px 32px 20px 0;
       border-right: 0.5px solid rgba(255,255,255,0.05);
       margin-right: 32px;
     }
@@ -92,92 +88,58 @@
     }
     .h-stat-l {
       font-family: 'Rajdhani', sans-serif;
-      font-size: 10px; font-weight: 700;
-      letter-spacing: 3px; color: var(--gray);
+      font-size: 10px; font-weight: 700; letter-spacing: 3px; color: var(--gray);
     }
-
-    /* ── SCROLL HINT ── */
-    .scroll-hint {
-      position: absolute; bottom: 100px; right: 6%; z-index: 3;
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-    }
-    .scroll-hint span {
-      font-family: 'Rajdhani', sans-serif; font-size: 9px;
-      font-weight: 700; letter-spacing: 3px;
-      color: rgba(255,255,255,0.18);
-    }
-    .scroll-line {
-      width: 1px; height: 48px;
-      background: linear-gradient(180deg, rgba(55,138,221,0.5) 0%, transparent 100%);
-      animation: scrollDrop 2s ease-in-out infinite;
-    }
-    @keyframes scrollDrop {
-      0%,100% { transform: scaleY(1); opacity: 0.5; }
-      50% { transform: scaleY(0.5); opacity: 1; }
-    }
-
-    /* ── FEATURES ── */
-    .feat-grid {
-      display: grid; grid-template-columns: repeat(3,1fr);
-      gap: 12px; margin-top: 48px;
-    }
-    .feat-card {
-      background: var(--black3); border: 0.5px solid var(--border-w);
-      border-radius: 8px; padding: 28px;
-      transition: all 0.3s; position: relative; overflow: hidden;
-    }
-    .feat-card::before {
-      content:''; position:absolute; top:0; left:0; right:0; height:1px;
-      background:linear-gradient(90deg,transparent,var(--blue),transparent);
-      opacity:0; transition:opacity 0.3s;
-    }
-    .feat-card:hover { border-color: rgba(55,138,221,0.2); transform: translateY(-3px); }
-    .feat-card:hover::before { opacity:1; }
-    .feat-icon { font-size: 26px; margin-bottom: 14px; }
-    .feat-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 6px;
-    }
-    .feat-desc { font-size: 13px; color: var(--gray); line-height: 1.7; }
-
-    /* ── GALLERY ── */
-    .gallery-strip {
-      display: grid; grid-template-columns: 2fr 1fr 1fr;
-      gap: 4px; margin-top: 48px; border-radius: 8px; overflow: hidden;
-    }
-    .g-item { position: relative; overflow: hidden; aspect-ratio: 16/9; }
-    .g-item:first-child { aspect-ratio: auto; }
-    .g-item img { width:100%; height:100%; object-fit:cover; filter:brightness(0.65); transition:all 0.5s; }
-    .g-item:hover img { transform:scale(1.05); filter:brightness(0.85); }
-    .g-item-ov { position:absolute; inset:0; background:linear-gradient(180deg,transparent 50%,rgba(8,8,8,0.7) 100%); }
-    .g-label {
-      position:absolute; bottom:12px; left:12px;
-      font-family:'Rajdhani',sans-serif; font-size:11px;
-      font-weight:700; letter-spacing:2px; color:rgba(240,240,240,0.6);
-    }
-
-    /* CTA band — now global in style.css */
-
-    /* ── LAUNCH BADGE ── */
     .launch-badge {
       display: inline-flex; align-items: center; gap: 10px;
-      background: rgba(239,159,39,0.08);
-      border: 0.5px solid rgba(239,159,39,0.25);
+      background: rgba(239,159,39,0.08); border: 0.5px solid rgba(239,159,39,0.25);
       border-radius: 4px; padding: 8px 18px;
       font-family: 'Rajdhani', sans-serif; font-size: 11px;
-      font-weight: 700; letter-spacing: 3px; color: var(--gold);
-      margin-bottom: 28px;
+      font-weight: 700; letter-spacing: 3px; color: var(--gold); margin-bottom: 28px;
     }
     .launch-badge .blink {
       width: 6px; height: 6px; border-radius: 50%;
       background: var(--gold); animation: pulse 1.5s infinite;
     }
 
+    /* ── FEATURES (snap-section 2) ── */
+    .feat-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 10px; margin-top: 32px;
+    }
+    .feat-card {
+      background: var(--black3); border: 0.5px solid var(--border-w);
+      border-radius: 8px; padding: 22px;
+      transition: all 0.3s; position: relative; overflow: hidden;
+    }
+    .feat-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .feat-card:hover { border-color: rgba(55,138,221,0.2); transform: translateY(-3px); }
+    .feat-card:hover::before { opacity: 1; }
+    .feat-icon { font-size: 22px; margin-bottom: 10px; }
+    .feat-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 5px;
+    }
+    .feat-desc { font-size: 12px; color: var(--gray); line-height: 1.65; }
+
     @media(max-width:768px){
+      .feat-grid { grid-template-columns: 1fr 1fr; }
+      .hero-stats { flex-wrap: wrap; bottom: 52px; }
+      .h-stat { padding: 14px 20px 14px 0; }
+    }
+    @media(max-width:480px){
       .feat-grid { grid-template-columns: 1fr; }
-      .gallery-strip { grid-template-columns: 1fr; }
-      .hero-stats { flex-wrap: wrap; gap: 16px; }
-      .scroll-hint { display: none; }
+      .hero-title { font-size: clamp(54px, 14vw, 80px); }
+    }
+    @media(max-height:700px){
+      .feat-grid { gap: 6px; margin-top: 20px; }
+      .feat-card { padding: 14px 16px; }
+      .feat-icon { display: none; }
+      .snap-inner { padding-top: 72px; }
     }
   </style>
 </head>
@@ -188,7 +150,7 @@
 <nav id="nav">
   <div class="nav-logo"><a href="index.html">NEW<span>TEMP</span> RP</a></div>
   <ul class="nav-links">
-    <li><a href="index.html">HOME</a></li>
+    <li><a href="index.html" class="active">HOME</a></li>
     <li><a href="about.html">ABOUT</a></li>
     <li><a href="features.html">FEATURES</a></li>
     <li><a href="lore.html">LORE</a></li>
@@ -213,312 +175,485 @@
   <a href="https://discord.gg/SePnEtPCar" target="_blank" class="mobile-discord">Discord →</a>
 </div>
 
-<!-- ══════════════════ HERO ══════════════════ -->
-<div class="hero">
-  <canvas id="hero-canvas"></canvas>
-  <div class="hero-overlay"></div>
-  <div class="hero-overlay-bottom"></div>
+<!-- ════════════════ SNAP CONTAINER ════════════════ -->
+<div class="snap-container" id="snapContainer">
 
-  <div class="hero-content">
-    <div class="launch-badge">
-      <div class="blink"></div>WHITELIST OPEN &nbsp;·&nbsp; FIVEM THAILAND
+  <!-- ══ SNAP 1 — HERO ══ -->
+  <div class="snap-section hero" id="snap-hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-overlay"></div>
+    <div class="hero-overlay-bottom"></div>
+
+    <div class="hero-content">
+      <div class="launch-badge"><div class="blink"></div>WHITELIST OPEN &nbsp;·&nbsp; FIVEM THAILAND</div>
+      <div class="hero-eyebrow"><div class="dot"></div>LIFE ROLEPLAY &nbsp;·&nbsp; ESX FRAMEWORK</div>
+      <h1 class="hero-title">
+        <div><span class="shimmer">NEW</span>TEMP</div>
+        <div><span class="gold">ROLE</span>PLAY</div>
+      </h1>
+      <p class="hero-desc">เซิร์ฟเวอร์ FiveM ที่เปิดโอกาสให้คุณเป็นใครก็ได้ในเมือง Los Santos<br>ระบบยุติธรรม ไม่มี Pay-to-Win เล่น RP ได้เต็มที่</p>
+      <div class="hero-cta">
+        <a href="join.html" class="btn btn-blue">เริ่มเล่นเลย</a>
+        <a href="features.html" class="btn btn-outline-blue">ดูระบบทั้งหมด</a>
+      </div>
     </div>
-    <div class="hero-eyebrow"><div class="dot"></div>LIFE ROLEPLAY &nbsp;·&nbsp; ESX FRAMEWORK</div>
-    <h1 class="hero-title">
-      <div><span class="shimmer">NEW</span>TEMP</div>
-      <div><span class="gold">ROLE</span>PLAY</div>
-    </h1>
-    <p class="hero-desc">เซิร์ฟเวอร์ FiveM ที่เปิดโอกาสให้คุณเป็นใครก็ได้ในเมือง Los Santos<br>ระบบยุติธรรม ไม่มี Pay-to-Win เล่น RP ได้เต็มที่</p>
-    <div class="hero-cta">
-      <a href="join.html" class="btn btn-blue">เริ่มเล่นเลย</a>
-      <a href="features.html" class="btn btn-outline-blue">ดูระบบทั้งหมด</a>
+
+    <div class="hero-stats">
+      <div class="h-stat">
+        <div class="h-stat-n" data-count="128">128</div>
+        <div class="h-stat-l">MAX SLOTS</div>
+      </div>
+      <div class="h-stat">
+        <div class="h-stat-n">ESX</div>
+        <div class="h-stat-l">FRAMEWORK</div>
+      </div>
+      <div class="h-stat">
+        <div class="h-stat-n" data-count="0">0</div>
+        <div class="h-stat-l">PAY TO WIN</div>
+      </div>
+      <div class="h-stat">
+        <div class="h-stat-n">FREE</div>
+        <div class="h-stat-l">TO PLAY</div>
+      </div>
+    </div>
+
+    <!-- Ticker inside hero at bottom -->
+    <div class="hero-ticker ticker-wrap">
+      <div class="ticker-track">
+        <div class="ticker-item"><div class="td"></div>CUSTOM SCRIPT</div>
+        <div class="ticker-item"><div class="td"></div>PARKING SYSTEM</div>
+        <div class="ticker-item"><div class="td"></div>BUSINESS SYSTEM</div>
+        <div class="ticker-item"><div class="td"></div>PROPERTY SYSTEM</div>
+        <div class="ticker-item"><div class="td"></div>LEGAL SYSTEM</div>
+        <div class="ticker-item"><div class="td"></div>FAIR ECONOMY</div>
+        <div class="ticker-item"><div class="td"></div>FREEDOM RP</div>
+        <div class="ticker-item"><div class="td"></div>NON PAY TO WIN</div>
+        <div class="ticker-item"><div class="td"></div>CUSTOM SCRIPT</div>
+        <div class="ticker-item"><div class="td"></div>PARKING SYSTEM</div>
+        <div class="ticker-item"><div class="td"></div>BUSINESS SYSTEM</div>
+        <div class="ticker-item"><div class="td"></div>PROPERTY SYSTEM</div>
+        <div class="ticker-item"><div class="td"></div>LEGAL SYSTEM</div>
+        <div class="ticker-item"><div class="td"></div>FAIR ECONOMY</div>
+        <div class="ticker-item"><div class="td"></div>FREEDOM RP</div>
+        <div class="ticker-item"><div class="td"></div>NON PAY TO WIN</div>
+      </div>
     </div>
   </div>
 
-  <div class="hero-stats">
-    <div class="h-stat"><div class="h-stat-n">128</div><div class="h-stat-l">MAX SLOTS</div></div>
-    <div class="h-stat"><div class="h-stat-n">ESX</div><div class="h-stat-l">FRAMEWORK</div></div>
-    <div class="h-stat"><div class="h-stat-n">0</div><div class="h-stat-l">PAY TO WIN</div></div>
-    <div class="h-stat"><div class="h-stat-n">FREE</div><div class="h-stat-l">TO PLAY</div></div>
-  </div>
-
-  <div class="scroll-hint">
-    <span>SCROLL</span>
-    <div class="scroll-line"></div>
-  </div>
-</div>
-
-<!-- ══════════════════ TICKER ══════════════════ -->
-<div class="ticker-wrap">
-  <div class="ticker-track">
-    <div class="ticker-item"><div class="td"></div>CUSTOM SCRIPT</div>
-    <div class="ticker-item"><div class="td"></div>PARKING SYSTEM</div>
-    <div class="ticker-item"><div class="td"></div>BUSINESS SYSTEM</div>
-    <div class="ticker-item"><div class="td"></div>PROPERTY SYSTEM</div>
-    <div class="ticker-item"><div class="td"></div>LEGAL SYSTEM</div>
-    <div class="ticker-item"><div class="td"></div>FAIR ECONOMY</div>
-    <div class="ticker-item"><div class="td"></div>FREEDOM RP</div>
-    <div class="ticker-item"><div class="td"></div>NON PAY TO WIN</div>
-    <div class="ticker-item"><div class="td"></div>CUSTOM SCRIPT</div>
-    <div class="ticker-item"><div class="td"></div>PARKING SYSTEM</div>
-    <div class="ticker-item"><div class="td"></div>BUSINESS SYSTEM</div>
-    <div class="ticker-item"><div class="td"></div>PROPERTY SYSTEM</div>
-    <div class="ticker-item"><div class="td"></div>LEGAL SYSTEM</div>
-    <div class="ticker-item"><div class="td"></div>FAIR ECONOMY</div>
-    <div class="ticker-item"><div class="td"></div>FREEDOM RP</div>
-    <div class="ticker-item"><div class="td"></div>NON PAY TO WIN</div>
-  </div>
-</div>
-
-<!-- ══════════════════ FEATURES ══════════════════ -->
-<div class="section">
-  <div class="label-tag reveal">HIGHLIGHT SYSTEMS</div>
-  <h2 class="section-title reveal">ระบบที่ไม่มีใคร<br>ทำในไทยมาก่อน</h2>
-  <div class="feat-grid">
-    <div class="feat-card reveal d1">
-      <div class="feat-icon">🏪</div>
-      <div class="feat-title">Business System</div>
-      <div class="feat-desc">เปิดร้านได้จริง Stock / Craft / Bill / เงินเดือน ครบวงจร</div>
-    </div>
-    <div class="feat-card reveal d2">
-      <div class="feat-icon">🚗</div>
-      <div class="feat-title">Parking System</div>
-      <div class="feat-desc">จอดรถได้ทุกที่ บันทึกสภาพรถจริง ไม่มี Garage แบบเดิม</div>
-    </div>
-    <div class="feat-card reveal d3">
-      <div class="feat-icon">🏠</div>
-      <div class="feat-title">Property System</div>
-      <div class="feat-desc">ซื้อ ขายต่อ ยึด ประมูลบ้านผ่าน RP จริง</div>
-    </div>
-    <div class="feat-card reveal d4">
-      <div class="feat-icon">⚖️</div>
-      <div class="feat-title">Legal System</div>
-      <div class="feat-desc">โครงสร้างรัฐบาล ศาล ภาษี กฎหมายในเกม</div>
-    </div>
-    <div class="feat-card reveal d5">
-      <div class="feat-icon">💰</div>
-      <div class="feat-title">Fair Economy</div>
-      <div class="feat-desc">ภาษี / เงินเดือน / หนี้สิน สมจริง ไม่มี Pay-to-Win</div>
-    </div>
-    <div class="feat-card reveal d6">
-      <div class="feat-icon">🎭</div>
-      <div class="feat-title">Freedom RP</div>
-      <div class="feat-desc">เล่นเป็นใครก็ได้ ทุก RP มีคุณค่าเท่ากัน</div>
+  <!-- ══ SNAP 2 — FEATURES ══ -->
+  <div class="snap-section" id="snap-features" style="background:var(--black);">
+    <div class="snap-inner">
+      <div class="label-tag reveal">HIGHLIGHT SYSTEMS</div>
+      <h2 class="section-title reveal">ระบบที่ไม่มีใคร<br>ทำในไทยมาก่อน</h2>
+      <div class="feat-grid">
+        <div class="feat-card reveal d1">
+          <div class="feat-icon">🏪</div>
+          <div class="feat-title">Business System</div>
+          <div class="feat-desc">เปิดร้านได้จริง Stock / Craft / Bill / เงินเดือน ครบวงจร</div>
+        </div>
+        <div class="feat-card reveal d2">
+          <div class="feat-icon">🚗</div>
+          <div class="feat-title">Parking System</div>
+          <div class="feat-desc">จอดรถได้ทุกที่ บันทึกสภาพรถจริง ไม่มี Garage แบบเดิม</div>
+        </div>
+        <div class="feat-card reveal d3">
+          <div class="feat-icon">🏠</div>
+          <div class="feat-title">Property System</div>
+          <div class="feat-desc">ซื้อ ขายต่อ ยึด ประมูลบ้านผ่าน RP จริง</div>
+        </div>
+        <div class="feat-card reveal d4">
+          <div class="feat-icon">⚖️</div>
+          <div class="feat-title">Legal System</div>
+          <div class="feat-desc">โครงสร้างรัฐบาล ศาล ภาษี กฎหมายในเกม</div>
+        </div>
+        <div class="feat-card reveal d5">
+          <div class="feat-icon">💰</div>
+          <div class="feat-title">Fair Economy</div>
+          <div class="feat-desc">ภาษี / เงินเดือน / หนี้สิน สมจริง ไม่มี Pay-to-Win</div>
+        </div>
+        <div class="feat-card reveal d6">
+          <div class="feat-icon">🎭</div>
+          <div class="feat-title">Freedom RP</div>
+          <div class="feat-desc">เล่นเป็นใครก็ได้ ทุก RP มีคุณค่าเท่ากัน</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:24px;">
+        <a href="features.html" class="btn btn-outline-blue reveal">ดูระบบทั้งหมด →</a>
+      </div>
     </div>
   </div>
-  <div style="text-align:center;margin-top:32px;">
-    <a href="features.html" class="btn btn-outline-blue reveal">ดูระบบทั้งหมด →</a>
+
+  <!-- ══ SNAP 3 — GALLERY (horizontal) ══ -->
+  <div class="snap-section" id="snap-gallery">
+    <div class="gallery-h-wrap">
+
+      <div class="gallery-h-track" id="galleryTrack">
+
+        <!-- Slide 1 -->
+        <div class="gallery-h-slide active">
+          <img src="assets/wallpaper/bg1.jpeg" alt="Street Life" fetchpriority="high" decoding="async" />
+          <div class="gallery-h-overlay"></div>
+          <div class="gallery-h-overlay-bottom"></div>
+          <div class="gallery-h-num">01</div>
+          <div class="gallery-h-content">
+            <div class="gallery-h-tag">STREET LIFE · VINEWOOD</div>
+            <div class="gallery-h-title">กลางคืน<br>ใน Los Santos</div>
+            <div class="gallery-h-desc">เมืองที่ไม่เคยหลับ — ทุกค่ำคืนคือเรื่องราวใหม่<br>ที่รอให้คุณสร้างมันขึ้นมา</div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="gallery-h-slide">
+          <img src="assets/wallpaper/bg2.jpg" alt="Police" loading="lazy" decoding="async" />
+          <div class="gallery-h-overlay"></div>
+          <div class="gallery-h-overlay-bottom"></div>
+          <div class="gallery-h-num">02</div>
+          <div class="gallery-h-content">
+            <div class="gallery-h-tag">POLICE · LAW ENFORCEMENT</div>
+            <div class="gallery-h-title">บังคับกฎหมาย<br>หรือทำลายมัน</div>
+            <div class="gallery-h-desc">เข้าร่วมกองกำลังตำรวจหรือเป็นเป้าหมายของมัน<br>ทุกการตัดสินใจมีผลจริง</div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="gallery-h-slide">
+          <img src="assets/wallpaper/bg3.jpg" alt="Street Culture" loading="lazy" decoding="async" />
+          <div class="gallery-h-overlay"></div>
+          <div class="gallery-h-overlay-bottom"></div>
+          <div class="gallery-h-num">03</div>
+          <div class="gallery-h-content">
+            <div class="gallery-h-tag">STREET CULTURE · FREEDOM RP</div>
+            <div class="gallery-h-title">เป็นใคร<br>ก็ได้ในเมืองนี้</div>
+            <div class="gallery-h-desc">คนจรจัด ชายชรา คนขี้เมา — ทุก RP<br>มีคุณค่าเท่ากันใน Server นี้</div>
+          </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="gallery-h-slide">
+          <img src="assets/wallpaper/bg4.jpg" alt="Car Meet" loading="lazy" decoding="async" />
+          <div class="gallery-h-overlay"></div>
+          <div class="gallery-h-overlay-bottom"></div>
+          <div class="gallery-h-num">04</div>
+          <div class="gallery-h-content">
+            <div class="gallery-h-tag">CAR MEET · PARKING SYSTEM</div>
+            <div class="gallery-h-title">จอดรถ<br>ได้ทุกที่จริงๆ</div>
+            <div class="gallery-h-desc">Parking System บันทึกพิกัด สภาพ น้ำมัน<br>ทุกอย่างสมจริง ไม่มี Garage แบบเดิม</div>
+          </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="gallery-h-slide">
+          <img src="assets/wallpaper/bg5.jpg" alt="City Life" loading="lazy" decoding="async" />
+          <div class="gallery-h-overlay"></div>
+          <div class="gallery-h-overlay-bottom"></div>
+          <div class="gallery-h-num">05</div>
+          <div class="gallery-h-content">
+            <div class="gallery-h-tag">CITY LIFE · BUSINESS EMPIRE</div>
+            <div class="gallery-h-title">สร้าง<br>อาณาจักร</div>
+            <div class="gallery-h-desc">ธุรกิจ ทรัพย์สิน บุคลากร — ทุกระบบเชื่อมกัน<br>สร้างอำนาจในเมืองด้วยมือของคุณเอง</div>
+          </div>
+        </div>
+
+      </div><!-- /track -->
+
+      <!-- Progress bars & counter -->
+      <div class="gallery-h-bottom">
+        <div class="gallery-h-counter">
+          <span class="g-cur">01</span> / 05
+        </div>
+        <div class="gallery-h-bars" id="galleryBars">
+          <div class="gallery-h-bar active"></div>
+          <div class="gallery-h-bar"></div>
+          <div class="gallery-h-bar"></div>
+          <div class="gallery-h-bar"></div>
+          <div class="gallery-h-bar"></div>
+        </div>
+      </div>
+
+      <!-- Arrow buttons -->
+      <div class="gallery-h-arrows">
+        <button class="gallery-h-arrow gallery-prev" aria-label="Previous">&#8592;</button>
+        <button class="gallery-h-arrow gallery-next" aria-label="Next">&#8594;</button>
+      </div>
+
+    </div><!-- /gallery-h-wrap -->
   </div>
-</div>
 
-<div class="divider"></div>
+  <!-- ══ SNAP 4 — PAGES OVERVIEW ══ -->
+  <div class="snap-section" id="snap-pages" style="background:var(--black);">
+    <div class="snap-inner">
+      <div class="label-tag reveal">EXPLORE</div>
+      <h2 class="section-title reveal">สำรวจทุกส่วน<br>ของ <span class="t-blue">NewTemp RP</span></h2>
+      <div class="pages-overview-grid">
 
-<!-- ══════════════════ GALLERY ══════════════════ -->
-<div class="section">
-  <div class="label-tag reveal">SCREENSHOTS</div>
-  <h2 class="section-title reveal">ชีวิตในเมือง Los Santos</h2>
-  <div class="gallery-strip reveal">
-    <div class="g-item">
-      <img src="assets/wallpaper/bg1.jpeg" alt="Street Night" />
-      <div class="g-item-ov"></div>
-      <div class="g-label">STREET LIFE · VINEWOOD</div>
-    </div>
-    <div class="g-item">
-      <img src="assets/wallpaper/bg2.jpg" alt="Police" />
-      <div class="g-item-ov"></div>
-      <div class="g-label">POLICE · CRIME</div>
-    </div>
-    <div class="g-item">
-      <img src="assets/wallpaper/bg4.jpg" alt="Car Meet" />
-      <div class="g-item-ov"></div>
-      <div class="g-label">CAR MEET · PARKING</div>
+        <a href="about.html" class="pov-card reveal d1">
+          <div class="pov-num">01</div>
+          <div class="pov-body">
+            <div class="pov-tag">ABOUT</div>
+            <div class="pov-title">เกี่ยวกับ<br>Server</div>
+            <div class="pov-desc">ประวัติความเป็นมา วิสัยทัศน์ และทีมงานเบื้องหลัง NewTemp RP เซิร์ฟเวอร์ที่สร้างจากความเชื่อว่าทุก RP มีคุณค่า</div>
+          </div>
+          <div class="pov-arrow">→</div>
+        </a>
+
+        <a href="features.html" class="pov-card reveal d2">
+          <div class="pov-num">02</div>
+          <div class="pov-body">
+            <div class="pov-tag">FEATURES</div>
+            <div class="pov-title">ระบบ<br>ทั้งหมด</div>
+            <div class="pov-desc">Business · Parking · Property · Legal System และอีกมากมาย ระบบ Custom ที่ไม่มีใครทำในไทยมาก่อน</div>
+          </div>
+          <div class="pov-arrow">→</div>
+        </a>
+
+        <a href="lore.html" class="pov-card reveal d3">
+          <div class="pov-num">03</div>
+          <div class="pov-body">
+            <div class="pov-tag">LORE</div>
+            <div class="pov-title">เรื่องราว<br>ของเมือง</div>
+            <div class="pov-desc">เข้าใจประวัติศาสตร์และ Lore ของ Los Santos ใน NewTemp RP ก่อนเริ่มต้นชีวิตในเมือง</div>
+          </div>
+          <div class="pov-arrow">→</div>
+        </a>
+
+        <a href="rules.html" class="pov-card reveal d4">
+          <div class="pov-num">04</div>
+          <div class="pov-body">
+            <div class="pov-tag">RULES</div>
+            <div class="pov-title">กฎ<br>ของเซิร์ฟ</div>
+            <div class="pov-desc">กฎกติกาที่ทุกคนต้องรู้ก่อนเล่น เพื่อให้ประสบการณ์ RP เป็นไปอย่างยุติธรรมและสนุกสำหรับทุกคน</div>
+          </div>
+          <div class="pov-arrow">→</div>
+        </a>
+
+        <a href="join.html" class="pov-card reveal d5">
+          <div class="pov-num">05</div>
+          <div class="pov-body">
+            <div class="pov-tag">JOIN</div>
+            <div class="pov-title">วิธี<br>สมัครเข้าเล่น</div>
+            <div class="pov-desc">ขั้นตอน Whitelist ตั้งแต่ต้นจนเล่นได้จริง ง่าย ชัดเจน พร้อม Discord สำหรับถามได้ทันที</div>
+          </div>
+          <div class="pov-arrow">→</div>
+        </a>
+
+        <a href="donate.html" class="pov-card reveal d6">
+          <div class="pov-num">06</div>
+          <div class="pov-body">
+            <div class="pov-tag">DONATE</div>
+            <div class="pov-title">สนับสนุน<br>Server</div>
+            <div class="pov-desc">ช่วยให้ Server เดินหน้าต่อไป ไม่มีสิทธิพิเศษที่ทำลายสมดุล ทุกบาทช่วยพัฒนาระบบและ Content ใหม่</div>
+          </div>
+          <div class="pov-arrow">→</div>
+        </a>
+
+      </div>
     </div>
   </div>
-</div>
 
-<!-- ══════════════════ DISCORD WIDGET ══════════════════ -->
-<div class="section">
-  <div class="discord-widget-section reveal">
-    <div class="discord-widget-text">
-      <div class="label-tag">COMMUNITY</div>
-      <h2 class="section-title" style="margin-bottom:16px;">เข้าร่วม<br><span class="t-blue">Discord</span><br>ของเรา</h2>
-      <p style="font-size:14px;color:var(--gray);line-height:1.8;margin-bottom:28px;">ดูสมาชิกที่ออนไลน์อยู่แบบ Real-time เข้าร่วมชุมชน NewTemp RP และพูดคุยกับผู้เล่นคนอื่น</p>
-      <a href="https://discord.gg/SePnEtPCar" target="_blank" class="btn btn-blue">เข้าร่วม Discord →</a>
-    </div>
-    <div class="discord-widget-frame">
-      <iframe src="https://discord.com/widget?id=1509663869289762986&theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" title="NewTemp RP Discord Widget"></iframe>
+  <!-- ══ SNAP 5 — COMMUNITY + FOOTER ══ -->
+  <div class="snap-section" id="snap-footer" style="background:var(--black);">
+    <div class="snap-footer-inner">
+
+      <!-- Discord widget section -->
+      <div class="discord-snap">
+        <div>
+          <div class="label-tag reveal">COMMUNITY</div>
+          <h2 class="section-title reveal" style="margin-bottom:16px;">
+            เข้าร่วม<br><span class="t-blue">Discord</span><br>ของเรา
+          </h2>
+          <p class="reveal" style="font-size:14px;color:var(--gray);line-height:1.8;margin-bottom:28px;">
+            ดูสมาชิกที่ออนไลน์อยู่แบบ Real-time เข้าร่วมชุมชน<br>NewTemp RP และพูดคุยกับผู้เล่นคนอื่น
+          </p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;" class="reveal">
+            <a href="https://discord.gg/SePnEtPCar" target="_blank" class="btn btn-blue">เข้าร่วม Discord →</a>
+            <a href="join.html" class="btn btn-outline-blue">สมัคร Whitelist</a>
+          </div>
+        </div>
+        <div class="discord-widget-frame reveal">
+          <iframe
+            src="https://discord.com/widget?id=1509663869289762986&theme=dark"
+            width="100%" height="380"
+            allowtransparency="true" frameborder="0"
+            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+            title="NewTemp RP Discord Widget">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Mini CTA -->
+      <div class="snap-cta-bar">
+        <h2 class="reveal">พร้อมเริ่มชีวิตใน <span class="t-blue">Los Santos</span> แล้วหรือยัง?</h2>
+        <p class="reveal">เข้าร่วม Discord สมัคร Whitelist และเริ่มเล่นได้เลยวันนี้</p>
+        <div class="btn-row reveal">
+          <a href="join.html" class="btn btn-blue">วิธีสมัคร →</a>
+          <a href="about.html" class="btn btn-outline-blue">เกี่ยวกับ Server</a>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer>
+        <div class="footer-logo">NEW<span>TEMP</span> RP</div>
+        <nav class="footer-nav">
+          <a href="index.html">HOME</a>
+          <a href="about.html">ABOUT</a>
+          <a href="features.html">FEATURES</a>
+          <a href="lore.html">LORE</a>
+          <a href="rules.html">RULES</a>
+          <a href="join.html">JOIN</a>
+          <a href="donate.html">DONATE</a>
+        </nav>
+        <div class="footer-copy">© 2025 NEWTEMP ROLEPLAY · FIVEM TH</div>
+      </footer>
+      <div class="gold-line"></div>
+
     </div>
   </div>
-</div>
 
-<!-- ══════════════════ CTA BAND ══════════════════ -->
-<div class="cta-band">
-  <h2 class="reveal">พร้อมเริ่มชีวิตใน<br><span class="t-blue">Los Santos</span> แล้วหรือยัง?</h2>
-  <p class="reveal">เข้าร่วม Discord เพื่อสมัคร Whitelist และเริ่มเล่นได้เลย</p>
-  <a href="https://discord.gg/SePnEtPCar" target="_blank" class="btn btn-blue reveal">เข้าร่วม Discord →</a>
-</div>
+</div><!-- /snap-container -->
 
-<!-- ══════════════════ FOOTER ══════════════════ -->
-<footer>
-  <div class="footer-logo">NEW<span>TEMP</span> RP</div>
-  <nav class="footer-nav">
-    <a href="index.html">HOME</a>
-    <a href="about.html">ABOUT</a>
-    <a href="features.html">FEATURES</a>
-    <a href="lore.html">LORE</a>
-  <a href="rules.html">RULES</a>
-    <a href="join.html">JOIN</a>
-    <a href="donate.html">DONATE</a>
-  </nav>
-  <div class="footer-copy">© 2025 NEWTEMP ROLEPLAY · FIVEM TH</div>
-</footer>
-<div class="gold-line"></div>
+<!-- ══ Snap Dots Navigation ══ -->
+<nav class="snap-dots" id="snapDots" aria-label="Section navigation">
+  <button class="snap-dot active" data-section="0" aria-label="Hero"></button>
+  <button class="snap-dot"        data-section="1" aria-label="Features"></button>
+  <button class="snap-dot"        data-section="2" aria-label="Gallery"></button>
+  <button class="snap-dot"        data-section="3" aria-label="Pages"></button>
+  <button class="snap-dot"        data-section="4" aria-label="Community"></button>
+</nav>
 
-<!-- ══════════════════ THREE.JS WebGL ══════════════════ -->
-<script defer src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<!-- ══ Three.js Particles ══ -->
+<script defer src="assets/js/three.min.js"></script>
 <script>
 (function () {
-  const canvas = document.getElementById('hero-canvas');
-  if (!canvas || typeof THREE === 'undefined') return;
+  window.addEventListener('load', function () {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas || typeof THREE === 'undefined') return;
 
-  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setClearColor(0x000000, 0);
-
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.z = 130;
-
-  // ── Config ──
-  const PARTICLE_COUNT = 220;
-  const SPREAD        = 210;
-  const CONNECT_DIST  = 30;
-  const MAX_LINES     = 700;
-
-  // ── Particles ──
-  const positions   = new Float32Array(PARTICLE_COUNT * 3);
-  const pColors     = new Float32Array(PARTICLE_COUNT * 3);
-  const velocities  = new Float32Array(PARTICLE_COUNT * 3);
-
-  for (let i = 0; i < PARTICLE_COUNT; i++) {
-    positions[i*3]   = (Math.random() - 0.5) * SPREAD;
-    positions[i*3+1] = (Math.random() - 0.5) * SPREAD;
-    positions[i*3+2] = (Math.random() - 0.5) * 70;
-    velocities[i*3]   = (Math.random() - 0.5) * 0.022;
-    velocities[i*3+1] = (Math.random() - 0.5) * 0.022;
-    velocities[i*3+2] = (Math.random() - 0.5) * 0.007;
-
-    // 88% blue, 12% gold
-    if (Math.random() > 0.88) {
-      pColors[i*3] = 0.937; pColors[i*3+1] = 0.624; pColors[i*3+2] = 0.153;
-    } else {
-      pColors[i*3] = 0.216; pColors[i*3+1] = 0.541; pColors[i*3+2] = 0.867;
-    }
-  }
-
-  const pGeo = new THREE.BufferGeometry();
-  pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  pGeo.setAttribute('color',    new THREE.BufferAttribute(pColors, 3));
-
-  const pMat = new THREE.PointsMaterial({
-    size: 2.4,
-    vertexColors: true,
-    transparent: true,
-    opacity: 1.0,
-    sizeAttenuation: true,
-    blending: THREE.AdditiveBlending,
-    depthWrite: false,
-  });
-  scene.add(new THREE.Points(pGeo, pMat));
-
-  // ── Lines ──
-  const linePos    = new Float32Array(MAX_LINES * 6);
-  const lineColors = new Float32Array(MAX_LINES * 6);
-
-  const lGeo = new THREE.BufferGeometry();
-  lGeo.setAttribute('position', new THREE.BufferAttribute(linePos,    3).setUsage(THREE.DynamicDrawUsage));
-  lGeo.setAttribute('color',    new THREE.BufferAttribute(lineColors, 3).setUsage(THREE.DynamicDrawUsage));
-  lGeo.setDrawRange(0, 0);
-
-  const lMat = new THREE.LineBasicMaterial({
-    vertexColors: true,
-    transparent: true,
-    opacity: 0.55,
-    blending: THREE.AdditiveBlending,
-    depthWrite: false,
-  });
-  scene.add(new THREE.LineSegments(lGeo, lMat));
-
-  // ── Mouse parallax ──
-  let targetX = 0, targetY = 0, camX = 0, camY = 0;
-  document.addEventListener('mousemove', e => {
-    targetX =  (e.clientX / window.innerWidth  - 0.5) * 22;
-    targetY = -(e.clientY / window.innerHeight - 0.5) * 14;
-  });
-
-  // ── Resize ──
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(window.innerWidth, window.innerHeight);
-  });
+    renderer.setClearColor(0x000000, 0);
 
-  // ── Animate ──
-  const halfSpread = SPREAD / 2;
-  const halfZ      = 35;
-  const connectDistSq = CONNECT_DIST * CONNECT_DIST;
+    const scene  = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 130;
 
-  function animate() {
-    requestAnimationFrame(animate);
+    const PARTICLE_COUNT = 220, SPREAD = 210, CONNECT_DIST = 30, MAX_LINES = 700;
+    const positions  = new Float32Array(PARTICLE_COUNT * 3);
+    const pColors    = new Float32Array(PARTICLE_COUNT * 3);
+    const velocities = new Float32Array(PARTICLE_COUNT * 3);
 
-    // Move particles & wrap
     for (let i = 0; i < PARTICLE_COUNT; i++) {
-      positions[i*3]   += velocities[i*3];
-      positions[i*3+1] += velocities[i*3+1];
-      positions[i*3+2] += velocities[i*3+2];
-      if (positions[i*3]   >  halfSpread) positions[i*3]   = -halfSpread;
-      if (positions[i*3]   < -halfSpread) positions[i*3]   =  halfSpread;
-      if (positions[i*3+1] >  halfSpread) positions[i*3+1] = -halfSpread;
-      if (positions[i*3+1] < -halfSpread) positions[i*3+1] =  halfSpread;
-      if (positions[i*3+2] >  halfZ)      positions[i*3+2] = -halfZ;
-      if (positions[i*3+2] < -halfZ)      positions[i*3+2] =  halfZ;
-    }
-    pGeo.attributes.position.needsUpdate = true;
-
-    // Build connection lines
-    let lineIdx = 0;
-    for (let i = 0; i < PARTICLE_COUNT - 1 && lineIdx < MAX_LINES; i++) {
-      for (let j = i + 1; j < PARTICLE_COUNT && lineIdx < MAX_LINES; j++) {
-        const dx = positions[i*3]   - positions[j*3];
-        const dy = positions[i*3+1] - positions[j*3+1];
-        const dz = positions[i*3+2] - positions[j*3+2];
-        const distSq = dx*dx + dy*dy + dz*dz;
-        if (distSq < connectDistSq) {
-          const alpha = 1 - Math.sqrt(distSq) / CONNECT_DIST;
-          const b = lineIdx * 6;
-          linePos[b]   = positions[i*3];   linePos[b+1] = positions[i*3+1]; linePos[b+2] = positions[i*3+2];
-          linePos[b+3] = positions[j*3];   linePos[b+4] = positions[j*3+1]; linePos[b+5] = positions[j*3+2];
-          lineColors[b]   = pColors[i*3]   * alpha; lineColors[b+1] = pColors[i*3+1] * alpha; lineColors[b+2] = pColors[i*3+2] * alpha;
-          lineColors[b+3] = pColors[j*3]   * alpha; lineColors[b+4] = pColors[j*3+1] * alpha; lineColors[b+5] = pColors[j*3+2] * alpha;
-          lineIdx++;
-        }
+      positions[i*3]   = (Math.random() - 0.5) * SPREAD;
+      positions[i*3+1] = (Math.random() - 0.5) * SPREAD;
+      positions[i*3+2] = (Math.random() - 0.5) * 70;
+      velocities[i*3]   = (Math.random() - 0.5) * 0.022;
+      velocities[i*3+1] = (Math.random() - 0.5) * 0.022;
+      velocities[i*3+2] = (Math.random() - 0.5) * 0.007;
+      if (Math.random() > 0.88) {
+        pColors[i*3] = 0.937; pColors[i*3+1] = 0.624; pColors[i*3+2] = 0.153;
+      } else {
+        pColors[i*3] = 0.216; pColors[i*3+1] = 0.541; pColors[i*3+2] = 0.867;
       }
     }
-    lGeo.setDrawRange(0, lineIdx * 2);
-    lGeo.attributes.position.needsUpdate = true;
-    lGeo.attributes.color.needsUpdate    = true;
 
-    // Smooth camera to mouse
-    camX += (targetX - camX) * 0.045;
-    camY += (targetY - camY) * 0.045;
-    camera.position.x = camX;
-    camera.position.y = camY;
-    camera.lookAt(0, 0, 0);
+    const pGeo = new THREE.BufferGeometry();
+    pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    pGeo.setAttribute('color',    new THREE.BufferAttribute(pColors, 3));
+    scene.add(new THREE.Points(pGeo, new THREE.PointsMaterial({
+      size: 2.4, vertexColors: true, transparent: true, opacity: 1.0,
+      sizeAttenuation: true, blending: THREE.AdditiveBlending, depthWrite: false,
+    })));
 
-    renderer.render(scene, camera);
-  }
-  animate();
+    const linePos    = new Float32Array(MAX_LINES * 6);
+    const lineColors = new Float32Array(MAX_LINES * 6);
+    const lGeo = new THREE.BufferGeometry();
+    lGeo.setAttribute('position', new THREE.BufferAttribute(linePos,    3).setUsage(THREE.DynamicDrawUsage));
+    lGeo.setAttribute('color',    new THREE.BufferAttribute(lineColors, 3).setUsage(THREE.DynamicDrawUsage));
+    lGeo.setDrawRange(0, 0);
+    scene.add(new THREE.LineSegments(lGeo, new THREE.LineBasicMaterial({
+      vertexColors: true, transparent: true, opacity: 0.55,
+      blending: THREE.AdditiveBlending, depthWrite: false,
+    })));
+
+    let targetX = 0, targetY = 0, camX = 0, camY = 0;
+    // FIX #6 — Start false so animate() never runs before IntersectionObserver
+    // confirms hero is visible. Previously true caused a brief wasteful render
+    // if hero was off-screen at load, and allowed a second RAF chain to start.
+    let heroVisible = false;
+    let rafId = null;
+
+    // Only render while hero section is in the viewport
+    const heroSection = document.getElementById('snap-hero');
+    const snapCont    = document.getElementById('snapContainer');
+    if (heroSection && snapCont) {
+      const heroIO = new IntersectionObserver(entries => {
+        heroVisible = entries[0].isIntersecting;
+        // Start loop only if not already running
+        if (heroVisible && !rafId) animate();
+      }, { root: snapCont, threshold: 0.1 });
+      heroIO.observe(heroSection);
+    }
+
+    document.addEventListener('mousemove', e => {
+      targetX =  (e.clientX / window.innerWidth  - 0.5) * 22;
+      targetY = -(e.clientY / window.innerHeight - 0.5) * 14;
+    }, { passive: true });
+
+    // Debounced resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      }, 150);
+    }, { passive: true });
+
+    const half = SPREAD / 2, halfZ = 35, cdSq = CONNECT_DIST * CONNECT_DIST;
+    function animate() {
+      if (!heroVisible) { rafId = null; return; }
+      rafId = requestAnimationFrame(animate);
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        positions[i*3]   += velocities[i*3];
+        positions[i*3+1] += velocities[i*3+1];
+        positions[i*3+2] += velocities[i*3+2];
+        if (positions[i*3]   >  half)  positions[i*3]   = -half;
+        if (positions[i*3]   < -half)  positions[i*3]   =  half;
+        if (positions[i*3+1] >  half)  positions[i*3+1] = -half;
+        if (positions[i*3+1] < -half)  positions[i*3+1] =  half;
+        if (positions[i*3+2] >  halfZ) positions[i*3+2] = -halfZ;
+        if (positions[i*3+2] < -halfZ) positions[i*3+2] =  halfZ;
+      }
+      pGeo.attributes.position.needsUpdate = true;
+      let li = 0;
+      for (let i = 0; i < PARTICLE_COUNT - 1 && li < MAX_LINES; i++) {
+        for (let j = i + 1; j < PARTICLE_COUNT && li < MAX_LINES; j++) {
+          const dx = positions[i*3]-positions[j*3], dy = positions[i*3+1]-positions[j*3+1], dz = positions[i*3+2]-positions[j*3+2];
+          const d2 = dx*dx+dy*dy+dz*dz;
+          if (d2 < cdSq) {
+            const a = 1 - Math.sqrt(d2) / CONNECT_DIST, b = li * 6;
+            linePos[b]=positions[i*3]; linePos[b+1]=positions[i*3+1]; linePos[b+2]=positions[i*3+2];
+            linePos[b+3]=positions[j*3]; linePos[b+4]=positions[j*3+1]; linePos[b+5]=positions[j*3+2];
+            lineColors[b]=pColors[i*3]*a; lineColors[b+1]=pColors[i*3+1]*a; lineColors[b+2]=pColors[i*3+2]*a;
+            lineColors[b+3]=pColors[j*3]*a; lineColors[b+4]=pColors[j*3+1]*a; lineColors[b+5]=pColors[j*3+2]*a;
+            li++;
+          }
+        }
+      }
+      lGeo.setDrawRange(0, li * 2);
+      lGeo.attributes.position.needsUpdate = true;
+      lGeo.attributes.color.needsUpdate    = true;
+      camX += (targetX - camX) * 0.045;
+      camY += (targetY - camY) * 0.045;
+      camera.position.x = camX; camera.position.y = camY;
+      camera.lookAt(0, 0, 0);
+      renderer.render(scene, camera);
+    }
+    // animate() is NOT called here — IntersectionObserver above starts it
+    // once the browser confirms snap-hero is visible, preventing a double
+    // RAF chain and eliminating unnecessary renders when hero is off-screen.
+  });
 })();
 </script>
 
