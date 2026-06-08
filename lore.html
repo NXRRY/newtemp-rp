@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NewTemp RP — Lore of the City</title>
   <meta name="description" content="Lore of Los Santos — เมืองที่ซ่อนความจริงไว้ในทุกซอกมุม NewTemp Roleplay FiveM Thailand" />
+  <meta property="og:title" content="NewTemp RP — Lore of the City" />
+  <meta property="og:description" content="Lore of Los Santos — เมืองที่ซ่อนความจริงไว้ในทุกซอกมุม NewTemp Roleplay FiveM Thailand" />
+  <meta property="og:image" content="assets/wallpaper/01.jpg" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="NewTemp RP — Lore of the City" />
+  <meta name="twitter:description" content="Lore of Los Santos — เมืองที่ซ่อนความจริงไว้ในทุกซอกมุม NewTemp Roleplay FiveM Thailand" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23378ADD'/><text x='16' y='23' font-size='18' font-family='Arial Black' font-weight='900' fill='white' text-anchor='middle'>N</text></svg>" />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=Inter:wght@300;400;500&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
@@ -22,7 +29,7 @@
     }
     .lore-hero-bg {
       position: absolute; inset: 0; z-index: 0;
-      background-image: url('assets/wallpaper/04.jpg');
+      background-image: url('assets/wallpaper/bg6.webp');
       background-size: cover;
       background-position: center;
       filter: brightness(0.25) saturate(1.4);
@@ -103,11 +110,6 @@
       0%,100% { opacity:0.4; transform: translateX(-50%) translateY(0); }
       50% { opacity:1; transform: translateX(-50%) translateY(-6px); }
     }
-    @keyframes shimmer {
-      0% { background-position: 200% center; }
-      100% { background-position: 0% center; }
-    }
-
     /* ── INTRO ── */
     .lore-intro {
       max-width: 680px; margin: 0 auto;
@@ -268,7 +270,8 @@
       text-transform: uppercase; color: var(--gray);
       margin-bottom: 40px;
     }
-    .btn-join {
+    /* btn-join replaced by global .btn.btn-blue */
+    .btn-join-unused {
       display: inline-block;
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 16px; font-weight: 700;
@@ -278,7 +281,7 @@
       padding: 14px 36px; border-radius: 4px;
       transition: background 0.2s, transform 0.2s;
     }
-    .btn-join:hover { background: var(--blue-light); transform: translateY(-2px); }
+    .btn-join-unused:hover { background: var(--blue-light); transform: translateY(-2px); }
 
     @media (max-width: 768px) {
       .dn-grid { grid-template-columns: 1fr; }
@@ -464,22 +467,29 @@
       "Los Santos ไม่ได้สร้างคน<br>มันแค่เผยให้เห็นว่า<br><span class="t-blue">คุณเป็นใครจริงๆ</span>"
     </div>
     <div class="lore-closing-sub">คุณคือใครในเมืองนี้ — เป็นเรื่องของคุณที่จะตัดสินใจ</div>
-    <a href="join.html" class="btn-join">เข้าร่วมเมือง →</a>
+    <a href="join.html" class="btn btn-blue">เข้าร่วมเมือง →</a>
   </div>
+</div>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2 class="reveal">เรื่องของ<span class="accent"> คุณ </span>ยังไม่เริ่มต้น</h2>
+  <p class="reveal">Lore ของเมืองรอผู้เล่นมาเขียนบทต่อ — เข้าร่วมแล้วสร้างประวัติศาสตร์ของคุณเอง</p>
+  <a href="join.html" class="btn btn-blue reveal">เริ่มต้นเรื่องราวของคุณ →</a>
 </div>
 
 <footer>
   <div class="footer-logo">NEW<span>TEMP</span> RP</div>
   <nav class="footer-nav">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="features.html">Features</a>
-    <a href="lore.html">Lore</a>
-    <a href="rules.html">Rules</a>
-    <a href="join.html">Join</a>
-    <a href="donate.html">Donate</a>
+    <a href="index.html">HOME</a>
+    <a href="about.html">ABOUT</a>
+    <a href="features.html">FEATURES</a>
+    <a href="lore.html">LORE</a>
+    <a href="rules.html">RULES</a>
+    <a href="join.html">JOIN</a>
+    <a href="donate.html">DONATE</a>
   </nav>
-  <div class="footer-copy">© 2025 NEWTEMP ROLEPLAY</div>
+  <div class="footer-copy">© 2025 NEWTEMP ROLEPLAY · FIVEM TH</div>
 </footer>
 <div class="gold-line"></div>
 <script src="shared.js"></script>

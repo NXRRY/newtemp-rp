@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NewTemp Roleplay — หน้าหลัก</title>
   <meta name="description" content="NewTemp Roleplay เซิร์ฟเวอร์ FiveM Thailand ระบบ Life RP ยุติธรรม ไม่มี Pay-to-Win เปิดโอกาสให้คุณใช้ชีวิตใน Los Santos อย่างแท้จริง" />
+  <meta property="og:title" content="NewTemp Roleplay — FiveM Thailand" />
+  <meta property="og:description" content="เซิร์ฟเวอร์ FiveM ที่เปิดโอกาสให้คุณเป็นใครก็ได้ใน Los Santos ระบบยุติธรรม ไม่มี Pay-to-Win" />
+  <meta property="og:image" content="assets/wallpaper/01.jpg" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="NewTemp Roleplay — FiveM Thailand" />
+  <meta name="twitter:description" content="เซิร์ฟเวอร์ FiveM ที่เปิดโอกาสให้คุณเป็นใครก็ได้ใน Los Santos ระบบยุติธรรม ไม่มี Pay-to-Win" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23378ADD'/><text x='16' y='23' font-size='18' font-family='Arial Black' font-weight='900' fill='white' text-anchor='middle'>N</text></svg>" />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=Inter:wght@300;400;500&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
@@ -149,18 +156,7 @@
       font-weight:700; letter-spacing:2px; color:rgba(240,240,240,0.6);
     }
 
-    /* ── CTA BAND ── */
-    .cta-band {
-      background: rgba(55,138,221,0.06);
-      border-top: 0.5px solid var(--border);
-      border-bottom: 0.5px solid var(--border);
-      padding: 64px 6%; text-align: center;
-    }
-    .cta-band h2 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(32px,5vw,60px); font-weight: 900; margin-bottom: 20px;
-    }
-    .cta-band p { color: var(--gray); margin-bottom: 32px; }
+    /* CTA band — now global in style.css */
 
     /* ── LAUNCH BADGE ── */
     .launch-badge {
@@ -225,9 +221,9 @@
 
   <div class="hero-content">
     <div class="launch-badge">
-      <div class="blink"></div>COMING SOON &nbsp;·&nbsp; FIVEM THAILAND
+      <div class="blink"></div>WHITELIST OPEN &nbsp;·&nbsp; FIVEM THAILAND
     </div>
-    <div class="hero-eyebrow"><div class="dot"></div>LIFE ROLEPLAY &nbsp;·&nbsp; QBX FRAMEWORK</div>
+    <div class="hero-eyebrow"><div class="dot"></div>LIFE ROLEPLAY &nbsp;·&nbsp; ESX FRAMEWORK</div>
     <h1 class="hero-title">
       <div><span class="shimmer">NEW</span>TEMP</div>
       <div><span class="gold">ROLE</span>PLAY</div>
@@ -241,7 +237,7 @@
 
   <div class="hero-stats">
     <div class="h-stat"><div class="h-stat-n">128</div><div class="h-stat-l">MAX SLOTS</div></div>
-    <div class="h-stat"><div class="h-stat-n">QBX</div><div class="h-stat-l">FRAMEWORK</div></div>
+    <div class="h-stat"><div class="h-stat-n">ESX</div><div class="h-stat-l">FRAMEWORK</div></div>
     <div class="h-stat"><div class="h-stat-n">0</div><div class="h-stat-l">PAY TO WIN</div></div>
     <div class="h-stat"><div class="h-stat-n">FREE</div><div class="h-stat-l">TO PLAY</div></div>
   </div>
@@ -323,19 +319,34 @@
   <h2 class="section-title reveal">ชีวิตในเมือง Los Santos</h2>
   <div class="gallery-strip reveal">
     <div class="g-item">
-      <img src="assets/wallpaper/01.jpg" alt="Police" />
+      <img src="assets/wallpaper/bg1.jpeg" alt="Street Night" />
+      <div class="g-item-ov"></div>
+      <div class="g-label">STREET LIFE · VINEWOOD</div>
+    </div>
+    <div class="g-item">
+      <img src="assets/wallpaper/bg2.jpg" alt="Police" />
       <div class="g-item-ov"></div>
       <div class="g-label">POLICE · CRIME</div>
     </div>
     <div class="g-item">
-      <img src="assets/wallpaper/02.jpg" alt="Garage" />
+      <img src="assets/wallpaper/bg4.jpg" alt="Car Meet" />
       <div class="g-item-ov"></div>
-      <div class="g-label">MECHANIC</div>
+      <div class="g-label">CAR MEET · PARKING</div>
     </div>
-    <div class="g-item">
-      <img src="assets/wallpaper/03.jpg" alt="Street" />
-      <div class="g-item-ov"></div>
-      <div class="g-label">STREET LIFE</div>
+  </div>
+</div>
+
+<!-- ══════════════════ DISCORD WIDGET ══════════════════ -->
+<div class="section">
+  <div class="discord-widget-section reveal">
+    <div class="discord-widget-text">
+      <div class="label-tag">COMMUNITY</div>
+      <h2 class="section-title" style="margin-bottom:16px;">เข้าร่วม<br><span class="t-blue">Discord</span><br>ของเรา</h2>
+      <p style="font-size:14px;color:var(--gray);line-height:1.8;margin-bottom:28px;">ดูสมาชิกที่ออนไลน์อยู่แบบ Real-time เข้าร่วมชุมชน NewTemp RP และพูดคุยกับผู้เล่นคนอื่น</p>
+      <a href="https://discord.gg/SePnEtPCar" target="_blank" class="btn btn-blue">เข้าร่วม Discord →</a>
+    </div>
+    <div class="discord-widget-frame">
+      <iframe src="https://discord.com/widget?id=1509663869289762986&theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" title="NewTemp RP Discord Widget"></iframe>
     </div>
   </div>
 </div>
@@ -364,7 +375,7 @@
 <div class="gold-line"></div>
 
 <!-- ══════════════════ THREE.JS WebGL ══════════════════ -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
 <script>
 (function () {
   const canvas = document.getElementById('hero-canvas');

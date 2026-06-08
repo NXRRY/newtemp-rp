@@ -4,19 +4,19 @@
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NewTemp RP — ระบบทั้งหมด</title>
   <meta name="description" content="ระบบทั้งหมดของ NewTemp RP — Business, Parking, Property, Economy, Government System FiveM Thailand" />
+  <meta property="og:title" content="NewTemp RP — ระบบทั้งหมด" />
+  <meta property="og:description" content="ระบบทั้งหมดของ NewTemp RP — Business, Parking, Property, Economy, Government System FiveM Thailand" />
+  <meta property="og:image" content="assets/wallpaper/01.jpg" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="NewTemp RP — ระบบทั้งหมด" />
+  <meta name="twitter:description" content="ระบบทั้งหมดของ NewTemp RP — Business, Parking, Property, Economy, Government System FiveM Thailand" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23378ADD'/><text x='16' y='23' font-size='18' font-family='Arial Black' font-weight='900' fill='white' text-anchor='middle'>N</text></svg>" />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=Inter:wght@300;400;500&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    .f-hero-grid { display:grid; grid-template-columns:1fr 1fr; gap:4px; margin-top:48px; border-radius:8px; overflow:hidden; }
-    .f-hero-main { grid-row:span 2; position:relative; overflow:hidden; }
-    .f-hero-main img, .f-hero-sub img { width:100%; height:100%; object-fit:cover; filter:brightness(0.6); transition:all 0.5s; }
-    .f-hero-main:hover img, .f-hero-sub:hover img { filter:brightness(0.8); transform:scale(1.03); }
-    .f-hero-sub { position:relative; overflow:hidden; aspect-ratio:16/9; }
-    .f-ov { position:absolute; inset:0; background:linear-gradient(180deg,transparent 40%,rgba(8,8,8,0.8) 100%); }
-    .f-lbl { position:absolute; bottom:12px; left:12px; font-family:'Rajdhani',sans-serif; font-size:11px; font-weight:700; letter-spacing:2px; color:rgba(240,240,240,0.7); }
-
     .sys-section { margin-top:80px; }
+    .sys-section:first-child { margin-top:0; }
     .sys-header { display:grid; grid-template-columns:1fr 2fr; gap:48px; align-items:start; margin-bottom:32px; }
     .sys-num { font-family:'Barlow Condensed',sans-serif; font-size:100px; font-weight:900; color:rgba(55,138,221,0.07); line-height:1; }
     .sys-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
@@ -58,11 +58,13 @@
 </div>
 
 <div class="page-hero">
-  <div class="page-hero-bg" style="background-image:url('assets/wallpaper/02.jpg');"></div>
+  <div class="page-hero-bg" style="background-image:url('assets/wallpaper/bg4.jpg');"></div>
   <div class="page-hero-overlay"></div>
+  <div class="page-hero-overlay-side"></div>
   <div class="page-hero-content">
     <div class="label-tag">CORE SYSTEMS</div>
     <h1>ระบบ<br><span class="accent">ทั้งหมด</span></h1>
+    <p class="page-hero-sub">Business · Parking · Property · Economy · Government<br>ระบบที่ยังไม่มีใครทำในไทยในระดับนี้</p>
   </div>
 </div>
 
@@ -87,7 +89,7 @@
     </div>
   </div>
 
-  <div class="divider" style="margin-top:80px;"></div>
+  <div class="divider"></div>
 
   <!-- BUSINESS -->
   <div class="sys-section">
@@ -100,7 +102,7 @@
       </div>
     </div>
     <div class="sys-grid">
-      <div class="sys-card featured-sys reveal"><div class="sys-icon">🏪</div><div class="sys-title">Full Business Management</div><div class="sys-desc">เปิดร้านได้จริงใน World Admin ตั้งค่าจุดต่างๆ Player บริหารเองทั้งหมด เชื่อมกับ qbx-manage และระบบธนาคาร</div><div class="sys-badge">FLAGSHIP</div></div>
+      <div class="sys-card featured-sys reveal"><div class="sys-icon">🏪</div><div class="sys-title">Full Business Management</div><div class="sys-desc">เปิดร้านได้จริงใน World Admin ตั้งค่าจุดต่างๆ Player บริหารเองทั้งหมด เชื่อมกับ ESX-manage และระบบธนาคาร</div><div class="sys-badge">FLAGSHIP</div></div>
       <div class="sys-card reveal d1"><div class="sys-icon">📦</div><div class="sys-title">Stock System</div><div class="sys-desc">สั่งสินค้าผ่านระบบหรือไปรับเองที่ Supplier ไม่มีค่าส่งถ้าไปเอง</div></div>
       <div class="sys-card reveal d2"><div class="sys-icon">🍳</div><div class="sys-title">Craft System</div><div class="sys-desc">Craft ไอเทมได้ในร้าน ตั้งค่าความอิ่มอาหาร/เครื่องดื่มได้</div></div>
       <div class="sys-card reveal d3"><div class="sys-icon">🧾</div><div class="sys-title">Bill & Menu</div><div class="sys-desc">ออกบิลลูกค้าได้ มี Menu รายการสินค้าในเกม</div></div>
@@ -108,7 +110,7 @@
     </div>
   </div>
 
-  <div class="divider" style="margin-top:80px;"></div>
+  <div class="divider"></div>
 
   <!-- PROPERTY & VEHICLE -->
   <div class="sys-section">
@@ -130,7 +132,7 @@
     </div>
   </div>
 
-  <div class="divider" style="margin-top:80px;"></div>
+  <div class="divider"></div>
 
   <!-- GOVERNMENT -->
   <div class="sys-section">
@@ -149,19 +151,27 @@
     </div>
   </div>
 
-  <div style="text-align:center;padding:64px 0 0;">
-    <a href="join.html" class="btn btn-blue reveal">เริ่มเล่นเลย →</a>
-  </div>
+</div>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2 class="reveal">ระบบพร้อมแล้ว<br>รอแค่<span class="accent"> คุณ </span>คนเดียว</h2>
+  <p class="reveal">ดูขั้นตอนสมัคร Whitelist และเริ่มต้นใช้ชีวิตใน Los Santos ได้เลย</p>
+  <a href="join.html" class="btn btn-blue reveal">สมัคร Whitelist →</a>
 </div>
 
 <footer>
   <div class="footer-logo">NEW<span>TEMP</span> RP</div>
   <nav class="footer-nav">
-    <a href="index.html">HOME</a><a href="about.html">ABOUT</a><a href="features.html">FEATURES</a>
+    <a href="index.html">HOME</a>
+    <a href="about.html">ABOUT</a>
+    <a href="features.html">FEATURES</a>
     <a href="lore.html">LORE</a>
-  <a href="rules.html">RULES</a><a href="join.html">JOIN</a><a href="donate.html">DONATE</a>
+    <a href="rules.html">RULES</a>
+    <a href="join.html">JOIN</a>
+    <a href="donate.html">DONATE</a>
   </nav>
-  <div class="footer-copy">© 2025 NEWTEMP ROLEPLAY</div>
+  <div class="footer-copy">© 2025 NEWTEMP ROLEPLAY · FIVEM TH</div>
 </footer>
 <div class="gold-line"></div>
 <script src="shared.js"></script>

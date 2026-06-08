@@ -13,7 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Active nav link (desktop + mobile)
-  const path = window.location.pathname.split('/').pop() || 'index.html';
+  const raw = window.location.pathname.split('/').pop() || 'index.html';
+  const path = raw === '' || raw === '/' ? 'index.html'
+             : raw.includes('.') ? raw
+             : raw + '.html';
   document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => {
     if (a.getAttribute('href') === path) a.classList.add('active');
   });
